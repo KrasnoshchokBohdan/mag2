@@ -1,0 +1,12 @@
+ <?php // var_dump($block->getCustomerGroups());?>
+ <?php  $groups = $block->getCustomerGroups();
+foreach($groups as $group){
+  echo 'value - '.$group['value']."<br/>";
+  echo 'label - '.$group['label']."<br/>";
+   echo "<hr/>";
+}
+?>
+    
+
+
+

@@ -1,0 +1,25 @@
+<?php
+/** @var \Perspective\ProductByIDTest\Block\Index $block */
+?>
+<?php $product = $block->getProductById('2'); ?>
+<?php if (!is_null($product)) : ?>
+    <h2><?= $product->getName(); ?></h2>
+    <h2><?= $product->getSku(); ?></h2>
+<?php $test= $product->getName();?>
+<?php endif; ?>
+
+    <?php $product = $block->getProductBySku('24-MB01'); ?>
+<?php if (!is_null($product)) : ?>
+    <h2><?= $product->getName(); ?></h2>
+    <h2><?= $product->getSku(); ?></h2>
+    <?php endif; ?>
+
+    <?php $product = $block->getHello(); ?>
+    <?php if (!is_null($product)) : ?>
+    <h2><?= $product; ?></h2>
+      <?php endif; ?>
+
+
+
+
+

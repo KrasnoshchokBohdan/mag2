@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © 2016 Magento. All rights reserved.
+* See COPYING.txt for license details.
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>  
+       <referenceBlock name="page.main.title">
+            <arguments>
+            <!-- 2.1 Изменить шаблон (template) для написания текста в блоке 2, например, сделать шриф курсивным или что-то другое-->
+                <argument name="template" xsi:type="string">Magento_Theme::html/title.phtml</argument>
+            </arguments>
+        </referenceBlock>
+        <!-- 2.7 Расширить контейнер, в котором содержится блок 4 и дописать в него еще один блок с текстом “Buy me!”. Новый блок
+            расположить непосредственно под блоком 4 выше. чем остальные уже имеющиеся. -->
+        <referenceContainer name="page.main.title">
+            <block name="page.main.title.custom_product_block" template="Magento_Theme::customTemplate.phtml" after="page.main.title"/>
+        </referenceContainer>
+    </body>
+</page>  

@@ -1,0 +1,21 @@
+<div id="selector" data-bind="scope: 'pronko-component'">
+  <h1 data-bind="text: title"></h1>
+</div>
+
+<script type="text/x-magento-init">
+  {
+    "*": {
+      "Magento_Ui/js/core/app":{
+        "components":{
+          "pronko-component":{
+            "component":"UiComp_Pronko/js/component",
+            "title":"Hello World!"
+
+          }
+          
+        }
+
+      }
+    }
+  }
+</script>

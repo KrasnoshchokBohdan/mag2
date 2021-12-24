@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Learning_SocialAttribute::socialattribute" title="Social Attribute" module="Learning_SocialAttribute" sortOrder="51" resource="Learning_SocialAttribute::socialattribute"/>
+        <add id="Learning_SocialAttribute::post" title="Manage Posts" module="Learning_SocialAttribute" sortOrder="10" action="learning_socialattribute/post" resource="Learning_SocialAttribute::post" parent="Learning_SocialAttribute::socialattribute"/>
+        <add id="Learning_SocialAttribute::social_configuration" title="Configuration" module="Learning_SocialAttribute" sortOrder="99" parent="Learning_SocialAttribute::socialattribute" 
+action="learning/system_config/edit/section/socialattribute" resource="Learning_SocialAttribute::socialattribute_configuration"/>  
+    </menu>
+</config>

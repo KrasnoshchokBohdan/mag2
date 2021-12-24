@@ -1,0 +1,21 @@
+
+<?php // var_dump($block->getCustomerOrder());?>
+<?php $orders = $block->getCustomerOrder();
+foreach($orders as $order){
+  echo 'entity_id - '.$order['entity_id']."<br/>";
+   echo 'customer_id - '.$order['customer_id']."<br/>";
+   echo 'customer_name - '.$order['customer_firstname'].' '.$order['customer_lastname']."<br/>";
+   echo 'status - '.$order['status']."<br/>";
+   echo 'grand_total - '.$order['grand_total']."<br/>";
+   echo 'created_at - '.$order['created_at']."<br/>";
+   echo "<hr/>";
+
+
+}
+
+?>
+
+    
+
+
+

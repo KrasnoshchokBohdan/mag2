@@ -1,0 +1,13 @@
+<?php if ($block->checkEnableModule() !== 0) {?>
+    <?php if( $block->getUahExchange() !== null ) {?>
+        <h2><?php echo $block->getUahExchange(); ?> UAH</h2>
+    <?php } ?>
+
+    <?php if( $block->getRubExchange() !== null ) {?>
+        <h2><?php echo $block->getRubExchange(); ?> RUB</h2>
+    <?php } ?>
+
+    <?php if( $block->getEuroExchange() !== null ) {?>
+        <h2><?php echo $block->getEuroExchange(); ?> EUR</2>
+    <?php } ?>
+<?php } ?>

@@ -1,0 +1,16 @@
+{
+    "my_sales": {
+        "column": {
+            "id": true,
+            "product_name": true,
+            "quantity": true,
+            "date": true,
+            "discount": true,
+            "price": true,
+            "bonus": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

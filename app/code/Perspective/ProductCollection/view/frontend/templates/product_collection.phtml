@@ -1,0 +1,17 @@
+    <?php $product = $block->getHello(); ?>
+    <?php if (!is_null($product)) : ?>
+    <h2><?= $product; ?></h2>
+    <?php endif; ?>
+
+  
+    <?php $collection = $block->getProductCollection() ?>
+    <?php if (!is_null($collection)) : ?>
+    <p><?php foreach ($collection as $product) {
+          print_r($product->getData());}; ?></p>
+    <?php endif; ?>
+
+
+    
+
+
+

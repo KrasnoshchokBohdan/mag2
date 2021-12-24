@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page layout="1column"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block
+                name="product.info.main.perspective_custom_product_block"
+                class="Perspective\TutorialProductPage\Block\Custom"
+                template="Perspective_TutorialProductPage::customTemplate.phtml"
+                after="product.info.price"
+                before="product.price.tier"
+            />
+        </referenceContainer>
+
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View\Description"
+                   name="product.info.how_to"
+                   as="how_to"
+                   template="Magento_Catalog::product/view/attribute.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getHowTo</argument>
+                    <argument name="at_code" xsi:type="string">how_to</argument>
+                    <argument name="css_class" xsi:type="string">how-to</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">How To</argument>
+
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

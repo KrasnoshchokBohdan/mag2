@@ -1,0 +1,11 @@
+<?php
+$catalogRule = $block->getCatalogPriceRuleProductIds();
+foreach ($catalogRule as $productId => $ruleProductArray){
+     $product = $block->getProductById($productId);
+    print $product->getName()."<br>";
+}
+?>
+
+
+
+

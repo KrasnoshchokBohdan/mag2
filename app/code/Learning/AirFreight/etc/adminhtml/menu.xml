@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Learning_AirFreight::airfreight" title="Air Freight" module="Learning_AirFreight" sortOrder="51" resource="Learning_AirFreight::airfreight"/>
+        <add id="Learning_AirFreight::post" title="Manage Posts" module="Learning_AirFreight" sortOrder="10" action="learning_airfreight/post" resource="Learning_AirFreight::post" parent="Learning_AirFreight::airfreight"/>
+        <add id="Learning_AirFreight::air_configuration" title="Configuration" module="Learning_AirFreight" sortOrder="99" parent="Learning_AirFreight::airfreight" 
+action="learning/system_config/edit/section/airfreight" resource="Learning_AirFreight::airfreight_configuration"/>  
+    </menu>
+</config>

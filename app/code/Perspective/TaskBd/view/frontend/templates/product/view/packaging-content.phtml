@@ -1,0 +1,7 @@
+<?php /** @var \Perspective\TaskBd\Block\Category $block */?>
+<?php $currentProduct = $block->getCurrentProduct()?>
+<?php $collection=$block->getPostCollectionForProductId($currentProduct->getData('entity_id'))?>
+<?php $currentProduct ?>
+<?php foreach ($collection as $elem) : ?>
+                    <?= $elem->getData('TextRev') ?>
+<?php endforeach; ?>

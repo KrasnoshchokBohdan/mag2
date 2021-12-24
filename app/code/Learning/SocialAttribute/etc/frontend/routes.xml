@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="social_attribute" frontName="social-attribute">
+            <module name="Learning_SocialAttribute" />  
+        </route>
+    </router>
+</config>

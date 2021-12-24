@@ -1,0 +1,1 @@
+https://www.magedelight.com/resources/how-to-use-knockout-js-in-magento-2/

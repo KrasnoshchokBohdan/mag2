@@ -1,0 +1,10 @@
+<?xml version="1.0"?>   
+<page 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body> 
+    <!--4.Поменять размещение блока при создании нового заказа-->
+             <move element="shipping_address" destination="shipping_method" after="order_create_shipping_form"/>
+               <move element="billing_address" destination="billing_method" after="order_create_billing_form"/>
+    </body>    
+</page>

@@ -1,0 +1,29 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var \Perspective\ProductByID\Helper\ProductById $helper */
+/** @var \Perspective\ProductByID\Helper\ProductById $block */
+//$helper = $this->helper(\Perspective\ProductByID\Helper\ProductById::class);
+//$product = $helper->getProductById();
+//$productSku = $helper->getProductBySku();
+?>
+<?php $product = $block->getProductById('1'); ?>
+<?php if (!is_null($product)) : ?>
+    <h2><?= $product->getName(); ?></h2>
+    <h2><?= $product->getSku(); ?></h2>
+    <?php endif; ?>
+
+    <?php $product = $block->getProductBySku('24-MB01'); ?>
+<?php if (!is_null($product)) : ?>
+    <h2><?= $product->getName(); ?></h2>
+    <h2><?= $product->getSku(); ?></h2>
+    <?php endif; ?>
+
+    <?php $product = $block->getHello(); ?>
+    <?php if (!is_null($product)) : ?>
+    <h2><?= $product; ?></h2>
+      <?php endif; ?>
+
+    
+
+
+

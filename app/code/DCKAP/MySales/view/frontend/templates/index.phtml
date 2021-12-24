@@ -1,0 +1,54 @@
+<?php /** @var \DCKAP\MySales\Block\Index $block */?>
+<?php $date = $block->getCollection();?>
+<?php $prod= $block->getCollectionByName();?>
+<h2> Выполнить фильтрацию и вывести результат на кастомную страницу: </h2>  
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Product_name</td>
+        <td>Quantity</td>
+        <td>Date</td>
+        <td>Price</td>
+        <td>Bonus</td>
+    </tr>
+<?php foreach ($date as $elem) : ?>
+        <tr>
+            <td><?= $elem->getData('id') ?></td>
+            <td><?= $elem->getData('product_name') ?></td>
+            <td><?= $elem->getData('quantity') ?></td>
+            <td><?= $elem->getData('date') ?></td>
+            <td><?= $elem->getData('price') ?></td>
+            <td><?= $elem->getData('bonus') ?></td>
+        </tr>
+<?php endforeach; ?>
+</table>
+<h2> Вывести продажи по определенному названию товара (там, где таких продаж несколько) и посчитать стоимость данной
+продажи: если продажа совершена в текущий день, то Стоимость за ед * Количество * (1-Бонус), если продажа совершена раньше, то Бонус не использовать: </h2>
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Product_name</td>
+        <td>Quantity</td>
+        <td>Date</td>
+        <td>Price</td>
+        <td>Bonus</td>
+        <td>Sum</td>
+    </tr>
+<?php foreach ($prod as $elem) : ?>
+        <tr>
+            <td><?= $elem->getData('id') ?></td>
+            <td><?= $elem->getData('product_name') ?></td>
+            <td><?= $elem->getData('quantity') ?></td>
+            <td><?= $elem->getData('date') ?></td>
+            <td><?= $elem->getData('price') ?></td>
+            <td><?= $elem->getData('bonus') ?></td>
+            <td><?= $elem->getData('quantity')*$elem->getData('price') ?></td>
+        </tr>
+    <?php endforeach; ?>  
+</table>
+
+
+
+
+
+ 

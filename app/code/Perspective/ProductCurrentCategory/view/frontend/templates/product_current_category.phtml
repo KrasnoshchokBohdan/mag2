@@ -1,0 +1,16 @@
+
+<h2>Работает!</h2>
+<?php
+
+if ($currentCategory = $block->getCurrentCategory()) {
+echo $currentCategory->getId() . '<br />';
+echo $currentCategory->getName() . '<br />';
+echo $currentCategory->getUrl() . '<br />';
+}
+else echo "<br>No";
+?>
+
+    
+
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+      <head>
+        <title>4. Получить коллекцию отзывов на продукты заданной категории, причем к каждому продукту кроме отзыва вывести
+дополнительно его изображение, название, SKU и стоимость. Сделать отдельный контроллер, класс блока, layout и template,
+подключить модели продукта и категории.</title>
+    </head>
+     <body>
+        <referenceContainer name="content">
+            <block class="Perspective\TaskBd\Block\Category"
+                          name="taskbd_index_category"
+                                 template="Perspective_TaskBd::category.phtml" />
+        </referenceContainer>
+    </body>
+</page>

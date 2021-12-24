@@ -1,0 +1,7 @@
+<?php
+
+/** @var \Learning\AirFreight\Block\Index $block */
+?>
+<?php if ($currentProduct = $block->getCurrentProduct()) : ?>
+       <h2><?= $block->getAirShippingMessage(); ?></h2>  
+<?php endif ?>

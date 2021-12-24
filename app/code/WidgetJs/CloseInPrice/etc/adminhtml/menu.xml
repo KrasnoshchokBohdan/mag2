@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="WidgetJs_CloseInPrice::closeinprice" title="Close In Price" module="WidgetJs_CloseInPrice" sortOrder="51" resource="WidgetJs_CloseInPrice::closeinprice"/>
+        <add id="WidgetJs_CloseInPrice::close_configuration" title="Configuration" module="WidgetJs_CloseInPrice" sortOrder="99" parent="WidgetJs_CloseInPrice::closeinprice" 
+    action="adminhtml/system_config/edit/section/closeinprice" resource="WidgetJs_CloseInPrice::closeinprice_configuration"/>
+    </menu>
+</config>

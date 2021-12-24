@@ -1,0 +1,18 @@
+{
+    "magemastery_blog_page_post": {
+        "column": {
+            "post_id": true,
+            "page_id": true,
+            "is_post": true,
+            "author": true,
+            "publish_data": true
+        },
+        "index": {
+            "MAGEMASTERY_BLOG_PAGE_POST_PAGE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEMASTERY_BLOG_PAGE_POST_PAGE_ID_CMS_PAGE_PAGE_ID": true
+        }
+    }
+}

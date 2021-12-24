@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <currency_admin>
+            <general>
+                <enable>1</enable>
+                <display_text>Currency</display_text>
+
+                <uah_enable>1</uah_enable>
+                <uah_ex_rate>27.29</uah_ex_rate>
+
+                <rub_enable>0</rub_enable>
+                <rub_ex_rate>73.77</rub_ex_rate>
+
+                <euro_enable>1</euro_enable>
+                <euro_ex_rate>0.89</euro_ex_rate>
+            </general>
+
+        </currency_admin>
+    </default>
+</config>

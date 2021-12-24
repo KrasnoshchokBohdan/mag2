@@ -1,0 +1,14 @@
+<?php
+$customerCollection = $block->getCustomerCollection();
+// var_dump($customerCollection);
+if ($customerCollection && count($customerCollection) > 0) {
+    foreach ($customerCollection AS $customer) {
+        echo $customer->getFirstname()."<br/>";
+      echo $customer->getLastname()."<br/>";
+    echo $customer->getEmail()."<br/>"."<br/>";
+    }
+}
+?> 
+
+
+

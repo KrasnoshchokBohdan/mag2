@@ -1,0 +1,18 @@
+<ul>
+    <!-- ko foreach: {data: posts, as: 'post'} -->
+    <li class="post-container" data-bind="attr:{id: post.id}">
+        <div class="post-image" data-bind=""></div>
+        <div class="post-container__content">
+            <a data-bind="attr: {href: post.url}">
+                <h2 data-bind="text: post.title"></h2>
+            </a>
+            <div class="post-meta">
+                <span class="meta-column1" data-bind="text: $parent.getDate(post.published_data)"></span>
+                <div class="meta-column2" data-bind="text: post.author"></div>
+            </div>
+
+            <p data-bind="text: post.content"></p>
+        </div>
+    </li>
+    <!-- /ko -->
+</ul>

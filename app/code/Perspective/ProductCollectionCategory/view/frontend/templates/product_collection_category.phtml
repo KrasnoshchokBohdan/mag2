@@ -1,0 +1,12 @@
+    <?php $ids = [1,2,3]?>
+    <?php $categoryProducts = $block->getProductCollectionByCategories($ids); ?>
+    <?php if (!is_null($categoryProducts))  ?>
+    <p><?php foreach ($categoryProducts as $product) {
+          echo $product->getName() . ' - ' . $product->getProductUrl() . '<br />';}?></p>
+  
+
+
+    
+
+
+

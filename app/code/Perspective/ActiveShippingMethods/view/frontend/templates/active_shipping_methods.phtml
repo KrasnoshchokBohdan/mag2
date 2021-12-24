@@ -1,0 +1,16 @@
+
+      <?php //var_dump($block->getShippingMethods());?>
+     <?php $methods = $block->getShippingMethods();
+      foreach($methods as $method){
+          if(isset($method['label'])){
+        echo $method['label']."<br/>";
+        echo "<hr/>";
+      }
+    }
+      ?>
+
+
+    
+
+
+

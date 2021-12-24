@@ -1,0 +1,20 @@
+<?xml version="1.0"?>   
+<page layout="1column"  
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+ <!--Практика Бд1 Дополнительно: Разместить информацию с отзывом под продуктом в новом табе Review   -->
+     <referenceBlock name="product.info.details">
+              <block class="Perspective\TaskBd\Block\Category"  name="product.short.description" template="Perspective_TaskBd::product/view/packaging-content.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">New reviews</argument>
+                </arguments>
+            </block>
+   </referenceBlock> 
+ </body>    
+</page>
+
+
+
+
+

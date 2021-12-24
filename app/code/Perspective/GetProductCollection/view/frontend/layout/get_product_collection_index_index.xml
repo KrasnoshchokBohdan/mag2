@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Get Product Collection</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block
+
+                class="Perspective\GetProductCollection\Block\Index"
+                template="Perspective_GetProductCollection::get_product_collection.phtml"
+            />
+            </referenceContainer>
+    </body>
+</page>

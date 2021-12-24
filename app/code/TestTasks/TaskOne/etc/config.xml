@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <taskone>
+            <general>
+                <enable></enable>
+               <multi_select></multi_select>
+               <end_date></end_date>
+               <n_day></n_day>
+               <cron_enable></cron_enable>
+               <cron_discount></cron_discount>
+               <cron_message_enable>0</cron_message_enable>
+            </general>
+        </taskone>
+    </default>
+</config> 
