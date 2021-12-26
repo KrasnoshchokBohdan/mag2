@@ -33,10 +33,11 @@ class ShippingMethodsDisable
      * @param Check $check
      */
     public function __construct(
-        Data $helperData,
-        Checkout  $checkoutSession,
-        Check $check
-    ) {
+        Data     $helperData,
+        Checkout $checkoutSession,
+        Check    $check
+    )
+    {
         $this->helperData = $helperData;
         $this->checkoutSession = $checkoutSession;
         $this->check = $check;
