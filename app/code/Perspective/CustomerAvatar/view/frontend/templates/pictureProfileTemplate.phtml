@@ -1,0 +1,40 @@
+<?php
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$welcomeMessage = $block->getWelcome();
+?>
+<?php if ($block->getShowPart() == 'welcome') : ?>
+    <li class="greet welcome" data-bind="scope: 'customer'">
+        <!-- ko if: customer().fullname  -->
+        <span class="logged-in"
+              data-bind="text: new String('<?= $block->escapeHtml(__('Welcome, %1!', '%1')) ?>').replace('%1', customer().fullname)">
+        </span>
+            <!-- ko if: customer().avatar  -->
+            <span class="logged-in" style="padding-right:3px; padding-top:3px; display:inline-block; max-width:25px; max-height:25px;">
+                <img class="avatar" data-bind="attr:{src: customer().avatar}" tabindex="-1"/>
+            </span>
+            <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko ifnot: customer().fullname  -->
+        <span class="not-logged-in"
+              data-bind='html:"<?= $block->escapeHtml($welcomeMessage) ?>"'></span>
+        <?= $block->getBlockHtml('header.additional') ?>
+        <!-- /ko -->
+    </li>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "customer": {
+                        "component": "Magento_Customer/js/view/customer"
+                    }
+                }
+            }
+        }
+    }
+    </script>
+<?php elseif ($block->getShowPart() == 'other') :?>
+    <?= $block->getChildHtml() ?>
+<?php endif ?>
