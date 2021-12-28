@@ -9,11 +9,11 @@ use Perspective\CustomerAvatar\Model\MediaCustomerPath;
 class AddFrontAvatar
 {
     /**
-     * @var \Magento\Customer\Helper\Session\CurrentCustomer
+     * @var CurrentCustomer
      */
     protected $currentCustomer;
     /**
-     * @var \Perspective\CustomerAvatar\Model\MediaCustomerPath
+     * @var MediaCustomerPath
      */
     private $mediaCustomerPath;
 
@@ -38,8 +38,6 @@ class AddFrontAvatar
         }
 
         $filePath = $this->mediaCustomerPath->getMediaCustomerFilePath();
-
-   //     $filePath = "http://mag2.com/pub/media/sk_profile_pic/1/686c57e20da2069163313919a204aaa8.jpg";
 
         if ($filePath != '') {
             $result['avatar'] = $filePath;

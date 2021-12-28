@@ -77,22 +77,16 @@ class SavePictureFront
                     $uploaderFactory->addValidateCallback('custom_image_upload', $imageAdapter, 'validateUploadFile');
                     $uploaderFactory->setAllowRenameFiles(true);//false
                     $uploaderFactory->setFilesDispersion(true);//hz false
-
                     $mediaDirectory = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA);
                     $destinationPath = $mediaDirectory->getAbsolutePath('customer');  //customermy
-
                     $result = $uploaderFactory->save($destinationPath);
-
-                    //Set attribute 'profile_picture' image
-                    $customer
-                        = $this->currentCustomer->getCustomer();
+                    $customer = $this->currentCustomer->getCustomer();
                     $this->mediaCustomerPath->setPicture($customer, $result['file']);
                 } catch (\Exception $e) {
-                    //$this->messageManager->addErrorMessage($e->getMessage());
+                    $this->messageManager->addErrorMessage($e->getMessage());
                 }
             }
         }
-        $debug = $resultRedirect->setPath('*/*/', ['_current' => true]);
         return $resultRedirect->setPath('*/*/', ['_current' => true]);
     }
 }
