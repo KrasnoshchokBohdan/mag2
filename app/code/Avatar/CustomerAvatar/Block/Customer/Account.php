@@ -1,12 +1,13 @@
 <?php
 
-namespace Perspective\CustomerAvatar\Block\Customer;
+namespace Avatar\CustomerAvatar\Block\Customer;
 
 use Magento\Backend\Block\Template\Context;
 use Magento\Customer\Model\SessionFactory;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 
-use Perspective\CustomerAvatar\Model\MediaCustomerPath;
+use Avatar\CustomerAvatar\Model\MediaCustomerPath;
 
 class Account extends Template
 {
@@ -16,8 +17,8 @@ class Account extends Template
     private $mediaCustomerPath;
 
     /**
-     * @param \Perspective\CustomerAvatar\Model\MediaCustomerPath $mediaCustomerPath
-     * @param \Magento\Backend\Block\Template\Context $context
+     * @param MediaCustomerPath $mediaCustomerPath
+     * @param Context $context
      * @param array $data
      */
     public function __construct(
@@ -31,7 +32,7 @@ class Account extends Template
 
     /**
      * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function getFileUrl(): string
     {

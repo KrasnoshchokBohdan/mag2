@@ -1,6 +1,6 @@
 <?php
 
-namespace Perspective\CustomerAvatar\Plugin\CustomerData;
+namespace Avatar\CustomerAvatar\Plugin\CustomerData;
 
 use Magento\Customer\Controller\Account\EditPost;
 
@@ -11,7 +11,7 @@ use Magento\Framework\Filesystem;
 use Magento\Framework\Image\AdapterFactory;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\Controller\Result\Redirect;
-use Perspective\CustomerAvatar\Model\MediaCustomerPath;
+use Avatar\CustomerAvatar\Model\MediaCustomerPath;
 
 class SavePictureFront
 {
@@ -28,11 +28,11 @@ class SavePictureFront
      */
     protected $filesystem;
     /**
-     * @var \Magento\Customer\Helper\Session\CurrentCustomer
+     * @var CurrentCustomer
      */
     protected $currentCustomer;
     /**
-     * @var \Perspective\CustomerAvatar\Model\MediaCustomerPath
+     * @var MediaCustomerPath
      */
     private $mediaCustomerPath;
     /**
@@ -57,7 +57,7 @@ class SavePictureFront
     }
 
     /**
-     * @param \Magento\Customer\Controller\Account\EditPost $subject
+     * @param EditPost $subject
      * @param Redirect $resultRedirect
      * @return Redirect
      */

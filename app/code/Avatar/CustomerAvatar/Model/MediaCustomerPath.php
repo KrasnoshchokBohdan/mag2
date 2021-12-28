@@ -1,25 +1,29 @@
 <?php
 
-namespace Perspective\CustomerAvatar\Model;
+namespace Avatar\CustomerAvatar\Model;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Helper\Session\CurrentCustomer;
 use Magento\Customer\Model\Data\Customer;
+use Magento\Framework\Exception\InputException;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\State\InputMismatchException;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
 class MediaCustomerPath
 {
     /**
-     * @var \Magento\Customer\Helper\Session\CurrentCustomer
+     * @var CurrentCustomer
      */
     private $currentCustomer;
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     private $storeManager;
     /**
-     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     * @var CustomerRepositoryInterface
      */
     private $customerRepositoryInterface;
 
@@ -35,7 +39,7 @@ class MediaCustomerPath
 
     /**
      * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function getMediaCustomerFilePath(): string
     {
@@ -51,11 +55,11 @@ class MediaCustomerPath
     }
 
     /**
-     * @param \Magento\Customer\Model\Data\Customer $customer
+     * @param Customer $customer
      * @param string $picture
-     * @throws \Magento\Framework\Exception\InputException
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Magento\Framework\Exception\State\InputMismatchException
+     * @throws InputException
+     * @throws LocalizedException
+     * @throws InputMismatchException
      */
     public function setPicture(Customer $customer, string $picture): void
     {

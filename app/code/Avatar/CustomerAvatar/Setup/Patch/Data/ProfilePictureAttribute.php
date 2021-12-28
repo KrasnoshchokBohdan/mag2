@@ -1,6 +1,6 @@
 <?php
 
-namespace Perspective\CustomerAvatar\Setup\Patch\Data;
+namespace Avatar\CustomerAvatar\Setup\Patch\Data;
 
 use Magento\Customer\Model\Customer;
 use Magento\Customer\Setup\CustomerSetupFactory;

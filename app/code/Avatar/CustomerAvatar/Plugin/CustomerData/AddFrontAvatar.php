@@ -1,10 +1,11 @@
 <?php
 
-namespace Perspective\CustomerAvatar\Plugin\CustomerData;
+namespace Avatar\CustomerAvatar\Plugin\CustomerData;
 
 use Magento\Customer\CustomerData\Customer;
 use Magento\Customer\Helper\Session\CurrentCustomer;
-use Perspective\CustomerAvatar\Model\MediaCustomerPath;
+use Avatar\CustomerAvatar\Model\MediaCustomerPath;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class AddFrontAvatar
 {
@@ -26,10 +27,10 @@ class AddFrontAvatar
     }
 
     /**
-     * @param \Magento\Customer\CustomerData\Customer $subject
+     * @param Customer $subject
      * @param array $result
      * @return array
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function afterGetSectionData(Customer $subject, array $result): array
     {

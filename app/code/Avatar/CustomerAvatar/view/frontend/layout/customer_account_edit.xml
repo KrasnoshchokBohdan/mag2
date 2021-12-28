@@ -5,9 +5,9 @@
     <update handle="customer_account"/>
     <body>
         <referenceContainer name="form.additional.info">
-            <block class="Perspective\CustomerAvatar\Block\Customer\Account"
+            <block class="Avatar\CustomerAvatar\Block\Customer\Account"
                    name="customeravatar"
-                   template="Perspective_CustomerAvatar::customer/form/imagefieldaccount.phtml" />
+                   template="Avatar_CustomerAvatar::customer/form/imagefieldaccount.phtml" />
         </referenceContainer>
     </body>
 </page>
