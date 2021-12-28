@@ -3,13 +3,13 @@
     <type name="Magento\Customer\CustomerData\Customer">
         <plugin name="perspective_add_front_avatar_plugin"
                 type="Perspective\CustomerAvatar\Plugin\CustomerData\AddFrontAvatar"
-                sortOrder="10"
-                disabled="false"/>
+                  sortOrder="10"
+                    disabled="false"/>
     </type>
     <type name="Magento\Customer\Controller\Account\EditPost">
         <plugin name="perspective_add_image_frontend_plugin"
                 type="Perspective\CustomerAvatar\Plugin\CustomerData\SavePictureFront"
-                sortOrder="20"
-                disabled="false"/>
+                  sortOrder="20"
+                    disabled="false"/>
     </type>
 </config>
