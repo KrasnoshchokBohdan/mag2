@@ -10,17 +10,19 @@
         <div class=control style="max-width:150px; max-height:150px;">
             <?php if (($url = $block->getFileUrl()) == ''): ?>
                 <input name=filesubmission id=filesubmission
-                       title="<?= $block->escapeHtmlAttr(__('Attachment')) ?>"
+                       title='<?= $block->escapeHtmlAttr(__('Attachment')) ?>'
                          class="input-file" type="file"
                          oninput="pic.src=window.URL.createObjectURL(this.files[0])"
                        accept="image/jpg,image/jpeg,image/gif,image/png"/>
+                     <span><br></span>
                 <img id="pic" style="max-width:150px; max-height:150px;"/>
             <?php else : ?>
                 <input name=filesubmission id=filesubmission
-                       title="<?= $block->escapeHtmlAttr(__('Attachment')) ?>"
+                       title='<?= $block->escapeHtmlAttr(__('Attachment')) ?>'
                          class="input-file" type="file"
                          oninput="pic.src=window.URL.createObjectURL(this.files[0])"
                        accept="image/jpg,image/jpeg,image/gif,image/png"/>
+                     <span><br></span>
                 <img id="pic" src="<?= $url ?>" style="max-width:150px; max-height:150px;"/>
             <?php endif; ?>
         </div>
