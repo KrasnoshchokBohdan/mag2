@@ -79,7 +79,7 @@ class SavePictureFront
                     $uploaderFactory->setFilesDispersion(true);//hz false
 
                     $mediaDirectory = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA);
-                    $destinationPath = $mediaDirectory->getAbsolutePath('customer');
+                    $destinationPath = $mediaDirectory->getAbsolutePath('customer');  //customermy
 
                     $result = $uploaderFactory->save($destinationPath);
 
@@ -92,6 +92,7 @@ class SavePictureFront
                 }
             }
         }
+        $debug = $resultRedirect->setPath('*/*/', ['_current' => true]);
         return $resultRedirect->setPath('*/*/', ['_current' => true]);
     }
 }

@@ -47,6 +47,9 @@ class MediaCustomerPath
         }
 
         $urlMedia = $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
+ //       $urlMedia = 'http://mag2.com/pub/media/';
+
+  //      $debug = sprintf("%s%s%s", $urlMedia, 'customer', $file);
 
         return sprintf("%s%s%s", $urlMedia, 'customer', $file);
     }
