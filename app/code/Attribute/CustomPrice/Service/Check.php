@@ -10,27 +10,17 @@ class Check
     /**
      * @var ScopeConfigInterface
      */
-  //  protected $scopeConfig;
+    protected $scopeConfig;
     /**
      * @var string
      */
-   // const XML_PATH_CARRIERS = 'carriers/';
-
-   // const XML_PATH_CARRIERS_TEST = 'carriers/internationaldelivery/enabled_counties';
+    const XML_PATH_CUSTOM = 'customprice/';
 
     public function __construct(ScopeConfigInterface $scopeConfig)
     {
-      //  $this->scopeConfig = $scopeConfig;
+        $this->scopeConfig = $scopeConfig;
     }
 
-    /**
-     * @param null $storeId
-     * @return mixed
-     */
-    public function getEnableC($storeId = null)
-    {
-       // return $this->scopeConfig->getValue(self::XML_PATH_CARRIERS_TEST, $storeId);
-    }
     /**
      * getConfigValue
      * @param mixed $field
@@ -39,7 +29,7 @@ class Check
      */
     public function getConfigValue($field, $storeId = null)
     {
-       // return $this->scopeConfig->getValue($field, ScopeInterface::SCOPE_STORE, $storeId);
+        return $this->scopeConfig->getValue($field, ScopeInterface::SCOPE_STORE, $storeId);
     }
 
     /**
@@ -50,15 +40,15 @@ class Check
      */
     public function getGeneralConfig($code, $storeId = null)
     {
-       // return $this->getConfigValue(self::XML_PATH_CARRIERS . 'internationaldelivery/' . $code, $storeId);
+        return $this->getConfigValue(self::XML_PATH_CUSTOM . 'general/' . $code, $storeId);
     }
 
     /**
-     * getEnabledCounties
+     * getEnabledModule
      * @return mixed
      */
     public function getEnabledCounties()
     {
-       // return $this->getGeneralConfig('enabled_counties');
+        return $this->getGeneralConfig('enable');
     }
 }

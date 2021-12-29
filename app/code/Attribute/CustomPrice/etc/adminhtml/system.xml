@@ -15,9 +15,9 @@
                     <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                         <field id="display_balloonlbs" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Balloon X (lbs)</label>
-                    <comment>Enter lbs</comment>
+                <field id="custom_price_percent" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Custom Price %</label>
+                    <comment>Enter %</comment>
                 </field>
              </group>
         </section>

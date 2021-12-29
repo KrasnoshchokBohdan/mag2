@@ -8,9 +8,14 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 class AddCustomPrice implements DataPatchInterface
 {
-    /** @var ModuleDataSetupInterface */
+    /**
+     * @var ModuleDataSetupInterface
+     */
     private $moduleDataSetup;
-    /** @var EavSetupFactory */
+
+    /**
+     * @var EavSetupFactory
+     */
     private $eavSetupFactory;
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
@@ -25,7 +30,7 @@ class AddCustomPrice implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return AddCustomPrice|void
      */
     public function apply()
     {
@@ -36,9 +41,11 @@ class AddCustomPrice implements DataPatchInterface
             'custom_price',
             [
                 'group' => 'General',
-                'type' => 'price',
+                'type' => 'decimal',
                 'label' => 'Custom Price',
-                'input' => 'text',
+                'input' => 'price',
+                'source' => '',
+                'backend' => '',
                 'required' => false,
                 'sort_order' => 40,
                 'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
@@ -53,16 +60,15 @@ class AddCustomPrice implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return array|string[]
      */
     public static function getDependencies()
     {
         return [];
     }
 
-
     /**
-     * {@inheritdoc}
+     * @return array|string[]
      */
     public function getAliases()
     {
