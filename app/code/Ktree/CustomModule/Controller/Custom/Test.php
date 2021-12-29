@@ -1,5 +1,6 @@
 <?php
 namespace Ktree\CustomModule\Controller\Custom;
+
 class Test extends \Magento\Framework\App\Action\Action
 {
     protected $_pageFactory;
