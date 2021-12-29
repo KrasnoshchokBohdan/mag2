@@ -4,7 +4,7 @@
         <arguments>
             <argument name="modifiers" xsi:type="array">
                 <item name="custom_price" xsi:type="array">
-                    <item name="class" xsi:type="string">Attribute\CustomPrice\Ui\DataProvider\Product\Form\Modifier\ProductUrlRewriteOptions</item>
+                    <item name="class" xsi:type="string">Attribute\CustomPrice\Ui\DataProvider\Product\Form\Modifier\CustomPrice</item>
                     <item name="sortOrder" xsi:type="number">100</item>
                 </item>
             </argument>
