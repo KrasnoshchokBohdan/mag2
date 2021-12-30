@@ -12,14 +12,16 @@ use Magento\Ui\Component\Form\Element\DataType\Price;
 use Magento\Ui\Component\Form\Element\Input;
 use Magento\Ui\Component\Form\Field;
 use Magento\Ui\Component\Form\Fieldset;
-//use Perspective\CustomPrice\Helper\Data;
+
+//use Attribute\CustomPrice\Helper\Data;
+use Attribute\CustomPrice\Service\Check;
 
 /**
  * Class GiftMessageDataProvider
  */
 class CustomPrice extends AbstractModifier
 {
-    const CUSTOM_PRICE_ATTRIBUTE = 'custom_price';
+    const CUSTOM_PRICE_ATTRIBUTE = 'custom_price_attribute';
     const CUSTOM_DATA_SCOPE = 'data.product';
 
     /**
@@ -37,26 +39,27 @@ class CustomPrice extends AbstractModifier
      */
     protected $arrayManager;
     /**
-     * @var Data
+     * @var Check
      */
-  //  private $data;
+    private $data;
 
     /**
      * @param LocatorInterface $locator
      * @param ArrayManager $arrayManager
      * @param ScopeConfigInterface $scopeConfig
-    // * @param Data $data
+     * @param Check $data
      */
     public function __construct(
         LocatorInterface     $locator,
         ArrayManager         $arrayManager,
-        ScopeConfigInterface $scopeConfig
-    //    Data                 $data
-    ) {
+        ScopeConfigInterface $scopeConfig,
+        Check                $data
+    )
+    {
         $this->locator = $locator;
         $this->arrayManager = $arrayManager;
         $this->scopeConfig = $scopeConfig;
-   //     $this->data = $data;
+        $this->data = $data;
     }
 
     public function modifyMeta(array $meta): array
@@ -137,17 +140,19 @@ class CustomPrice extends AbstractModifier
      */
     public function modifyData(array $data)
     {
-        $customProduct = $this->locator->getProduct();
-        $getCurrentCustomPrice = $customProduct->getData('price');
-      //  $getCustomPriceDiscount = $this->data->getDiscountCustomPrice();
-        $customPriceValue = $customProduct->getData('custom_price');
+        $product = $this->locator->getProduct();
+        $getCurrentCustomPrice = $product->getData('price');
+        $getCustomPriceDiscount = $this->data->getDiscountCustomPrice();
+        $customPriceValue = $product->getData('custom_price_attribute');
 
-        if ($customPriceValue == 0 || empty($customProduct->getId())) {
-         //   $data[$customProduct->getId()]['product']['custom_price_attribute'] = $getCurrentCustomPrice +
-          //      ($getCurrentCustomPrice *
-         //           $getCustomPriceDiscount / 100);
+        if (!$this->data->getModuleEnabled()) {
+            return;
         }
-
+        if ($customPriceValue == 0 || empty($product->getId())) {
+            $data[$product->getId()]['product']['custom_price_attribute'] = $getCurrentCustomPrice +
+                ($getCurrentCustomPrice *
+                    $getCustomPriceDiscount / 100);
+        }
         return $data;
     }
 }

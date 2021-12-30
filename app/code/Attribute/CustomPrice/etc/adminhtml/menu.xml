@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Attribute_CustomPrice::customprice" title="Custom Price" module="Attribute_CustomPrice" sortOrder="51" resource="Attribute_CustomPrice::customprice"/>
-        <add id="Attribute_CustomPrice::custom_configuration" title="Configuration" module="Attribute_CustomPrice" sortOrder="99" parent="Attribute_CustomPrice::customprice"
-action="attribute/system_config/edit/section/customprice" resource="Attribute_CustomPrice::customprice_configuration"/>
-    </menu>
-</config>

@@ -11,10 +11,11 @@ class Check
      * @var ScopeConfigInterface
      */
     protected $scopeConfig;
+
     /**
-     * @var string
+     * const XML_PATH_CUSTOM_PATH
      */
-    const XML_PATH_CUSTOM = 'customprice/';
+    const XML_PATH_CUSTOM_PATH = 'attribute_custom_price_section_id/attribute_price_group_id/';
 
     public function __construct(ScopeConfigInterface $scopeConfig)
     {
@@ -22,33 +23,32 @@ class Check
     }
 
     /**
-     * getConfigValue
-     * @param mixed $field
-     * @param null $storeId
+     * @param $field
+     * @param $storeId
      * @return mixed
      */
     public function getConfigValue($field, $storeId = null)
     {
-        return $this->scopeConfig->getValue($field, ScopeInterface::SCOPE_STORE, $storeId);
+        return $this->scopeConfig->getValue(
+            $field,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
     }
 
     /**
-     * getGeneralConfig
-     * @param mixed $code
-     * @param null $storeId
      * @return mixed
      */
-    public function getGeneralConfig($code, $storeId = null)
+    public function getModuleEnabled()
     {
-        return $this->getConfigValue(self::XML_PATH_CUSTOM . 'general/' . $code, $storeId);
+        return $this->getConfigValue(self::XML_PATH_CUSTOM_PATH.'enable_custom_price');
     }
 
     /**
-     * getEnabledModule
      * @return mixed
      */
-    public function getEnabledCounties()
+    public function getDiscountCustomPrice()
     {
-        return $this->getGeneralConfig('enable');
+        return $this->getConfigValue(self::XML_PATH_CUSTOM_PATH.'custom_price_discount');
     }
 }
