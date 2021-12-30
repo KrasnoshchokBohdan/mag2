@@ -51,6 +51,7 @@ class CustomPriceAttribute implements DataPatchInterface
             [
                 'group' => 'General',
                 'type' => 'decimal',
+                'label' => 'Custom price',
                 'source' => '',
                 'input' => 'price',
                 'frontend' => '',

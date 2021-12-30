@@ -12,8 +12,6 @@ use Magento\Ui\Component\Form\Element\DataType\Price;
 use Magento\Ui\Component\Form\Element\Input;
 use Magento\Ui\Component\Form\Field;
 use Magento\Ui\Component\Form\Fieldset;
-
-//use Attribute\CustomPrice\Helper\Data;
 use Attribute\CustomPrice\Service\Check;
 
 /**
@@ -92,7 +90,6 @@ class CustomPrice extends AbstractModifier
                                 'component' => 'Magento_Ui/js/form/element/single-checkbox-use-config',
                                 'elementTmpl' => 'ui/form/element/input',
                                 'addbefore' => '$',
-//                                'value' => $getDiscount,
                                 'additionalClasses' => 'admin__field admin__field-small',
                                 'description' => __('Custom price'),
                                 'label' => __('Custom price')
@@ -104,15 +101,14 @@ class CustomPrice extends AbstractModifier
                     'arguments' => [
                         'data' => [
                             'config' => [
-                                'label' => __('Custom Price Checkbox'),
+                                'label' => __('Allow Modify'),
                                 'dataType' => Number::NAME,
                                 'formElement' => Checkbox::NAME,
                                 'componentType' => Field::NAME,
-                                'description' => __('Custom Price Checkbox'),
+                                'description' => '',
                                 'component' => 'Magento_Ui/js/form/element/single-checkbox-use-config',
                                 'additionalClasses' => 'admin__field admin__field-x-small',
-                                'prefer' => 'toggle',
-//                                'value' => $customPriceValue,
+                                'prefer' => 'Checkbox',
                                 'dataScope' => 'use_config_' . static::CUSTOM_PRICE_ATTRIBUTE,
                                 'valueMap' => [
                                     'false' => '0',
@@ -120,11 +116,11 @@ class CustomPrice extends AbstractModifier
                                 ],
                                 'exports' => [
                                     'checked' => '!${$.parentName}.' . 'custom_price'
-                                        . ':isUseConfig',
+                                        . ':isUseConfig', '__disableTmpl' => ['checked' => false],
                                 ],
                                 'imports' => [
                                     'disabled' => '${$.parentName}.' . 'custom_price'
-                                        . ':isUseDefault',
+                                        . ':isUseDefault', '__disableTmpl' => ['disabled' => false],
                                 ]
                             ]
                         ]
@@ -141,17 +137,16 @@ class CustomPrice extends AbstractModifier
     public function modifyData(array $data)
     {
         $product = $this->locator->getProduct();
-        $getCurrentCustomPrice = $product->getData('price');
-        $getCustomPriceDiscount = $this->data->getDiscountCustomPrice();
+        $currentPrice = $product->getData('price');
+        $customPriceDiscount = $this->data->getDiscountCustomPrice();
         $customPriceValue = $product->getData('custom_price_attribute');
 
         if (!$this->data->getModuleEnabled()) {
-            return;
+            return $data;
         }
         if ($customPriceValue == 0 || empty($product->getId())) {
-            $data[$product->getId()]['product']['custom_price_attribute'] = $getCurrentCustomPrice +
-                ($getCurrentCustomPrice *
-                    $getCustomPriceDiscount / 100);
+            $customPriceValue = $currentPrice + ($currentPrice * $customPriceDiscount / 100);
+            $data[$product->getId()]['product']['custom_price_attribute'] = $customPriceValue;
         }
         return $data;
     }
