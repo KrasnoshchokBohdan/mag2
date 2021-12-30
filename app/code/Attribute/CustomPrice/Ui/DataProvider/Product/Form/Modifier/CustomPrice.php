@@ -14,9 +14,6 @@ use Magento\Ui\Component\Form\Field;
 use Magento\Ui\Component\Form\Fieldset;
 use Attribute\CustomPrice\Service\Check;
 
-/**
- * Class GiftMessageDataProvider
- */
 class CustomPrice extends AbstractModifier
 {
     const CUSTOM_PRICE_ATTRIBUTE = 'custom_price_attribute';
@@ -25,7 +22,7 @@ class CustomPrice extends AbstractModifier
     /**
      * @var ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected ScopeConfigInterface $scopeConfig;
 
     /**
      * @var LocatorInterface
@@ -52,15 +49,18 @@ class CustomPrice extends AbstractModifier
         ArrayManager         $arrayManager,
         ScopeConfigInterface $scopeConfig,
         Check                $data
-    )
-    {
+    ) {
         $this->locator = $locator;
         $this->arrayManager = $arrayManager;
         $this->scopeConfig = $scopeConfig;
         $this->data = $data;
     }
 
-    public function modifyMeta(array $meta): array
+    /**
+     * @param array $meta
+     * @return array<array>
+     */
+    public function modifyMeta(array $meta)
     {
 
         $meta['custom_price_parent'] = [
@@ -132,7 +132,8 @@ class CustomPrice extends AbstractModifier
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $data
+     * @return array<array>
      */
     public function modifyData(array $data)
     {

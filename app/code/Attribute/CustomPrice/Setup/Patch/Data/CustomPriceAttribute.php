@@ -8,6 +8,7 @@ use Magento\Catalog\Model\Product\Attribute\Backend\Boolean;
 use Magento\Catalog\Model\Product\Attribute\Backend\Price;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetupFactory;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
@@ -39,7 +40,9 @@ class CustomPriceAttribute implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
+     * @throws LocalizedException
+     * @throws \Zend_Validate_Exception
      */
     public function apply()
     {
@@ -76,17 +79,17 @@ class CustomPriceAttribute implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return array|string[]
      */
-    public function getAliases()
+    public function getAliases(): array
     {
         return [];
     }
 
     /**
-     * {@inheritdoc}
+     * @return array|string[]
      */
-    public static function getDependencies()
+    public static function getDependencies(): array
     {
         return [];
     }

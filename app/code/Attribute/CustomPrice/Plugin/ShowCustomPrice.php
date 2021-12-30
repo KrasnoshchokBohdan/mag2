@@ -19,8 +19,7 @@ class ShowCustomPrice
     public function __construct(
         \Magento\Catalog\Block\Product\Context $context,
         Check                $data
-    )
-    {
+    ) {
         $this->context = $context;
         $this->data = $data;
     }
@@ -43,5 +42,4 @@ class ShowCustomPrice
             return $result;
         }
     }
-
 }
