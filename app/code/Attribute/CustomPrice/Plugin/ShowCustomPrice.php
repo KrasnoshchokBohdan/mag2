@@ -2,13 +2,14 @@
 
 namespace Attribute\CustomPrice\Plugin;
 
+use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product;
 use Attribute\CustomPrice\Service\Check;
 
 class ShowCustomPrice
 {
     /**
-     * @var \Magento\Catalog\Block\Product\Context
+     * @var Context
      */
     private $context;
     /**
@@ -17,7 +18,7 @@ class ShowCustomPrice
     private $data;
 
     public function __construct(
-        \Magento\Catalog\Block\Product\Context $context,
+        Context $context,
         Check                $data
     ) {
         $this->context = $context;

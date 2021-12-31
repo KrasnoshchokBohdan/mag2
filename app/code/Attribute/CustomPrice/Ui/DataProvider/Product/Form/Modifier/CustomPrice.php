@@ -63,6 +63,7 @@ class CustomPrice extends AbstractModifier
     public function modifyMeta(array $meta)
     {
 
+        unset($meta['product-details']['children']['container_custom_price_attribute']);
         $meta['custom_price_parent'] = [
             'arguments' => [
                 'data' => [
