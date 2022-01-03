@@ -13,4 +13,4 @@ Add custom price attribute lvl #2
 Доработать сохранение товара, с учетом новой настройки.
 
 new test
-111
+11122
