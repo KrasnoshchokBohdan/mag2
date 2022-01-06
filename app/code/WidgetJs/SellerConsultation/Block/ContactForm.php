@@ -4,7 +4,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  * Php version 7.4
- * 
+ *
  * @category Some_Category
  * @package  Some_Package
  * @author   Display Name <someusername@example.com>
@@ -44,39 +44,39 @@ class ContactForm extends \Magento\Framework\View\Element\Template
     protected $helper;
     /**
      * MailInterface
-     * 
+     *
      * @var MailInterface
      */
     protected $mail;
 
-
     /**
      * Index constructor
-     * 
-     * @param \Magento\Backend\Block\Template\Context       $context  context
-     * @param \Magento\Framework\Registry                   $registry registry
-     * @param \WidgetJs\SellerConsultation\Helper\SendEmail $helper   helper
-     * @param \Magento\Contact\Model\MailInterface          $mail     mail
-     * @param array<mixed>                                   $data     data
-     * 
+     *
+     * @param \Magento\Backend\Block\Template\Context $context context
+     * @param \Magento\Framework\Registry $registry registry
+     * @param \WidgetJs\SellerConsultation\Helper\SendEmail $helper helper
+     * @param \Magento\Contact\Model\MailInterface $mail mail
+     * @param array<mixed> $data data
+     *
      * @some(some)
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
+        \Magento\Backend\Block\Template\Context       $context,
+        \Magento\Framework\Registry                   $registry,
         \WidgetJs\SellerConsultation\Helper\SendEmail $helper,
-        \Magento\Contact\Model\MailInterface $mail,
-        array $data = []
-    ) {
+        \Magento\Contact\Model\MailInterface          $mail,
+        array                                         $data = []
+    )
+    {
         $this->helper = $helper;
         $this->registry = $registry;
         $this->mail = $mail;
         parent::__construct($context, $data);
     }
 
-    /** 
+    /**
      * Get current product
-     * 
+     *
      * @return Object
      */
     public function getCurrentProduct()
@@ -84,7 +84,6 @@ class ContactForm extends \Magento\Framework\View\Element\Template
         $currentProduct = $this->registry->registry('current_product');
         return $currentProduct;
     }
-
 
     /**
      * Returns action url for contact form
@@ -130,6 +129,7 @@ class ContactForm extends \Magento\Framework\View\Element\Template
 
         return null;
     }
+
     /**
      * Get Name
      *
@@ -188,7 +188,7 @@ class ContactForm extends \Magento\Framework\View\Element\Template
 
     /**
      * Send Email
-     * 
+     *
      * @param array $post Post data from contact form
      * @return void
      */
@@ -200,7 +200,6 @@ class ContactForm extends \Magento\Framework\View\Element\Template
         );
     }
 
-
     /**
      * Try to send Email
      *
@@ -210,6 +209,6 @@ class ContactForm extends \Magento\Framework\View\Element\Template
     {
         $request = $this->getRequest();
         $param = $request->getParams();
-        return  $this->sendEmail($param);
+        return $this->sendEmail($param);
     }
 }

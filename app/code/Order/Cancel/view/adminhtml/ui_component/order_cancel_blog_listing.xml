@@ -2,10 +2,10 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
    <argument name="data" xsi:type="array">
       <item name="js_config" xsi:type="array">
-         <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing_data_source</item>
-         <item name="deps" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing_data_source</item>
+         <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing_data_source</item>
+         <item name="deps" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing_data_source</item>
       </item>
-      <item name="spinner" xsi:type="string">uiexample_blog_columns</item>
+      <item name="spinner" xsi:type="string">cancel_blog_columns</item>
       <item name="buttons" xsi:type="array">
          <item name="add" xsi:type="array">
             <item name="name" xsi:type="string">add</item>
@@ -15,10 +15,10 @@
          </item>
       </item>
    </argument>
-   <dataSource name="rh_uiexample_blog_listing_data_source">
+   <dataSource name="order_cancel_blog_listing_data_source">
       <argument name="dataProvider" xsi:type="configurableObject">
-         <argument name="class" xsi:type="string">RHUiExampleBlogFilterPool</argument>
-         <argument name="name" xsi:type="string">rh_uiexample_blog_listing_data_source</argument>
+         <argument name="class" xsi:type="string">OrderCancelBlogFilterPool</argument>
+         <argument name="name" xsi:type="string">order_cancel_blog_listing_data_source</argument>
          <argument name="primaryFieldName" xsi:type="string">blog_id</argument>
          <argument name="requestFieldName" xsi:type="string">id</argument>
          <argument name="data" xsi:type="array">
@@ -48,7 +48,7 @@
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="storageConfig" xsi:type="array">
-                  <item name="namespace" xsi:type="string">rh_uiexample_blog_listing</item>
+                  <item name="namespace" xsi:type="string">order_cancel_blog_listing</item>
                </item>
             </item>
          </argument>
@@ -57,7 +57,7 @@
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="columnsData" xsi:type="array">
-                  <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.uiexample_blog_columns</item>
+                  <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.cancel_blog_columns</item>
                </item>
                <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
                <item name="displayArea" xsi:type="string">dataGridActions</item>
@@ -67,10 +67,10 @@
       <filterSearch name="fulltext">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-               <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing_data_source</item>
-               <item name="chipsProvider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.listing_top.listing_filters_chips</item>
+               <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing_data_source</item>
+               <item name="chipsProvider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.listing_top.listing_filters_chips</item>
                <item name="storageConfig" xsi:type="array">
-                  <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.listing_top.bookmarks</item>
+                  <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.listing_top.bookmarks</item>
                   <item name="namespace" xsi:type="string">current.search</item>
                </item>
             </item>
@@ -79,9 +79,9 @@
       <filters name="listing_filters">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-               <item name="columnsProvider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.uiexample_blog_columns</item>
+               <item name="columnsProvider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.cancel_blog_columns</item>
                <item name="storageConfig" xsi:type="array">
-                  <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.listing_top.bookmarks</item>
+                  <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.listing_top.bookmarks</item>
                   <item name="namespace" xsi:type="string">current.filters</item>
                </item>
                <item name="templates" xsi:type="array">
@@ -93,9 +93,9 @@
                   </item>
                </item>
                <item name="childDefaults" xsi:type="array">
-                  <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.listing_top.listing_filters</item>
+                  <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.listing_top.listing_filters</item>
                   <item name="imports" xsi:type="array">
-                     <item name="visible" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.uiexample_blog_columns.${ $.index }:visible</item>
+                     <item name="visible" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.cancel_blog_columns.${ $.index }:visible</item>
                   </item>
                </item>
             </item>
@@ -123,7 +123,7 @@
       <massaction name="listing_massaction">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-               <item name="selectProvider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.uiexample_blog_columns.ids</item>
+               <item name="selectProvider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.cancel_blog_columns.ids</item>
                <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
                <item name="indexField" xsi:type="string">blog_id</item>
             </item>
@@ -133,7 +133,7 @@
                <item name="config" xsi:type="array">
                   <item name="type" xsi:type="string">delete</item>
                   <item name="label" xsi:type="string" translate="true">Delete</item>
-                  <item name="url" xsi:type="url" path="uiexample/index/massDelete" />
+                  <item name="url" xsi:type="url" path="cancel/index/massDelete" />
                   <item name="confirm" xsi:type="array">
                      <item name="title" xsi:type="string" translate="true">Delete items</item>
                      <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
@@ -149,7 +149,7 @@
                </item>
             </argument>
             <argument name="actions" xsi:type="configurableObject">
-               <argument name="class" xsi:type="string">RH\UiExample\Ui\Component\MassAction\Status\Options</argument>
+               <argument name="class" xsi:type="string">Order\Cancel\Ui\Component\MassAction\Status\Options</argument>
                <argument name="data" xsi:type="array">
                   <item name="urlPath" xsi:type="string">*/*/massStatus</item>
                   <item name="paramName" xsi:type="string">status</item>
@@ -165,7 +165,7 @@
     <settings>
         <type>change_status</type>
         <label translate="true">Change Status</label>
-        <actions class="RH\UiExample\Ui\Component\MassAction\Status\Options"/>
+        <actions class="Order\Cancel\Ui\Component\MassAction\Status\Options"/>
     </settings>
 </action>
 
@@ -174,24 +174,24 @@
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="storageConfig" xsi:type="array">
-                  <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.listing_top.bookmarks</item>
+                  <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.listing_top.bookmarks</item>
                   <item name="namespace" xsi:type="string">current.paging</item>
                </item>
-               <item name="selectProvider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.uiexample_blog_columns.ids</item>
+               <item name="selectProvider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.cancel_blog_columns.ids</item>
             </item>
          </argument>
       </paging>
    </container>
-   <columns name="uiexample_blog_columns">
+   <columns name="cancel_blog_columns">
       <argument name="data" xsi:type="array">
          <item name="config" xsi:type="array">
             <item name="storageConfig" xsi:type="array">
-               <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.listing_top.bookmarks</item>
+               <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.listing_top.bookmarks</item>
                <item name="namespace" xsi:type="string">current</item>
             </item>
             <item name="childDefaults" xsi:type="array">
                <item name="fieldAction" xsi:type="array">
-                  <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.uiexample_blog_columns</item>
+                  <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.cancel_blog_columns</item>
                   <item name="target" xsi:type="string">startEdit</item>
                   <item name="params" xsi:type="array">
                      <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -199,7 +199,7 @@
                   </item>
                </item>
                <item name="storageConfig" xsi:type="array">
-                  <item name="provider" xsi:type="string">rh_uiexample_blog_listing.rh_uiexample_blog_listing.listing_top.bookmarks</item>
+                  <item name="provider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.listing_top.bookmarks</item>
                   <item name="root" xsi:type="string">columns.${ $.index }</item>
                   <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
                </item>
@@ -265,7 +265,7 @@
             </item>
          </argument>
       </column>
-      <actionsColumn name="actions" class="RH\UiExample\Ui\Component\Listing\Column\BlogActions">
+      <actionsColumn name="actions" class="Order\Cancel\Ui\Component\Listing\Column\BlogActions">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="resizeEnabled" xsi:type="boolean">false</item>
