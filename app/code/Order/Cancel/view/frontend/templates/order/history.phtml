@@ -48,7 +48,8 @@
                         <?php endif ?>
 
 
-                        <button class="modal-btn"  id='<?= $_order->getRealOrderId()?>' data-mage-init='{"order-modal": {"target": "#modal-content"}}'>   <!--onclick="test()"-->
+                        <button class="modal-btn" id='<?= $_order->getRealOrderId() ?>'
+                                data-mage-init='{"order-modal": {"target": "#modal-content"}}'>
                             <span><?php echo __('Cancel') ?></span>
                         </button>
 
@@ -67,60 +68,27 @@
 <?php endif ?>
 
 
-<script>
-    // require(
-    //     [
-    //         'jquery',
-    //         'Magento_Ui/js/modal/modal'
-    //     ],
-    //     function ($, modal) {
-    //         var options = {
-    //             type: 'popup',
-    //             responsive: true,
-    //             innerScroll: true,
-    //             title: 'Cancel Order',
-    //             modalLeftMargin: 55,
-    //             buttons: [{
-    //                 text: $.mage.__('Close'),
-    //                 class: 'modal-close',
-    //                 click: function () {
-    //                     this.closeModal();
-    //                 }
-    //             }]
-    //         };
-    //
-    //         modal(options, $('#modal-content'));
-    //         $(".modal-btn").on('click', function () {
-    //             $("#modal-content").modal("openModal");
-    //
-    //         });
-    //         }
-    // );
-</script>
-
-
 <div id="modal-content"">
 <div class="modal-inner-content">
-    <form class="form contact" action="#" id="contact-form2"
-          method="post"  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+    <form class="form contact" id="contact-form2"
+          method="post" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
           data-mage-init='{"validation":{}}'>
+        <!--action="#"-->
         <fieldset class="fieldset">
 
             <div class="field note no-label">
                 <?= $block->escapeHtml(__('Your request will be solved in 48 hours')) ?>
             </div>
 
-            <div class="field name required">
+            <div class="field reason required">
                 <label class="label"
                        for="name"><span><?= $block->escapeHtml(__('Choose a reason for order cancellation')) ?></span></label>
                 <div class="control">
-                    <input name="name" id="name"
+                    <input name="reason" id="reason"
                            title="<?= $block->escapeHtmlAttr(__('Choose a reason for order cancellation')) ?>" value=""
                            class="input-text" type="select" data-validate="{required:true}"/>
                 </div>
             </div>
-
-
             <div class="field comment">
                 <label class="label" for="comment">
                     <span><?= $block->escapeHtml(__('Leave a comment')) ?></span>
@@ -133,71 +101,11 @@
 
             <?= $block->getChildHtml('form.additional.info') ?>
         </fieldset>
-        <div class="actions-toolbar">
-            <div class="primary">
-                <input type="hidden" name="hideit" id="hideit" value=""/>
-                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
-                    <span><?= $block->escapeHtml(__('Submit')) ?></span>
-                </button>
-            </div>
-        </div>
     </form>
-    <script type="text/x-magento-init">
-    {
-        "*": {
-            "Magento_Customer/js/block-submit-on-send": {
-                "formId": "contact-form2"
-            }
-        }
-    }
-    </script>
-
 </div>
 </div>
 
 <!--http://mag2.com/ordercancel/order/cancel-->
 
-<!--// function openModal(orderId) {-->
-<!--//     $("#modal-content").modal("openModal");-->
-<!--// },-->
-<!--//-->
-<!--//-->
-<!--// function test(e) {-->
-<!--//     var orderId = e.target.id;-->
-<!--//     openModal(orderId);-->
 
-
-<!---->
-<!---->
-<!--<script>-->
-<!--    require(-->
-<!--        [-->
-<!--            'jquery',-->
-<!--            'Magento_Ui/js/modal/modal'-->
-<!--        ],-->
-<!--        function ($, modal) {-->
-<!--            var options = {-->
-<!--                type: 'popup',-->
-<!--                responsive: true,-->
-<!--                innerScroll: true,-->
-<!--                title: 'Cancel Order',-->
-<!--                modalLeftMargin: 55,-->
-<!--                buttons: [{-->
-<!--                    text: $.mage.__('Close'),-->
-<!--                    class: 'modal-close',-->
-<!--                    click: function () {-->
-<!--                        this.closeModal();-->
-<!--                    }-->
-<!--                }]-->
-<!--            };-->
-<!---->
-<!--            modal(options, $('#modal-content'));-->
-<!--            $(".modal-btn").on('click', function (e) {-->
-<!--                let ordetId = e.id;-->
-<!--                modal(ordetId);-->
-<!--                $("#modal-content").modal("openModal");-->
-<!--            });-->
-<!--        }-->
-<!--    );-->
-<!--</script>-->
 
