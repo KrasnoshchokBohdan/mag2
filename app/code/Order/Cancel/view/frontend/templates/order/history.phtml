@@ -48,7 +48,7 @@
                         <?php endif ?>
 
 
-                        <button class="modal-btn" onclick="test()" id='<?= $_order->getRealOrderId()?>'>
+                        <button class="modal-btn"  id='<?= $_order->getRealOrderId()?>' data-mage-init='{"order-modal": {"target": "#modal-content"}}'>   <!--onclick="test()"-->
                             <span><?php echo __('Cancel') ?></span>
                         </button>
 
@@ -68,49 +68,41 @@
 
 
 <script>
-    require(
-        [
-            'jquery',
-            'Magento_Ui/js/modal/modal'
-        ],
-        function ($, modal) {
-            var options = {
-                type: 'popup',
-                responsive: true,
-                innerScroll: true,
-                title: 'Cancel Order',
-                modalLeftMargin: 55,
-                buttons: [{
-                    text: $.mage.__('Close'),
-                    class: 'modal-close',
-                    click: function () {
-                        this.closeModal();
-                    }
-                }]
-            };
-
-            modal(options, $('#modal-content'));
-          //  $(".modal-btn").on('click', function () {
-          //      $("#modal-content").modal("openModal");
-          //  });
-            function openModal(orderId) {
-                $("#modal-content").modal("openModal");
-            },
-
-
-            function test(e) {
-                var orderId = e.target.id;
-                openModal(orderId);
-            }
-        }
-    );
+    // require(
+    //     [
+    //         'jquery',
+    //         'Magento_Ui/js/modal/modal'
+    //     ],
+    //     function ($, modal) {
+    //         var options = {
+    //             type: 'popup',
+    //             responsive: true,
+    //             innerScroll: true,
+    //             title: 'Cancel Order',
+    //             modalLeftMargin: 55,
+    //             buttons: [{
+    //                 text: $.mage.__('Close'),
+    //                 class: 'modal-close',
+    //                 click: function () {
+    //                     this.closeModal();
+    //                 }
+    //             }]
+    //         };
+    //
+    //         modal(options, $('#modal-content'));
+    //         $(".modal-btn").on('click', function () {
+    //             $("#modal-content").modal("openModal");
+    //
+    //         });
+    //         }
+    // );
 </script>
 
 
 <div id="modal-content"">
 <div class="modal-inner-content">
-    <form class="form contact" action="http://mag2.com/ordercancel/order/cancel" id="contact-form2"
-          method="post" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+    <form class="form contact" action="#" id="contact-form2"
+          method="post"  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
           data-mage-init='{"validation":{}}'>
         <fieldset class="fieldset">
 
@@ -135,7 +127,7 @@
                 </label>
                 <div class="control">
                     <textarea name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('Leave a comment')) ?>"
-                              class="input-text" cols="5" rows="3""></textarea>
+                              class="input-text" cols="5" rows="3"></textarea>
                 </div>
             </div>
 
@@ -163,6 +155,49 @@
 </div>
 </div>
 
+<!--http://mag2.com/ordercancel/order/cancel-->
+
+<!--// function openModal(orderId) {-->
+<!--//     $("#modal-content").modal("openModal");-->
+<!--// },-->
+<!--//-->
+<!--//-->
+<!--// function test(e) {-->
+<!--//     var orderId = e.target.id;-->
+<!--//     openModal(orderId);-->
 
 
+<!---->
+<!---->
+<!--<script>-->
+<!--    require(-->
+<!--        [-->
+<!--            'jquery',-->
+<!--            'Magento_Ui/js/modal/modal'-->
+<!--        ],-->
+<!--        function ($, modal) {-->
+<!--            var options = {-->
+<!--                type: 'popup',-->
+<!--                responsive: true,-->
+<!--                innerScroll: true,-->
+<!--                title: 'Cancel Order',-->
+<!--                modalLeftMargin: 55,-->
+<!--                buttons: [{-->
+<!--                    text: $.mage.__('Close'),-->
+<!--                    class: 'modal-close',-->
+<!--                    click: function () {-->
+<!--                        this.closeModal();-->
+<!--                    }-->
+<!--                }]-->
+<!--            };-->
+<!---->
+<!--            modal(options, $('#modal-content'));-->
+<!--            $(".modal-btn").on('click', function (e) {-->
+<!--                let ordetId = e.id;-->
+<!--                modal(ordetId);-->
+<!--                $("#modal-content").modal("openModal");-->
+<!--            });-->
+<!--        }-->
+<!--    );-->
+<!--</script>-->
 
