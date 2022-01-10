@@ -40,13 +40,13 @@ class BlogActions extends \Magento\Ui\Component\Listing\Columns\Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
-                if (isset($item['blog_id'])) {
+                if (isset($item['order_id'])) {
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_EDIT_PATH,
                                 [
-                                    'blog_id' => $item['blog_id'
+                                    'order_id' => $item['order_id'
                                     ],
                                 ]
                             ),
@@ -56,7 +56,7 @@ class BlogActions extends \Magento\Ui\Component\Listing\Columns\Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_DELETE_PATH,
                                 [
-                                    'blog_id' => $item['blog_id'
+                                    'order_id' => $item['order_id'
                                     ],
                                 ]
                             ),

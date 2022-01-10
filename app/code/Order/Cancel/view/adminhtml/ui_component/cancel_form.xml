@@ -23,8 +23,8 @@
       <argument name="dataProvider" xsi:type="configurableObject">
          <argument name="class" xsi:type="string">Order\Cancel\Model\DataProvider</argument>
          <argument name="name" xsi:type="string">cancel_form_data_source</argument>
-         <argument name="primaryFieldName" xsi:type="string">blog_id</argument>
-         <argument name="requestFieldName" xsi:type="string">blog_id</argument>
+         <argument name="primaryFieldName" xsi:type="string">order_id</argument>
+         <argument name="requestFieldName" xsi:type="string">order_id</argument>
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="submit_url" xsi:type="url" path="*/*/save" />
@@ -65,25 +65,25 @@
             </item>
          </argument>
       </field>
-      <field name="blog_title">
+      <field name="cancel_reason">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="dataType" xsi:type="string">text</item>
-               <item name="label" xsi:type="string" translate="true">Blog Title</item>
+               <item name="label" xsi:type="string" translate="true">Cancellation Reason</item>
                <item name="formElement" xsi:type="string">input</item>
-               <item name="source" xsi:type="string">blog_title</item>
-               <item name="dataScope" xsi:type="string">blog_title</item>
+               <item name="source" xsi:type="string">cancel_reason</item>
+               <item name="dataScope" xsi:type="string">cancel_reason</item>
             </item>
          </argument>
       </field>
-      <field name="blog_description">
+      <field name="comment">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="dataType" xsi:type="string">text</item>
-               <item name="label" xsi:type="string" translate="true">Blog Description</item>
+               <item name="label" xsi:type="string" translate="true">Comment</item>
                <item name="formElement" xsi:type="string">textarea</item>
-               <item name="source" xsi:type="string">blog_description</item>
-               <item name="dataScope" xsi:type="string">blog_description</item>
+               <item name="source" xsi:type="string">comment</item>
+               <item name="dataScope" xsi:type="string">comment</item>
             </item>
          </argument>
       </field>

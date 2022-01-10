@@ -29,13 +29,13 @@ class InstallSchema implements InstallSchemaInterface
 
         $installer->startSetup();
         /**
-         * Create table 'order_blog'
+         * Create table 'order_table'
          */
-        if (!$installer->tableExists('order_blog')) {
+        if (!$installer->tableExists('order_table')) {     //'order_blog'
             $table = $installer->getConnection()->newTable(
-                $installer->getTable('order_blog')
+                $installer->getTable('order_table')     //'order_blog'
             )->addColumn(
-                'blog_id',
+                'order_id',   //'blog_id'
                 Table::TYPE_INTEGER,
                 null,
                 [
@@ -44,23 +44,23 @@ class InstallSchema implements InstallSchemaInterface
                     'primary' => true,
                     'unsigned' => true,
                 ],
-                'Blog ID'
+                'Order ID'
             )->addColumn(
-                'blog_title',
+                'cancel_reason',       //'blog_title'
                 Table::TYPE_TEXT,
                 255,
                 [
                     'nullable => false',
                 ],
-                'Blog Title'
+                'Cancellation Reason'
             )->addColumn(
-                'blog_description',
+                'comment',   //'blog_description',
                 Table::TYPE_TEXT,
                 '2M',
                 [],
-                'Blog Description'
+                'Comment'
             )->addColumn(
-                'status',
+                'status',        //'status'
                 Table::TYPE_SMALLINT,
                 null,
                 [
@@ -68,15 +68,15 @@ class InstallSchema implements InstallSchemaInterface
                 ],
                 'Status'
             )->addColumn(
-                'created_at',
-                Table::TYPE_TIMESTAMP,
-                null,
+                'canceled_by',     //'created_at'
+                Table::TYPE_BLOB,
+                255,
                 [
                     'nullable' => false,
-                    'default' => Table::TIMESTAMP_INIT,
+                   // 'default' => Table::TIMESTAMP_INIT,
                 ],
-                'Created At'
-            )->setComment('Blog Table');
+                'Canceled by'
+            )->setComment('Order Table');         //'Blog Table'
             $installer->getConnection()->createTable($table);
         }
         $installer->endSetup();

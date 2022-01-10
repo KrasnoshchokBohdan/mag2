@@ -19,7 +19,7 @@
       <argument name="dataProvider" xsi:type="configurableObject">
          <argument name="class" xsi:type="string">OrderCancelBlogFilterPool</argument>
          <argument name="name" xsi:type="string">order_cancel_blog_listing_data_source</argument>
-         <argument name="primaryFieldName" xsi:type="string">blog_id</argument>
+         <argument name="primaryFieldName" xsi:type="string">order_id</argument>
          <argument name="requestFieldName" xsi:type="string">id</argument>
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -125,7 +125,7 @@
             <item name="config" xsi:type="array">
                <item name="selectProvider" xsi:type="string">order_cancel_blog_listing.order_cancel_blog_listing.cancel_blog_columns.ids</item>
                <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
-               <item name="indexField" xsi:type="string">blog_id</item>
+               <item name="indexField" xsi:type="string">order_id</item>
             </item>
          </argument>
          <action name="is_delete">
@@ -211,35 +211,35 @@
             <item name="config" xsi:type="array">
                <item name="resizeEnabled" xsi:type="boolean">false</item>
                <item name="resizeDefaultWidth" xsi:type="string">55</item>
-               <item name="indexField" xsi:type="string">blog_id</item>
+               <item name="indexField" xsi:type="string">order_id</item>
             </item>
             <item name="sortOrder" xsi:type="number">0</item>
          </argument>
       </selectionsColumn>
-      <column name="blog_id">
+      <column name="order_id">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="filter" xsi:type="string">textRange</item>
                <item name="sorting" xsi:type="string">asc</item>
-               <item name="label" xsi:type="string" translate="true">Id</item>
+               <item name="label" xsi:type="string" translate="true">Order Id</item>
                <item name="sortOrder" xsi:type="number">20</item>
             </item>
          </argument>
       </column>
-      <column name="blog_title">
+      <column name="cancel_reason">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="filter" xsi:type="string">text</item>
-               <item name="label" xsi:type="string" translate="true">Blog Title</item>
+               <item name="label" xsi:type="string" translate="true">Cancellation Reason</item>
                <item name="sortOrder" xsi:type="number">30</item>
             </item>
          </argument>
       </column>
-      <column name="blog_description">
+      <column name="comment">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="filter" xsi:type="string">text</item>
-               <item name="label" xsi:type="string" translate="true">Blog Description</item>
+               <item name="label" xsi:type="string" translate="true">Comment</item>
                <item name="sortOrder" xsi:type="number">30</item>
             </item>
          </argument>
@@ -270,7 +270,7 @@
             <item name="config" xsi:type="array">
                <item name="resizeEnabled" xsi:type="boolean">false</item>
                <item name="resizeDefaultWidth" xsi:type="string">107</item>
-               <item name="indexField" xsi:type="string">blog_id</item>
+               <item name="indexField" xsi:type="string">order_id</item>
                <item name="sortOrder" xsi:type="number">180</item>
             </item>
          </argument>

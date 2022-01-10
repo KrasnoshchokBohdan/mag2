@@ -51,9 +51,9 @@ class Save extends \Magento\Backend\App\Action
         $resultRedirect = $this->resultRedirectFactory->create();
 
         if ($data) {
-            $blog_id = $this->getRequest()->getParam('blog_id');
-            if ($blog_id) {
-                $this->cancel->load($blog_id);
+            $order_id = $this->getRequest()->getParam('order_id');
+            if ($order_id) {
+                $this->cancel->load($order_id);
             }
 
             $this->cancel->setData($data);
@@ -66,7 +66,7 @@ class Save extends \Magento\Backend\App\Action
                     if ($this->getRequest()->getParam('back') == 'add') {
                         return $resultRedirect->setPath('*/*/add');
                     } else {
-                        return $resultRedirect->setPath('*/*/edit', ['blog_id' => $this->cancel->getBlogId(), '_current' => true]);
+                        return $resultRedirect->setPath('*/*/edit', ['order_id' => $this->cancel->getBlogId(), '_current' => true]);
                     }
                 }
 
@@ -80,7 +80,7 @@ class Save extends \Magento\Backend\App\Action
             }
 
             $this->_getSession()->setFormData($data);
-            return $resultRedirect->setPath('*/*/edit', ['blog_id' => $this->getRequest()->getParam('blog_id')]);
+            return $resultRedirect->setPath('*/*/edit', ['order_id' => $this->getRequest()->getParam('order_id')]);
         }
 
         return $resultRedirect->setPath('*/*/');

@@ -45,7 +45,7 @@ class Delete extends Action
      */
     public function execute()
     {
-        $id = $this->getRequest()->getParam('blog_id');
+        $id = $this->getRequest()->getParam('order_id');
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($id) {
