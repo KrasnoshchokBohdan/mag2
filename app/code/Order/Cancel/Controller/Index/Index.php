@@ -3,7 +3,6 @@
 namespace Order\Cancel\Controller\Index;
 
 use Magento\Sales\Api\OrderManagementInterface;
-use Magento\Sales\Controller\OrderInterface;
 use Magento\Framework\App\Action\Context;
 use Magento\Sales\Controller\AbstractController\OrderLoaderInterface;
 use Magento\Framework\Registry;
@@ -16,7 +15,7 @@ use Psr\Log\LoggerInterface;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\App\Response\Http;
 
-class Index extends \Magento\Framework\App\Action\Action    // implements OrderInterface
+class Index extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var OrderManagementInterface
@@ -48,11 +47,10 @@ class Index extends \Magento\Framework\App\Action\Action    // implements OrderI
      */
     public function __construct(
         OrderManagementInterface $orderManagementInterface,
-        OrderLoaderInterface $orderLoader,
-        Registry $registry,
-        RequestInterface $request,
-        Context $context
-
+        OrderLoaderInterface     $orderLoader,
+        Registry                 $registry,
+        RequestInterface         $request,
+        Context                  $context
     ) {
         $this->_order = $orderManagementInterface;
         $this->orderLoader = $orderLoader;
@@ -63,27 +61,27 @@ class Index extends \Magento\Framework\App\Action\Action    // implements OrderI
 
     public function execute()
     {
-    //    $request = $this->request->getRequest();
-        $result = $this->orderLoader->load($this->_request);
-        $a = 111;
-     //   if ($result instanceof \Magento\Framework\Controller\ResultInterface) {
-     //       return $result;
-     //   }
-    //    $order = $this->registry->registry('current_order');
-
-
-        /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-     //   try {
-    //        $this->_order->cancel($order->getId());
+        $post = $this->getRequest()->getPostValue();
 
-    //    } catch (\Magento\Framework\Exception\LocalizedException $e) {
-     //       if ($this->_objectManager->get('Magento\Checkout\Model\Session')->getUseNotice(true)) {
-    //            $this->messageManager->addNotice($e->getMessage());
-     //       } else {
-     //           $this->messageManager->addError($e->getMessage());
-     //       }
-    //    }
-       return $resultRedirect->setPath('*/*/history');
+        if (!$post) {
+            return $resultRedirect->setPath('*/*/history');
+        }
+
+        $orderId = $post['order'];
+        $orderStatus = $this->_order->getStatus($orderId);
+
+        if ($orderStatus === "pending") {
+            try {
+                $this->_order->cancel($orderId);
+            } catch (\Magento\Framework\Exception\LocalizedException $e) {
+                if ($this->_objectManager->get('Magento\Checkout\Model\Session')->getUseNotice(true)) {
+                    $this->messageManager->addNotice($e->getMessage());
+                } else {
+                    $this->messageManager->addError($e->getMessage());
+                }
+            }
+        }
+        return $resultRedirect->setPath('*/*/history');
     }
 }

@@ -75,7 +75,6 @@
           data-mage-init='{"validation":{}}'>
         <!--action="#"-->
         <fieldset class="fieldset">
-
             <div class="field note no-label">
                 <?= $block->escapeHtml(__('Your request will be solved in 48 hours')) ?>
             </div>
@@ -84,9 +83,16 @@
                 <label class="label"
                        for="name"><span><?= $block->escapeHtml(__('Choose a reason for order cancellation')) ?></span></label>
                 <div class="control">
-                    <input name="reason" id="reason"
+                    <select name="reason" id="reason"
                            title="<?= $block->escapeHtmlAttr(__('Choose a reason for order cancellation')) ?>" value=""
-                           class="input-text" type="select" data-validate="{required:true}"/>
+                           class="input-text" data-validate="{required:true}">
+                        <option><?= $block->escapeHtml(__('I am Groot.')) ?></option>
+                        <option><?= $block->escapeHtml(__('I am Groot.')) ?></option>
+                        <option><?= $block->escapeHtml(__('I am Groot.')) ?></option>
+                        <option><?= $block->escapeHtml(__('I am Groot.')) ?></option>
+                        <option><?= $block->escapeHtml(__('I am Groot.')) ?></option>
+                        <option><?= $block->escapeHtml(__('I am Groot.')) ?></option>
+                      </select>
                 </div>
             </div>
             <div class="field comment">
@@ -98,14 +104,13 @@
                               class="input-text" cols="5" rows="3"></textarea>
                 </div>
             </div>
-
             <?= $block->getChildHtml('form.additional.info') ?>
         </fieldset>
     </form>
 </div>
 </div>
 
-<!--http://mag2.com/ordercancel/order/cancel-->
+
 
 
 

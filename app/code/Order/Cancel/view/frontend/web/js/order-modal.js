@@ -5,24 +5,32 @@ define([
 ], function ($, modal, urlBuilder) {
 
     var OrderModal = {
+        /**
+         *
+         * @param config
+         * @param element
+         */
         initModal: function (config, element) {
 
             var ajaxT = {
+                /**
+                 *
+                 * @param obj
+                 */
                 ajaxPostSend: function (obj) {
                     var url = urlBuilder.build("ordercancel/index/index");
                     $.ajax({
-                        //   showLoader: true,
+                        showLoader: true,
                         url: url,
                         type: "POST",
                         dataType: 'json',
-                        context: $orderId,     //this
-                        beforeSend: function () {
-                            $('body').trigger('processStart'); // start loader
-                        }
-
+                        context: this,
+                        data: obj
                     }).done(function (respond) {
-                        $('body').trigger('processStop');
                         console.log('Done!');
+                       //  window.location.reload(true);
+                       // location.reload();
+                        window.location.reload();
                     });
                 }
             };
@@ -47,7 +55,7 @@ define([
                         class: 'modal-close',
                         click: function () {
                             console.log("ok");
-                            ajaxT.ajaxPostSend($orderId);   //this
+                            ajaxT.ajaxPostSend(orderIdsend);
                             this.closeModal();
                         }
                     }
@@ -56,9 +64,11 @@ define([
             $target = $(config.target);
             $target.modal(options);
             $element = $(element);
-            $orderId = $element.attr('id');
+            var orderIdsend = {
+                order : $element.attr('id')
+            };
 
-            $element.click(function () {
+               $element.click(function () {
                 $target.modal('openModal');
             });
         }
