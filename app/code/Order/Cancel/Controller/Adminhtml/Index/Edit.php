@@ -8,12 +8,13 @@
 
 namespace Order\Cancel\Controller\Adminhtml\Index;
 
+use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\Controller\ResultFactory;
 
 class Edit extends \Magento\Backend\App\Action
 {
     /**
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @return Page
      */
     public function execute()
     {

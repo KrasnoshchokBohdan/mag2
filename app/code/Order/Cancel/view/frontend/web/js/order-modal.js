@@ -18,7 +18,7 @@ define([
                  * @param obj
                  */
                 ajaxPostSend: function (obj) {
-                    var url = urlBuilder.build("ordercancel/index/index");
+                    var url = urlBuilder.build("ordercancel/index/cancel");
                     $.ajax({
                         showLoader: true,
                         url: url,
@@ -28,8 +28,8 @@ define([
                         data: obj
                     }).done(function (respond) {
                         console.log('Done!');
-                       //  window.location.reload(true);
-                       // location.reload();
+                        // window.location.reload(true);
+                        // location.reload();
                         window.location.reload();
                     });
                 }
@@ -49,26 +49,36 @@ define([
                             console.log("close");
                             this.closeModal();
                         }
-                    },
+                },
                     {
                         text: $.mage.__('Ok'),
                         class: 'modal-close',
                         click: function () {
                             console.log("ok");
+                            orderIdsend = {
+                                order: $element.attr('id'),
+                                content: $('#contact-form2').serialize(true)
+                            };
+                            test1 = 1;
+                            test1 = 2;
+                            debugger;
                             ajaxT.ajaxPostSend(orderIdsend);
                             this.closeModal();
                         }
-                    }
+                }
                 ]
             };
             $target = $(config.target);
             $target.modal(options);
             $element = $(element);
-            var orderIdsend = {
-                order : $element.attr('id')
-            };
 
-               $element.click(function () {
+            var orderIdsend = {
+                order: BigInt($element.attr('id')),
+                content: ''
+            };
+            var test1;
+
+            $element.click(function () {
                 $target.modal('openModal');
             });
         }

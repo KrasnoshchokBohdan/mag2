@@ -7,15 +7,15 @@ use Magento\Framework\App\Action\Context;
 use Magento\Sales\Controller\AbstractController\OrderLoaderInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Json\Helper\Data;
 use Magento\Framework\View\Result\PageFactory;
 use Psr\Log\LoggerInterface;
-use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\App\Response\Http;
 
-class Index extends \Magento\Framework\App\Action\Action
+class Cancel extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var OrderManagementInterface
@@ -38,11 +38,17 @@ class Index extends \Magento\Framework\App\Action\Action
     protected $request;
 
     /**
+     * @var Json
+     */
+    protected $serializer;
+
+    /**
      * Cancel constructor.
      * @param OrderManagementInterface $orderManagementInterface
      * @param OrderLoaderInterface $orderLoader
      * @param Registry $registry
      * @param RequestInterface $request
+     * @param Json $serializer
      * @param Context $context
      */
     public function __construct(
@@ -50,12 +56,15 @@ class Index extends \Magento\Framework\App\Action\Action
         OrderLoaderInterface     $orderLoader,
         Registry                 $registry,
         RequestInterface         $request,
+        Json               $serializer,
         Context                  $context
-    ) {
+    )
+    {
         $this->_order = $orderManagementInterface;
         $this->orderLoader = $orderLoader;
         $this->registry = $registry;
         $this->request = $request;
+        $this->serializer = $serializer;
         parent::__construct($context);
     }
 
@@ -69,6 +78,9 @@ class Index extends \Magento\Framework\App\Action\Action
         }
 
         $orderId = $post['order'];
+        //$content = $this->serializer->unserialize($post['content']);
+        $content = $post['content'];
+
         $orderStatus = $this->_order->getStatus($orderId);
 
         if ($orderStatus === "pending") {

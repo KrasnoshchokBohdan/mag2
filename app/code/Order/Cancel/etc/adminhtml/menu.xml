@@ -2,6 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Order_Cancel::view" title="Manage Grid" module="Order_Cancel" sortOrder="40" resource="Order_Cancel::view"/>
-        <add id="Order_Cancel::menu" title="Manage Grid" module="Order_Cancel" sortOrder="30" parent="Order_Cancel::view" action="cancel/index/index" resource="Order_Cancel::menu"/>
+        <add id="Order_Cancel::menu" title="Manage Grid" module="Order_Cancel" sortOrder="30" parent="Order_Cancel::view" action="ordercanceladmin/index/index" resource="Order_Cancel::menu"/>
     </menu>
 </config>
