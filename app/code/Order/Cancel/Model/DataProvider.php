@@ -1,10 +1,4 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- *
- * Created By : Rohan Hapani
- */
 namespace Order\Cancel\Model;
 
 use Order\Cancel\Model\ResourceModel\Blog\CollectionFactory;
@@ -17,7 +11,14 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      */
     protected $loadedData;
 
-    // @codingStandardsIgnoreStart
+    /**
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
+     * @param CollectionFactory $blogCollectionFactory
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
         $primaryFieldName,
@@ -30,17 +31,15 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
-    // @codingStandardsIgnoreEnd
-
+    /**
+     * @return array
+     */
     public function getData()
     {
-
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
-
         $items = $this->collection->getItems();
-
         foreach ($items as $blog) {
             $this->loadedData[$blog->getBlogId()] = $blog->getData();
         }

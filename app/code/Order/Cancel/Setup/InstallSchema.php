@@ -33,7 +33,7 @@ class InstallSchema implements InstallSchemaInterface
          */
         if (!$installer->tableExists('order_table')) {     //'order_blog'
             $table = $installer->getConnection()->newTable(
-                $installer->getTable('order_table')     //'order_blog'
+                $installer->getTable('order_table')
             )->addColumn(
                 'order_id',   //'blog_id'
                 Table::TYPE_INTEGER,

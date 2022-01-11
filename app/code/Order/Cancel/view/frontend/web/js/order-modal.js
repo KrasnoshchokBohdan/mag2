@@ -28,8 +28,6 @@ define([
                         data: obj
                     }).done(function (respond) {
                         console.log('Done!');
-                        // window.location.reload(true);
-                        // location.reload();
                         window.location.reload();
                     });
                 }
@@ -56,13 +54,9 @@ define([
                         click: function () {
                             console.log("ok");
                             orderIdsend = {
-                                order: $element.attr('id'),
-                                content: $('#contact-form2').serialize(true)
+                                order: $('#id-button').val(),
+                                content: $('#contact-form2').serializeArray()
                             };
-                            classBtn = $('.modal-btn');
-                            test1 = 1;
-                            test1 = 2;
-                            debugger;
                             ajaxT.ajaxPostSend(orderIdsend);
                             this.closeModal();
                         }
@@ -72,15 +66,12 @@ define([
             $target = $(config.target);
             $target.modal(options);
             $element = $(element);
-
             var orderIdsend = {
-                order: BigInt($element.attr('id')),
+                order: '',
                 content: ''
             };
-            var test1;
-            var classBtn;
-
             $element.click(function () {
+                $('#id-button').val(this.getAttribute('id'));
                 $target.modal('openModal');
             });
         }
