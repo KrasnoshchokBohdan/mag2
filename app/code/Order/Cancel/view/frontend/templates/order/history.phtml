@@ -48,12 +48,12 @@
                         <?php endif ?>
 
 
-                        <button  id='<?= $_order->getRealOrderId() ?>'
+                        <button  id='<?= $_order->getRealOrderId() ?>' class="modal-btn"
                                 data-mage-init='{"order-modal": {"target": "#modal-content"}}'>
                             <span><?php echo __('Cancel') ?></span>
                         </button>
 
-<!--                        class="modal-btn"-->
+
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -67,7 +67,6 @@
     <div class="message info empty"><span><?= $block->escapeHtml($block->getEmptyOrdersMessage()) ?></span></div>
 <?php endif ?>
 
-<!--          data-mage-init='{"order-modal":{}}'-->
 <div id="modal-content">
 <div class="modal-inner-content">
     <form class="form contact" id="contact-form2"

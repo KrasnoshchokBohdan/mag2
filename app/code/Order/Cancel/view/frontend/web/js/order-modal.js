@@ -59,6 +59,7 @@ define([
                                 order: $element.attr('id'),
                                 content: $('#contact-form2').serialize(true)
                             };
+                            classBtn = $('.modal-btn');
                             test1 = 1;
                             test1 = 2;
                             debugger;
@@ -77,6 +78,7 @@ define([
                 content: ''
             };
             var test1;
+            var classBtn;
 
             $element.click(function () {
                 $target.modal('openModal');

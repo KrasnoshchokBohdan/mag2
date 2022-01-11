@@ -111,7 +111,7 @@
                <item name="config" xsi:type="array">
                   <item name="provider" xsi:type="string">${ $.parentName }</item>
                   <item name="imports" xsi:type="array">
-                     <item name="visible" xsi:type="string">componentType = column, index = ${ $.index }:visible</item>
+                     <item name="visible" xsi:type="string">componentType = column, index = ${ $.index }:visible</item>   /here
                   </item>
                   <item name="dataScope" xsi:type="string">store_id</item>
                   <item name="label" xsi:type="string" translate="true">Store View</item>
@@ -221,17 +221,28 @@
             <item name="config" xsi:type="array">
                <item name="filter" xsi:type="string">textRange</item>
                <item name="sorting" xsi:type="string">asc</item>
-               <item name="label" xsi:type="string" translate="true">Order Id</item>
-               <item name="sortOrder" xsi:type="number">20</item>
+               <item name="label" xsi:type="string" translate="true">Id</item>
+               <item name="sortOrder" xsi:type="number">5</item>
             </item>
          </argument>
       </column>
+
+       <column name="cancel_order_id">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Canceled Order Id</item>
+                   <item name="sortOrder" xsi:type="number">7</item>
+               </item>
+           </argument>
+       </column>
+
       <column name="cancel_reason">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="filter" xsi:type="string">text</item>
                <item name="label" xsi:type="string" translate="true">Cancellation Reason</item>
-               <item name="sortOrder" xsi:type="number">30</item>
+               <item name="sortOrder" xsi:type="number">20</item>
             </item>
          </argument>
       </column>
@@ -244,34 +255,47 @@
             </item>
          </argument>
       </column>
-      <column name="status">
-         <argument name="data" xsi:type="array">
-            <item name="options" xsi:type="array">
-               <item name="0" xsi:type="array">
-                  <item name="label" xsi:type="string">Active</item>
-                  <item name="value" xsi:type="string">1</item>
+
+<!--      <column name="status">-->
+<!--         <argument name="data" xsi:type="array">-->
+<!--            <item name="options" xsi:type="array">-->
+<!--               <item name="0" xsi:type="array">-->
+<!--                  <item name="label" xsi:type="string">Active</item>-->
+<!--                  <item name="value" xsi:type="string">1</item>-->
+<!--               </item>-->
+<!--               <item name="1" xsi:type="array">-->
+<!--                  <item name="label" xsi:type="string">Inactive</item>-->
+<!--                  <item name="value" xsi:type="string">0</item>-->
+<!--               </item>-->
+<!--            </item>-->
+<!--            <item name="config" xsi:type="array">-->
+<!--               <item name="editor" xsi:type="string">select</item>-->
+<!--               <item name="filter" xsi:type="string">select</item>-->
+<!--               <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>-->
+<!--               <item name="dataType" xsi:type="string">select</item>-->
+<!--               <item name="label" xsi:type="string" translate="true">Status</item>-->
+<!--                <item name="sortOrder" xsi:type="number">7</item>-->
+<!--            </item>-->
+<!--         </argument>-->
+<!--      </column>-->
+
+       <column name="canceled_by">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Canceled by</item>
+                   <item name="sortOrder" xsi:type="number">50</item>
                </item>
-               <item name="1" xsi:type="array">
-                  <item name="label" xsi:type="string">Inactive</item>
-                  <item name="value" xsi:type="string">0</item>
-               </item>
-            </item>
-            <item name="config" xsi:type="array">
-               <item name="editor" xsi:type="string">select</item>
-               <item name="filter" xsi:type="string">select</item>
-               <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
-               <item name="dataType" xsi:type="string">select</item>
-               <item name="label" xsi:type="string" translate="true">Status</item>
-            </item>
-         </argument>
-      </column>
+           </argument>
+       </column>
+
       <actionsColumn name="actions" class="Order\Cancel\Ui\Component\Listing\Column\BlogActions">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="resizeEnabled" xsi:type="boolean">false</item>
                <item name="resizeDefaultWidth" xsi:type="string">107</item>
                <item name="indexField" xsi:type="string">order_id</item>
-               <item name="sortOrder" xsi:type="number">180</item>
+               <item name="sortOrder" xsi:type="number">100</item>
             </item>
          </argument>
       </actionsColumn>

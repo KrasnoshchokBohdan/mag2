@@ -34,7 +34,7 @@ class Index extends \Magento\Backend\App\Action
     {
 
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage Grid'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Cancel Orders Grid'));
         return $resultPage;
     }
 }

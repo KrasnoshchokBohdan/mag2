@@ -18,6 +18,6 @@ class Blog extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('order_table ', 'order_id');
+        $this->_init('order_table', 'order_id');
     }
 }

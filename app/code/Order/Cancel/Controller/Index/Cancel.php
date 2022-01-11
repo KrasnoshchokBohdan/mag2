@@ -8,6 +8,7 @@ use Magento\Sales\Controller\AbstractController\OrderLoaderInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Serialize\Serializer\Json;
+use Order\Cancel\Model\Blog;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Json\Helper\Data;
@@ -41,31 +42,40 @@ class Cancel extends \Magento\Framework\App\Action\Action
      * @var Json
      */
     protected $serializer;
+    /**
+     * @var Blog
+     */
+    protected $table;
 
     /**
      * Cancel constructor.
-     * @param OrderManagementInterface $orderManagementInterface
+     * @param OrderManagementInterface $orderManInterface
      * @param OrderLoaderInterface $orderLoader
      * @param Registry $registry
      * @param RequestInterface $request
-     * @param Json $serializer
      * @param Context $context
+     * @param Json $serializer
+     * @param Blog $table
      */
     public function __construct(
-        OrderManagementInterface $orderManagementInterface,
+        OrderManagementInterface $orderManInterface,
         OrderLoaderInterface     $orderLoader,
         Registry                 $registry,
         RequestInterface         $request,
-        Json               $serializer,
-        Context                  $context
+        Context                  $context,
+        Json                     $serializer,
+        Blog                     $table
+
     )
     {
-        $this->_order = $orderManagementInterface;
+        $this->_order = $orderManInterface;
         $this->orderLoader = $orderLoader;
         $this->registry = $registry;
         $this->request = $request;
-        $this->serializer = $serializer;
         parent::__construct($context);
+        $this->serializer = $serializer;
+        $this->table = $table;
+
     }
 
     public function execute()
@@ -77,9 +87,37 @@ class Cancel extends \Magento\Framework\App\Action\Action
             return $resultRedirect->setPath('*/*/history');
         }
 
+        $data = [
+            'cancel_order_id' => '000000111',
+            'cancel_reason' => 'test1',
+            'comment' => 'test2',
+            'canceled_by' => 'test3'
+        ];
+
+        $order_id = null;
+        if ($data) {
+            $this->table->load($order_id);
+            $this->table->setData($data);
+
+            try {
+                $this->table->save();
+                $this->messageManager->addSuccess(__('The data has been saved.'));
+
+            } catch (\Magento\Framework\Exception\LocalizedException $e) {
+                $this->messageManager->addError($e->getMessage());
+            } catch (\RuntimeException $e) {
+                $this->messageManager->addError($e->getMessage());
+            } catch (\Exception $e) {
+                $this->messageManager->addException($e, __('Something went wrong while saving the data111111111.'));
+            }
+
+        }
+
+
         $orderId = $post['order'];
-        //$content = $this->serializer->unserialize($post['content']);
         $content = $post['content'];
+       // $content = $this->serializer->unserialize($post['content']);
+       //
 
         $orderStatus = $this->_order->getStatus($orderId);
 

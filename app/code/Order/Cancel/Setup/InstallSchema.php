@@ -44,13 +44,23 @@ class InstallSchema implements InstallSchemaInterface
                     'primary' => true,
                     'unsigned' => true,
                 ],
-                'Order ID'
+                'Id'
+
+            )->addColumn(
+                'cancel_order_id',   //'blog_id'
+                Table::TYPE_TEXT,
+                255,
+                [
+                     'nullable' => false,
+                ],
+                'Canceled Order Id'
+
             )->addColumn(
                 'cancel_reason',       //'blog_title'
                 Table::TYPE_TEXT,
                 255,
                 [
-                    'nullable => false',
+                    'nullable' => false,
                 ],
                 'Cancellation Reason'
             )->addColumn(
@@ -73,8 +83,7 @@ class InstallSchema implements InstallSchemaInterface
                 255,
                 [
                     'nullable' => false,
-                   // 'default' => Table::TIMESTAMP_INIT,
-                ],
+                 ],
                 'Canceled by'
             )->setComment('Order Table');         //'Blog Table'
             $installer->getConnection()->createTable($table);
