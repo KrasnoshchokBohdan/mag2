@@ -3,5 +3,7 @@
     <menu>
         <add id="Order_Cancel::view" title="Cancel Orders" module="Order_Cancel" sortOrder="40" resource="Order_Cancel::view"/>
         <add id="Order_Cancel::menu" title="Cancel Orders Grid" module="Order_Cancel" sortOrder="30" parent="Order_Cancel::view" action="ordercanceladmin/index/index" resource="Order_Cancel::menu"/>
+<!--       <add id="Order_Cancel::cancel_configuration" title="Configuration" module="Order_Cancel" sortOrder="99" parent="Order_Cancel::order"-->
+<!--             action="adminhtml/system_config/edit/section/cancel" resource="Order_Cancel::cancel_configuration"/>-->
     </menu>
 </config>

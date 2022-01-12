@@ -1,14 +1,9 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- *
- * Created By : Rohan Hapani
- */
 namespace Order\Cancel\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\Session;
+use Magento\Backend\Model\View\Result\Redirect;
 use Order\Cancel\Model\Blog;
 
 class Save extends \Magento\Backend\App\Action
@@ -42,7 +37,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * Save blog record action
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
+     * @return Redirect
      */
     public function execute()
     {

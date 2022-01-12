@@ -1,37 +1,34 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- *
- * Created By : Rohan Hapani
- */
+
 namespace Order\Cancel\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
+use Order\Cancel\Model\Blog;
 
 class Delete extends Action
 {
-
     /**
-     * @var \Order\Cancel\Model\Blog
+     * @var Blog
      */
     protected $modelBlog;
 
     /**
-     * @param Context                  $context
-     * @param \Order\Cancel\Model\Blog $blogFactory
+     * @param Context $context
+     * @param Blog $blogFactory
      */
     public function __construct(
         Context $context,
-        \Order\Cancel\Model\Blog $blogFactory
+        Blog    $modelBlog
     ) {
         parent::__construct($context);
-        $this->modelBlog = $model;
+        $this->modelBlog = $modelBlog;
     }
 
     /**
-     * {@inheritdoc}
+     * @return bool
      */
     protected function _isAllowed()
     {
@@ -39,14 +36,12 @@ class Delete extends Action
     }
 
     /**
-     * Delete action
-     *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return Redirect
      */
     public function execute()
     {
         $id = $this->getRequest()->getParam('order_id');
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($id) {
             try {

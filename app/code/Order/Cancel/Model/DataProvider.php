@@ -6,19 +6,8 @@ use Order\Cancel\Model\ResourceModel\Blog\CollectionFactory;
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
 
-    /**
-     * @var array
-     */
     protected $loadedData;
 
-    /**
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
-     * @param CollectionFactory $blogCollectionFactory
-     * @param array $meta
-     * @param array $data
-     */
     public function __construct(
         $name,
         $primaryFieldName,
@@ -31,9 +20,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
-    /**
-     * @return array
-     */
     public function getData()
     {
         if (isset($this->loadedData)) {
