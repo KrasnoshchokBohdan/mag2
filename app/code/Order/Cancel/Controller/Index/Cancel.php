@@ -86,10 +86,10 @@ class Cancel extends \Magento\Framework\App\Action\Action
         }
 
         $canceledOrderId = $post['order'];
-        $selectedStatus = $this->check->getSelectedStatus();
+        $selectedStatus = explode(',', $this->check->getSelectedStatus());
         $orderStatus = $this->_order->getStatus($canceledOrderId);
 
-        if (stripos($selectedStatus, $orderStatus)) {
+        if (in_array($orderStatus, $selectedStatus, true)) {
             $this->saveCanseledOrder($post, $canceledOrderId);
             try {
                 $this->_order->cancel($canceledOrderId);
@@ -106,11 +106,12 @@ class Cancel extends \Magento\Framework\App\Action\Action
 
     public function saveCanseledOrder($post, $canceledOrderId)
     {
+        $resultRedirect = $this->resultRedirectFactory->create();
         $customer = $this->customerSession->getCustomer();
-        $selectedGroups = $this->check->getSelectedGroup();
+        $selectedGroups = explode(',', $this->check->getSelectedGroup());
         $customerGroup = $customer->getGroupId();
 
-        if (stripos($selectedGroups, $customerGroup)) {
+        if (in_array( $customerGroup, $selectedGroups,true)) {
             $customerName = $customer->getData('firstname') . " " . $customer->getData('lastname');
             $reason = $post['content']['0']['value'];
             $comment = $post['content']['1']['value'];
@@ -135,7 +136,7 @@ class Cancel extends \Magento\Framework\App\Action\Action
                 $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
             }
         }
-        return '';
+        return $resultRedirect->setPath('*/*/history');;
     }
 
 }

@@ -1,10 +1,5 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- *
- * Created By : Rohan Hapani
- */
+
 namespace Order\Cancel\Ui\Component\MassAction\Status;
 
 use Magento\Framework\UrlInterface;

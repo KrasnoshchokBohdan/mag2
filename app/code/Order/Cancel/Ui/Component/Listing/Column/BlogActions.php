@@ -5,32 +5,37 @@
  *
  * Created By : Rohan Hapani
  */
+
 namespace Order\Cancel\Ui\Component\Listing\Column;
+
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
 
 class BlogActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
-    const URL_EDIT_PATH = 'cancel/index/edit';
-    const URL_DELETE_PATH = 'cancel/index/delete';
+    const URL_EDIT_PATH = 'ordercanceladmin/index/edit';
+    const URL_DELETE_PATH = 'ordercanceladmin/index/delete';
 
     /**
-     * @var \Magento\Framework\UrlInterface
+     * @var UrlInterface
      */
     protected $urlBuilder;
 
     /**
-     * @param \Magento\Framework\UrlInterface                              $urlBuilder
-     * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
-     * @param \Magento\Framework\View\Element\UiComponentFactory           $uiComponentFactory
-     * @param array                                                        $components
-     * @param array                                                        $data
+     * @param UrlInterface $urlBuilder
+     * @param ContextInterface $context
+     * @param UiComponentFactory $uiComponentFactory
+     * @param array $components
+     * @param array $data
      */
     public function __construct(
-        \Magento\Framework\UrlInterface $urlBuilder,
-        \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
-        \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
-        array $components = [],
-        array $data = []
+        UrlInterface       $urlBuilder,
+        ContextInterface   $context,
+        UiComponentFactory $uiComponentFactory,
+        array              $components = [],
+        array              $data = []
     ) {
         $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
@@ -46,8 +51,7 @@ class BlogActions extends \Magento\Ui\Component\Listing\Columns\Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_EDIT_PATH,
                                 [
-                                    'order_id' => $item['order_id'
-                                    ],
+                                    'order_id' => $item['order_id'],
                                 ]
                             ),
                             'label' => __('Edit'),
@@ -56,8 +60,7 @@ class BlogActions extends \Magento\Ui\Component\Listing\Columns\Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_DELETE_PATH,
                                 [
-                                    'order_id' => $item['order_id'
-                                    ],
+                                    'order_id' => $item['order_id'],
                                 ]
                             ),
                             'label' => __('Delete'),
