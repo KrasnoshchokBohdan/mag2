@@ -27,7 +27,7 @@ define([
                         context: this,
                         data: obj
                     }).done(function (respond) {
-                        console.log('Done!');
+                   //     console.log('Done!');
                         window.location.reload();
                     });
                 }
@@ -44,7 +44,7 @@ define([
                         text: $.mage.__('Close'),
                         class: 'modal-close',
                         click: function () {
-                            console.log("close");
+                          //  console.log("close");
                             this.closeModal();
                         }
                 },
@@ -52,7 +52,7 @@ define([
                         text: $.mage.__('Ok'),
                         class: 'modal-close',
                         click: function () {
-                            console.log("ok");
+                      //      console.log("ok");
                             orderIdsend = {
                                 order: $('#id-button').val(),
                                 content: $('#contact-form2').serializeArray()

@@ -1,0 +1,55 @@
+<?php
+/** @var $block \Instant\Purchase\Block\Button */
+?>
+<?php $buttonTitle = __('Instant Purchase'); ?>
+<div class="product-add-form">
+    <div class="box-tocart">
+        <div class="fieldset">
+            <button title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                    data-mage-init='{"instant-purchase" : {}}'
+                    type="submit"  class="action primary tocart"
+                    id="modal-btn-inst">
+                <span><?= $block->escapeHtml($buttonTitle) ?></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="modal-content-inst">
+    <div class="modal-inner-content">
+        <form class="form contact" id="contact-form3" method="post"
+              data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+              data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <div class="field note no-label">
+                    <?= $block->escapeHtml(__('Enter your phone number and we will contact you to clear the details of your order')) ?>
+                </div>
+                <div class="field telephone required">
+                    <label class="label"
+                           for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+                    <div class="control">
+                        <input name="telephone" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                               value="<?= $block->getTelephone(); ?>" class="input-text" type="tel"
+                               data-validate="{required:true, 'validate-telephone':true}"/>
+                    </div>
+                </div>
+                <div class="field name">
+                    <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+                    <div class="control">
+                        <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>"
+                               value="<?= $block->getName(); ?>" class="input-text" type="text"/>
+                    </div>
+                </div>
+                <div class="field email">
+                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <div class="control">
+                        <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                               value="<?= $block->getEmail(); ?>" class="input-text" type="email"
+                               data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
