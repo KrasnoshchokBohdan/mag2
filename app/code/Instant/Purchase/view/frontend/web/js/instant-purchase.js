@@ -36,9 +36,10 @@ define([
                 text: $.mage.__('Ok'),
                 class: 'modal-close',
                 click: function () {
-                     orderInfoSend = {
+                    orderInfoSend = {
                         order: 'test',
-                        content: $('#contact-form3').serializeArray()
+                        content: $('#contact-form3').serializeArray(),
+                        product: $('#product_addtocart_form').serializeArray()
                     };
                     debugger;
                     ajaxT.ajaxPostSend(orderInfoSend);
@@ -48,7 +49,7 @@ define([
         ]
     };
 
-    var orderInfoSend ;
+    var orderInfoSend;
     var popup = modal(options, $('#modal-content-inst'));
 
     $("#modal-btn-inst").click(function () {

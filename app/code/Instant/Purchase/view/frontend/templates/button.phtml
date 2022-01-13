@@ -34,9 +34,16 @@
                     </div>
                 </div>
                 <div class="field name">
-                    <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+                    <label class="label" for="firstname"><span><?= $block->escapeHtml(__('First Name')) ?></span></label>
                     <div class="control">
-                        <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>"
+                        <input name="firstname" id="firstname" title="<?= $block->escapeHtmlAttr(__('First Name')) ?>"
+                               value="<?= $block->getName(); ?>" class="input-text" type="text"/>
+                    </div>
+                </div>
+                <div class="field name">
+                    <label class="label" for="lastname"><span><?= $block->escapeHtml(__('Last Name')) ?></span></label>
+                    <div class="control">
+                        <input name="lastname" id="lastname" title="<?= $block->escapeHtmlAttr(__('Last Name')) ?>"
                                value="<?= $block->getName(); ?>" class="input-text" type="text"/>
                     </div>
                 </div>
