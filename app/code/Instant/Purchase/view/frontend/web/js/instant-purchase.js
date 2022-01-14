@@ -59,7 +59,6 @@ define([
     $("#modal-btn-inst").click(function () {
         $("#modal-content-inst").modal('openModal');
     });
-
 });
 
 
