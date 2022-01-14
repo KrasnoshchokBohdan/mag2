@@ -5,7 +5,8 @@ define([
 ], function ($, modal, urlBuilder) {
 
     var ajaxT = {
-        ajaxPostSend: function (obj) {
+        ajaxPostSend: function (form) {
+     //obj
             var url = urlBuilder.build("inst-purchase/index/index");
             $.ajax({
                 showLoader: true,
@@ -13,7 +14,7 @@ define([
                 type: "POST",
                 dataType: 'json',
                 context: this,
-                data: obj
+                data: form        //obj
             }).done(function (respond) {
                 console.log('Done!');
             });
@@ -36,16 +37,19 @@ define([
                 text: $.mage.__('Ok'),
                 class: 'modal-close',
                 click: function () {
+                    form = $('#product_addtocart_form');
+                    formData = new FormData(form[0]);
+                  //   formData.getAll();
+                  //  $('#product_addtocart_form').serializeArray()
                     orderInfoSend = {
-                        order: 'test',
                         content: $('#contact-form3').serializeArray(),
-                        product: $('#product_addtocart_form').serializeArray()
+                        product:  $('#product_addtocart_form').serializeArray()
                     };
                     debugger;
                     ajaxT.ajaxPostSend(orderInfoSend);
                     this.closeModal();
                 }
-            }
+        }
         ]
     };
 

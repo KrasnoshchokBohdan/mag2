@@ -6,6 +6,7 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\CustomerFactory;
 use Magento\Customer\Model\Session;
+use Magento\Framework\App\Action\Action;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Quote\Model\QuoteFactory;
 use Magento\Quote\Model\QuoteManagement;
@@ -16,7 +17,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
 use Magento\Store\Model\StoreManagerInterface;
 
-class Index extends \Magento\Framework\App\Action\Action
+class Index extends Action
 {
     /**
      * @var PageFactory
@@ -68,10 +69,10 @@ class Index extends \Magento\Framework\App\Action\Action
      */
     protected $_order;
 
-    /**
-     * @var Registry
-     */
-    protected $registry;
+//    /**
+//     * @var Registry
+//     */
+//    protected $registry;
 
     /**
      * @var Session
@@ -104,7 +105,7 @@ class Index extends \Magento\Framework\App\Action\Action
         QuoteManagement             $quoteManagement,
         OrderSender                 $orderSender,
         OrderManagementInterface    $orderManInterface,
-        Registry                    $registry,
+       // Registry                    $registry,
         Session                     $customerSession,
         Context                     $context
 
@@ -120,7 +121,7 @@ class Index extends \Magento\Framework\App\Action\Action
         $this->quoteManagement = $quoteManagement;
         $this->orderSender = $orderSender;
         $this->_order = $orderManInterface;
-        $this->registry = $registry;
+    //    $this->registry = $registry;
         $this->customerSession = $customerSession;
         parent::__construct($context);
     }
@@ -128,37 +129,21 @@ class Index extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $post = $this->getRequest()->getParams();
-        $customerTel = $post['content']['0']['value'];
-        $customerMail = $post['content']['3']['value'];
-        $customerFirstName = $post['content']['1']['value'];
-        $customerLastName = $post['content']['2']['value'];
+        $normPostCustomer = [];
+        $customerTel = 'test tel';
+        $customerMail = 'test main';
+        $customerFirstName = 'test fname';
+        $customerLastName = 'test lname';
+        $productItem = $this->createItem($post);
 
-        $productId = 0;  //$post['product']['0']['value'];
-        $productQty = 0;  //$post['product']['5']['value'];
-        $test1 = 0;
-        $productItem = [
-            [
-                'product_id' => '70',
-                'qty' => 2,
-//                'super_attribute' => [
-//                    93 => 52,
-//                    142 => 167
-//                ]
-            ]
-        ];
-
-        foreach ($post['product'] as $item) {
-            if ($item['name'] == 'product') {
-                $productItem['product_id'] =  $item['value'];
+        if ($post) {
+            foreach ($post['content'] as $data) {
+                $normPostCustomer[$data['name']] = $data['value'];
             }
-            if ($item['name'] == 'qty') {
-                $productItem['qty'] = $item['value'];
-            }
-        }
-
-
-        if ($test1 === 0) {
-            return "";
+            $customerTel = $normPostCustomer['telephone'];
+            $customerMail = $normPostCustomer['email'];
+            $customerFirstName = $normPostCustomer['firstname'];
+            $customerLastName = $normPostCustomer['lastname'];
         }
 
         $orderInfo = [
@@ -179,23 +164,24 @@ class Index extends \Magento\Framework\App\Action\Action
                 'fax' => '1234567890',
                 'save_in_address_book' => 1
             ],
-            'items' =>
-                [
-                    //simple product
-                    [
-                        'product_id' => $productId,
-                        'qty' => $productQty
-                    ],
-                    //configurable product
+            'items' => [$productItem]
+//                    [
+            //simple product
+//                    [
+//                        'product_id' => '1',
+//                        'qty' => '1'
+//                    ],
+            //configurable product
 //                    [
 //                        'product_id' => '70',
 //                        'qty' => 2,
 //                        'super_attribute' => [
 //                            93 => 52,
 //                            142 => 167
-//                        ]
 //                    ]
-                ]
+//                    ]
+//               ]
+//            ]
         ];
         $store = $this->storeManager->getStore();
         $storeId = $store->getStoreId();
@@ -208,8 +194,8 @@ class Index extends \Magento\Framework\App\Action\Action
              * If Guest customer, Create new customer
              */
             $customer->setStore($store)
-                ->setFirstname($orderInfo['address'][$customerFirstName])
-                ->setLastname($orderInfo['address'][$customerLastName])
+                ->setFirstname($orderInfo['address']['firstname'])
+                ->setLastname($orderInfo['address']['lastname'])
                 ->setEmail($orderInfo['email'])
                 ->setPassword('admin@123');
             $customer->save();
@@ -262,16 +248,44 @@ class Index extends \Magento\Framework\App\Action\Action
             // Create Order From Quote Object
             $order = $this->quoteManagement->submit($quote);
 
-            $this->messageManager->addSuccess(__('Your order is completed. Thank you!'));
+            $this->messageManager->addSuccess(__('Your order is completed . Thank you!'));
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->messageManager->addError($e->getMessage());
         } catch (\RuntimeException $e) {
             $this->messageManager->addError($e->getMessage());
         } catch (\Exception $e) {
-            $this->messageManager->addException($e, __('Something went wrong.'));
+            $this->messageManager->addException($e, __('Something went wrong . '));
         }
     }
+
+    public function createItem($post)
+    {
+        $normalizedPostProd = [];
+        $super_attr = [];
+        $productItem = [];
+
+        foreach ($post['product'] as $data) {
+            $normalizedPostProd[$data['name']] = $data['value'];
+        }
+
+        $product = $this->productRepository->getById($normalizedPostProd['product']);
+        if ($product->getData("type_id") === 'configurable') {
+            $productItem['product_id'] = $normalizedPostProd['product'];
+            $productItem['qty'] = $normalizedPostProd['qty'];
+
+            foreach ($normalizedPostProd as $key => $value) {
+                $check = stripos($key, 'super_attribute');
+                if ($check !== false) {
+                    preg_match_all("/\d+/", $key, $matches);
+                    $super_attr[$matches[0][0]] = $value;
+                }
+            }
+            $productItem['super_attribute'] = $super_attr;
+            return $productItem;
+        }
+        $productItem['product_id'] = $normalizedPostProd['product'];
+        $productItem['qty'] = $normalizedPostProd['qty'];
+        return $productItem;
+    }
 }
-
-
 
