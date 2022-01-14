@@ -1,4 +1,5 @@
 <?php
+//@codingStandardsIgnoreFile
 
 namespace Instant\Purchase\Controller\Index;
 
