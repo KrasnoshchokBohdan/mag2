@@ -4,7 +4,7 @@
 <!--    <referenceBlock name="product.info.addtocart">-->
     <referenceBlock name="product.info.addto">
         <block name="product.info.addto.instantPurchase.custom"
-               class="Instant\Purchase\Block\Button"
+               class="Magento\Framework\View\Element\Template"
                template="Instant_Purchase::button.phtml"
                before="-">
        </block>

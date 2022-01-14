@@ -1,6 +1,5 @@
 <?php
-//@codingStandardsIgnoreFile
-
+//@codingStandardsIgnoreStart
 namespace Instant\Purchase\Controller\Index;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
@@ -70,11 +69,6 @@ class Index extends Action
      */
     protected $_order;
 
-//    /**
-//     * @var Registry
-//     */
-//    protected $registry;
-
     /**
      * @var Session
      */
@@ -106,7 +100,6 @@ class Index extends Action
         QuoteManagement             $quoteManagement,
         OrderSender                 $orderSender,
         OrderManagementInterface    $orderManInterface,
-       // Registry                    $registry,
         Session                     $customerSession,
         Context                     $context
 
@@ -122,7 +115,6 @@ class Index extends Action
         $this->quoteManagement = $quoteManagement;
         $this->orderSender = $orderSender;
         $this->_order = $orderManInterface;
-    //    $this->registry = $registry;
         $this->customerSession = $customerSession;
         parent::__construct($context);
     }
@@ -268,7 +260,6 @@ class Index extends Action
         foreach ($post['product'] as $data) {
             $normalizedPostProd[$data['name']] = $data['value'];
         }
-
         $product = $this->productRepository->getById($normalizedPostProd['product']);
         if ($product->getData("type_id") === 'configurable') {
             $productItem['product_id'] = $normalizedPostProd['product'];
