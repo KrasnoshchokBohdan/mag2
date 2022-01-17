@@ -36,24 +36,48 @@ define([
                 text: $.mage.__('Ok'),
                 class: 'modal-close',
                 click: function () {
-                     cityInfoSend = {
+                    cityInfoSend = {
                         content: $('#city123').serializeArray(),
                     };
-                    debugger;
-                    //$("#modal-btn-city123").attr('title', 'your new title')
                     ajaxT.ajaxPostSend(cityInfoSend);
                     this.closeModal();
                 }
-        }
+            }
+        ]
+    };
+
+    var options1 = {
+        type: 'popup',
+        responsive: true,
+        innerScroll: true,
+        title: 'Your city?',
+        buttons: [{
+            text: $.mage.__('Yes'),
+            class: 'modal-close',
+            click: function () {
+                this.closeModal();
+            }
+        },
+            {
+                text: $.mage.__('Choose Another'),
+                class: 'modal-close',
+                click: function () {
+                    $("#modal-content-city").modal('openModal');
+                    this.closeModal();
+                }
+            }
+
         ]
     };
 
 
     var cityInfoSend;
-    var popup = modal(options, $('#modal-content-city123'));
+    var popup = modal(options, $('#modal-content-city'));
+    var popup1 = modal(options1, $('#modal-custom-city'));
 
-    $("#modal-btn-city123").click(function () {
-        $("#modal-content-city123").modal('openModal');
+
+    $("#modal-btn-custom-city").click(function () {
+        $("#modal-custom-city").modal('openModal');
     });
 });
 

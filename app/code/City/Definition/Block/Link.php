@@ -5,7 +5,7 @@ namespace City\Definition\Block;
 use City\Definition\Service\GitApiService;
 use Magento\Backend\Block\Template\Context;
 
-class Link extends \Magento\Framework\View\Element\Html\Link
+class Link extends \Magento\Backend\Block\Template
 {
     /**
      * @var GitApiService

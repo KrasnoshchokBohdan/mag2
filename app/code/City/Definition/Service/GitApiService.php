@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\ResponseFactory;
 use Magento\Framework\Webapi\Rest\Request;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
+
 //use Magento\Tests\NamingConvention\true\string;
 
 /**
@@ -63,7 +64,6 @@ class GitApiService
         ResponseFactory $responseFactory,
         Json            $json,
         RemoteAddress   $remoteAddress
-
     ) {
         $this->remoteAddress = $remoteAddress;
         $this->serializer = $json;
@@ -78,10 +78,10 @@ class GitApiService
     {
         // $repositoryName = 'magento/magento2';
         // $response = $this->doRequest(static::API_REQUEST_ENDPOINT . $repositoryName); //  repos/magento/magento2
-
+        //'92.113.171.50?access_key=8c8006b798728ba8ae135d47405bc26f&format=1'
         $ip = $this->remoteAddress->getRemoteAddress();
         $ip = '92.113.171.50';
-        $response = $this->doRequest($ip . static::API_REQUEST_KEY);  //'92.113.171.50?access_key=8c8006b798728ba8ae135d47405bc26f&format=1'
+        $response = $this->doRequest($ip . static::API_REQUEST_KEY);
         $status = $response->getStatusCode(); // 200 status code
         $responseBody = $response->getBody();
         $responseContent = $responseBody->getContents(); // here you will have the API response in JSON format
