@@ -8,6 +8,7 @@ class Custom extends \Magento\Framework\View\Element\Template
     protected $_registry;
     protected $_stockItemRepository;
 
+
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\CatalogInventory\Model\Stock\StockItemRepository $stockItemRepository,
@@ -23,7 +24,7 @@ class Custom extends \Magento\Framework\View\Element\Template
 
 
 
-    public function getCurrentProduct($res)
+    public function getCurrentProduct()
     {
         return  $this->_registry->registry('current_product');
     }
@@ -33,3 +34,4 @@ class Custom extends \Magento\Framework\View\Element\Template
 			return $this->_stockItemRepository->get($productId);
 		}
 }
+

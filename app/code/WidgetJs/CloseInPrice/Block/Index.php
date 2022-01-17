@@ -4,7 +4,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  * Php version 7.4
- * 
+ *
  * @category Some_Category
  * @package  Some_Package
  * @author   Display Name <someusername@example.com>
@@ -42,45 +42,46 @@ class Index extends \Magento\Framework\View\Element\Template
     protected $helperData;
     /**
      * CollectionFactory
-     * 
+     *
      * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
      */
     protected $productCollectionFactory;
     /**
      * ImageHelper
-     * 
+     *
      * @var \Magento\Catalog\Helper\Image
      */
     protected $productImageHelper;
     /**
      * Resolver
-     * 
+     *
      * @var \Magento\Catalog\Model\Layer\Resolver
      */
     private $_layerResolver;
 
     /**
      * Index constructor
-     * 
-     * @param \Magento\Backend\Block\Template\Context                        $context                  context
-     * @param \Magento\Framework\Registry                                    $registry                 registry
-     * @param \WidgetJs\CloseInPrice\Helper\Data                             $helperData               helperData
+     *
+     * @param \Magento\Backend\Block\Template\Context $context context
+     * @param \Magento\Framework\Registry $registry registry
+     * @param \WidgetJs\CloseInPrice\Helper\Data $helperData helperData
      * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory productCollectionFactory
-     * @param \Magento\Catalog\Helper\Image                                  $productImageHelper       productImageHelper  
-     * @param \Magento\Catalog\Model\Layer\Resolver                          $layerResolver            layerResolver
-     * @param array<Type>                                                    $data                     data
-     * 
+     * @param \Magento\Catalog\Helper\Image $productImageHelper productImageHelper
+     * @param \Magento\Catalog\Model\Layer\Resolver $layerResolver layerResolver
+     * @param array<Type> $data data
+     *
      * @some(some)
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
-        \WidgetJs\CloseInPrice\Helper\Data $helperData,
+        \Magento\Backend\Block\Template\Context                        $context,
+        \Magento\Framework\Registry                                    $registry,
+        \WidgetJs\CloseInPrice\Helper\Data                             $helperData,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-        \Magento\Catalog\Helper\Image $productImageHelper,
-        \Magento\Catalog\Model\Layer\Resolver $layerResolver,
-        array $data = []
-    ) {
+        \Magento\Catalog\Helper\Image                                  $productImageHelper,
+        \Magento\Catalog\Model\Layer\Resolver                          $layerResolver,
+        array                                                          $data = []
+    )
+    {
         $this->registry = $registry;
         $this->helperData = $helperData;
         $this->productCollectionFactory = $productCollectionFactory;
@@ -89,9 +90,9 @@ class Index extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
     }
 
-    /** 
+    /**
      * Get current product
-     * 
+     *
      * @return Object
      */
     public function getCurrentProduct()
@@ -102,7 +103,7 @@ class Index extends \Magento\Framework\View\Element\Template
 
     /**
      * Get Price Difference from Admin ACL
-     * 
+     *
      * @return mixed
      */
     public function getPriceDifference()
@@ -116,9 +117,9 @@ class Index extends \Magento\Framework\View\Element\Template
         return null;
     }
 
-    /** 
+    /**
      * Get cutegory id for current product
-     * 
+     *
      * @return mixed
      */
     public function getCurrentCategoryId()
@@ -172,9 +173,9 @@ class Index extends \Magento\Framework\View\Element\Template
         return null;
     }
 
-    /** 
+    /**
      * Get product collection by category id
-     * 
+     *
      * @return iterable<Type>
      */
     public function getProductCollectionByCategories()
@@ -186,9 +187,9 @@ class Index extends \Magento\Framework\View\Element\Template
         return $collection;
     }
 
-    /** 
+    /**
      * Get products by price difference
-     * 
+     *
      * @return iterable<Type>|array
      */
     public function getProductsByPriceDifference()
@@ -199,11 +200,11 @@ class Index extends \Magento\Framework\View\Element\Template
             $getPriceInfo = $product->getPriceInfo();
             $prodPrice = $getPriceInfo->getPrice('final_price')->getValue();
             $currentProduct = $this->getCurrentProduct();
-            $getPriceInfo =  $currentProduct->getPriceInfo();
-            $curProductPrice =  $getPriceInfo->getPrice('final_price')->getValue();
+            $getPriceInfo = $currentProduct->getPriceInfo();
+            $curProductPrice = $getPriceInfo->getPrice('final_price')->getValue();
             $priceDif = $this->getPriceDifference();
             $prodMinus = $prodPrice - $curProductPrice;
-            $currentProdMinus = $curProductPrice -  $prodPrice;
+            $currentProdMinus = $curProductPrice - $prodPrice;
             if ($prodMinus < $priceDif || $currentProdMinus > -$priceDif) {
                 $data[] = $product;
             }
@@ -211,13 +212,13 @@ class Index extends \Magento\Framework\View\Element\Template
         return $data;
     }
 
-    /** 
+    /**
      * Get product image url
-     * 
-     * @param \Magento\Catalog\Model\Product $product    product
-     * @param string                         $imageId    imageId
-     * @param Type[]                         $attributes attributes
-     * 
+     *
+     * @param \Magento\Catalog\Model\Product $product product
+     * @param string $imageId imageId
+     * @param Type[] $attributes attributes
+     *
      * @return string
      */
     public function getProductImageUrl($product, $imageId, $attributes = [])
@@ -226,9 +227,9 @@ class Index extends \Magento\Framework\View\Element\Template
         return $productImageHelper->init($product, $imageId, $attributes)->getUrl();
     }
 
-    /** 
+    /**
      * Get product image url array
-     * 
+     *
      * @return mixed
      */
     public function getProductImageUrlArray()
@@ -249,9 +250,9 @@ class Index extends \Magento\Framework\View\Element\Template
         return null;
     }
 
-    /** 
+    /**
      * Get product image url array str
-     * 
+     *
      * @return mixed
      */
     public function getProductImageUrlArrayStr()
