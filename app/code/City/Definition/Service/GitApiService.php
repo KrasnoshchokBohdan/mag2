@@ -60,11 +60,14 @@ class GitApiService
      * @param RemoteAddress $remoteAddress
      */
     public function __construct(
+
         ClientFactory   $clientFactory,
         ResponseFactory $responseFactory,
         Json            $json,
         RemoteAddress   $remoteAddress
-    ) {
+    )
+    {
+
         $this->remoteAddress = $remoteAddress;
         $this->serializer = $json;
         $this->clientFactory = $clientFactory;
@@ -80,11 +83,12 @@ class GitApiService
         // $response = $this->doRequest(static::API_REQUEST_ENDPOINT . $repositoryName); //  repos/magento/magento2
         //'92.113.171.50?access_key=8c8006b798728ba8ae135d47405bc26f&format=1'
         $ip = $this->remoteAddress->getRemoteAddress();
-        $ip = '92.113.171.50';
+        $ip = '92.113.171.50';  //konotop
+        $ip = '193.169.125.9';   //Hlukhiv
         $response = $this->doRequest($ip . static::API_REQUEST_KEY);
         $status = $response->getStatusCode(); // 200 status code
         $responseBody = $response->getBody();
-        $responseContent = $responseBody->getContents(); // here you will have the API response in JSON format
+        $responseContent = $responseBody->getContents();
         return $responseContent;
     }
 
@@ -101,9 +105,10 @@ class GitApiService
         string $uriEndpoint,
         array  $params = [],
         string $requestMethod = Request::HTTP_METHOD_GET
-    ): Response {
+    ): Response
+    {
         $client = $this->clientFactory->create(['config' => [
-            'base_uri' => self::API_REQUEST_URI                //   https://api.github.com/
+            'base_uri' => self::API_REQUEST_URI
         ]]);
 
         try {
@@ -125,8 +130,9 @@ class GitApiService
 
     public function sendCity()
     {
-        $data = $this->serializer->unserialize($this->execute());
-        return $data['city'];
+        //    $data = $this->serializer->unserialize($this->execute());
+        //   return $data['city'];
+        return 'Hlukhiv454';
     }
 }
 

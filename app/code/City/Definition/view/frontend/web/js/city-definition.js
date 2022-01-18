@@ -1,7 +1,7 @@
 define([
     'jquery',
     'Magento_Ui/js/modal/modal',
-    'mage/url'
+    'mage/url',
 ], function ($, modal, urlBuilder) {
 
     var ajaxT = {
@@ -40,6 +40,8 @@ define([
                         content: $('#city123').serializeArray(),
                     };
                     ajaxT.ajaxPostSend(cityInfoSend);
+                   // var city = cityInfoSend['content'].valueOf();
+                   // $.cookie('city1', city[0].value, { path: '/' });
                     this.closeModal();
                 }
             }

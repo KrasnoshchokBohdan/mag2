@@ -14,12 +14,30 @@ $city = $block->showCity();
             type="submit" id="modal-btn-custom-city"
             data-mage-init='{"city-definition" : {}}'><span><?= $block->escapeHtmlAttr($buttonTitle)?></span>
     </button>
-    <div>
-        <span>
-            <?= $block->escapeHtmlAttr($city)?>
-        </span>
+
+    <div class="custom-section"data-bind="scope: 'section'">
+        <p data-bind="text: customsection().customdata"></p>
     </div>
+    <script type="text/x-magento-init">
+    {
+    	"*": {
+        	"Magento_Ui/js/core/app": {
+            	"components": {
+                	"section": {
+                    	"component": "City_Definition/js/section"
+                	}
+            	}
+        	}
+    	}
+    }
+</script>
 </div>
+
+
+
+
+
+
 
 <div id="modal-content-city">
     <div class="modal-inner-content">

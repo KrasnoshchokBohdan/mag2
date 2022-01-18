@@ -2,37 +2,40 @@
 //@codingStandardsIgnoreStart
 namespace City\Definition\Controller\Index;
 
+use City\Definition\Service\GitApiService;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use City\Definition\Block\Link;
+use Magento\Customer\Model\Session;
 
 class Index extends Action
 {
     /**
-     * @var Link
+     * @var GitApiService
      */
-    protected $block;
+    protected $customerSession;
 
     /**
-     * @param Link $block
      * @param Context $context
+     * @param Session $customerSession
      */
     public function __construct(
-        Link    $block,
-        Context $context
-
+        Context $context,
+        Session $customerSession
     ) {
-        $this->block = $block;
+        $this->customerSession = $customerSession;
         parent::__construct($context);
     }
 
     public function execute()
     {
         $post = $this->getRequest()->getParams();
-        $test = $post['content']['0']['value'];
+        if (!$post) {
+            return " ";
+        }
+        $city = $post['content']['0']['value'];
 
         try {
-
+            $this->customerSession->setMyValue($city);
             $this->messageManager->addSuccess(__('Thank you!'));
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->messageManager->addError($e->getMessage());
