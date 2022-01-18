@@ -1,18 +1,12 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-<!--        <referenceBlock name="header.links">-->
         <referenceContainer name="header.panel">
-            <block class="City\Definition\Block\Link"
+            <block class="City\Definition\Block\Block"
                    name="add-new-header-link"
                    template="City_Definition::button.phtml"
                    before="-">>
-<!--                <arguments>-->
-<!--                    <argument name="label" xsi:type="string" translate="true">New Link</argument>-->
-<!--                    <argument name="path" xsi:type="string" translate="true">new-link</argument>-->
-<!--                </arguments>-->
             </block>
-<!--        </referenceBlock>-->
         </referenceContainer>
     </body>
 </page>

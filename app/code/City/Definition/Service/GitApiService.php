@@ -10,7 +10,6 @@ use GuzzleHttp\Psr7\ResponseFactory;
 use Magento\Framework\Webapi\Rest\Request;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
-
 //use Magento\Tests\NamingConvention\true\string;
 
 /**
@@ -65,8 +64,7 @@ class GitApiService
         ResponseFactory $responseFactory,
         Json            $json,
         RemoteAddress   $remoteAddress
-    )
-    {
+    ) {
 
         $this->remoteAddress = $remoteAddress;
         $this->serializer = $json;
@@ -105,8 +103,7 @@ class GitApiService
         string $uriEndpoint,
         array  $params = [],
         string $requestMethod = Request::HTTP_METHOD_GET
-    ): Response
-    {
+    ): Response {
         $client = $this->clientFactory->create(['config' => [
             'base_uri' => self::API_REQUEST_URI
         ]]);
