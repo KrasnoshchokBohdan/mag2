@@ -40,8 +40,9 @@ define([
                         content: $('#city123').serializeArray(),
                     };
                     ajaxT.ajaxPostSend(cityInfoSend);
-                   // var city = cityInfoSend['content'].valueOf();
-                   // $.cookie('city1', city[0].value, { path: '/' });
+
+                    // var city = cityInfoSend['content'].valueOf();
+                    // $.cookie('city1', city[0].value, { path: '/' });
                     this.closeModal();
                 }
             }

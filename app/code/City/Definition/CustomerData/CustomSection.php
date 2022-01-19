@@ -5,9 +5,14 @@ namespace City\Definition\CustomerData;
 use City\Definition\Service\GitApiService;
 use Magento\Customer\CustomerData\SectionSourceInterface;
 use Magento\Customer\Model\Session;
+use City\Definition\Service\Npcity;
 
 class CustomSection implements SectionSourceInterface
 {
+    /**
+     * @var Npcity
+     */
+    protected $NpCity;
     /**
      * @var CookieManagerInterface
      */
@@ -26,11 +31,14 @@ class CustomSection implements SectionSourceInterface
     /**
      * @param Session $customerSession
      * @param GitApiService $gitApiService
+     * @param Npcity $NpCity
      */
     public function __construct(
         Session       $customerSession,
-        GitApiService $gitApiService
+        GitApiService $gitApiService,
+        Npcity $NpCity
     ) {
+        $this->NpCity = $NpCity;
         $this->gitApiService = $gitApiService;
         $this->customerSession = $customerSession;
     }
@@ -40,6 +48,7 @@ class CustomSection implements SectionSourceInterface
      */
     public function getSectionData()
     {
+        $cityTest = $this->NpCity->execute();
         $cityIp = $this->gitApiService->sendCity();
         $cityForm = $this->customerSession->getMyValue();
         if ($cityForm) {

@@ -37,13 +37,12 @@ class Index extends Action
         try {
             $this->customerSession->setMyValue($city);
             $this->messageManager->addSuccess(__('Thank you!'));
-        } catch (\Magento\Framework\Exception\LocalizedException $e) {
-            $this->messageManager->addError($e->getMessage());
-        } catch (\RuntimeException $e) {
+        } catch (\Magento\Framework\Exception\LocalizedException|\RuntimeException $e) {
             $this->messageManager->addError($e->getMessage());
         } catch (\Exception $e) {
             $this->messageManager->addException($e, __('Something went wrong . '));
         }
+        return " ";
     }
 }
 

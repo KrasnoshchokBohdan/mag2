@@ -27,9 +27,6 @@ class GitApiService
      */
     const API_REQUEST_URI = 'http://api.ipstack.com/';
 
-    //const API_REQUEST_URI = 'https://api.github.com/';
-    // const API_REQUEST_ENDPOINT = 'repos/';
-
     /**
      * Access key
      */
@@ -121,10 +118,13 @@ class GitApiService
                 'reason' => $exception->getMessage()
             ]);
         }
-
         return $response;
     }
 
+    /**
+     * @return string
+     *
+     */
     public function sendCity()
     {
         //    $data = $this->serializer->unserialize($this->execute());
