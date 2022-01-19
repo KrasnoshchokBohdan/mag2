@@ -26,8 +26,8 @@ class Save extends \Magento\Backend\App\Action
      */
     public function __construct(
         Action\Context $context,
-        Blog $cancel,
-        Session $adminsession
+        Blog           $cancel,
+        Session        $adminsession
     ) {
         parent::__construct($context);
         $this->cancel = $cancel;

@@ -6,6 +6,7 @@ use City\Definition\Service\IpApiService;
 use Magento\Customer\CustomerData\SectionSourceInterface;
 use Magento\Customer\Model\Session;
 use City\Definition\Service\Npcity;
+use Zend_Http_Client_Exception;
 
 class CustomSection implements SectionSourceInterface
 {
@@ -13,10 +14,6 @@ class CustomSection implements SectionSourceInterface
      * @var Npcity
      */
     protected $npCity;
-    /**
-     * @var CookieManagerInterface
-     */
-    protected $cookieManager;
 
     /**
      * @var IpApiService
@@ -45,10 +42,11 @@ class CustomSection implements SectionSourceInterface
 
     /**
      * @return string[]
+     * @throws Zend_Http_Client_Exception
      */
     public function getSectionData(): array
     {
-        $cityTest = $this->npCity->execute();
+       // $cityTest = $this->npCity->execute();
         $cityIp = $this->ipApiService->sendCity();
         $cityForm = $this->customerSession->getMyValue();
         if ($cityForm) {

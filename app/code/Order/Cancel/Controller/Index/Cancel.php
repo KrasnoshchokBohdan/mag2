@@ -59,9 +59,7 @@ class Cancel extends \Magento\Framework\App\Action\Action
         Check                    $check,
         Group                    $customerGroupCollection,
         Context                  $context
-
-    )
-    {
+    ) {
         $this->_order = $orderManInterface;
         $this->registry = $registry;
         $this->table = $table;
@@ -111,7 +109,7 @@ class Cancel extends \Magento\Framework\App\Action\Action
         $selectedGroups = explode(',', $this->check->getSelectedGroup());
         $customerGroup = $customer->getGroupId();
 
-        if (in_array( $customerGroup, $selectedGroups,true)) {
+        if (in_array($customerGroup, $selectedGroups, true)) {
             $customerName = $customer->getData('firstname') . " " . $customer->getData('lastname');
             $reason = $post['content']['0']['value'];
             $comment = $post['content']['1']['value'];
@@ -136,7 +134,7 @@ class Cancel extends \Magento\Framework\App\Action\Action
                 $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
             }
         }
-        return $resultRedirect->setPath('*/*/history');;
+        return $resultRedirect->setPath('*/*/history');
+        ;
     }
-
 }

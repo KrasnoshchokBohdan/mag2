@@ -42,7 +42,6 @@ class Index extends Action
         } catch (\Exception $e) {
             $this->messageManager->addException($e, __('Something went wrong . '));
         }
-        return " ";
     }
 }
 

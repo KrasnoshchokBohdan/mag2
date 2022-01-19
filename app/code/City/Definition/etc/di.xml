@@ -4,10 +4,15 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="city_definition_command_example" xsi:type="object">
+                <item name="city_definition_command" xsi:type="object">
                     City\Definition\Console\Command\CommandExample
                 </item>
             </argument>
         </arguments>
     </type>
+    <preference for="City\Definition\Api\CityRepositoryInterface"
+                type="City\Definition\Model\CityRepository"/>
+    <preference for="City\Definition\Api\Data\CityInterface"
+                type="City\Definition\Model\City"/>
 </config>
+

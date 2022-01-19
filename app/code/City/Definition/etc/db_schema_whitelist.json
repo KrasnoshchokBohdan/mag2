@@ -1,0 +1,17 @@
+{
+    "city_table": {
+        "column": {
+            "city_id": true,
+            "city_ref": true,
+            "city_name_ua": true,
+            "city_name_ru": true,
+            "city_area": true,
+            "city_id_np": true,
+            "city_area_description_ua": true,
+            "city_area_description_ru": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

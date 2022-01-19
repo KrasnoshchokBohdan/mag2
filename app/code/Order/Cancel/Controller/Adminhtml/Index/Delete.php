@@ -21,7 +21,7 @@ class Delete extends Action
      */
     public function __construct(
         Context $context,
-        Blog    $modelBlog
+        Blog $modelBlog
     ) {
         parent::__construct($context);
         $this->modelBlog = $modelBlog;

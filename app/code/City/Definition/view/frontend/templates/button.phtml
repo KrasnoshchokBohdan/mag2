@@ -1,15 +1,14 @@
 <?php
-/** @var $block CustomViewModel */
+/** @var $block Template */
 
-use City\Definition\ViewModel\CustomViewModel;
+use Magento\Framework\View\Element\Template;
 
 $viewModel = $block->getViewModel();
-?>
-<?php
 $buttonTitle = __('Location');
 $city = $viewModel->showCity();
+$test = $viewModel->moduleEnable();
 ?>
-
+<?php if ($viewModel->moduleEnable()) :?>
 <div>
     <button title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
             type="submit" id="modal-btn-custom-city"
@@ -63,6 +62,8 @@ $city = $viewModel->showCity();
         </div>
     </div>
 </div>
+
+<?php endif;?>
 
 
 

@@ -5,16 +5,30 @@ namespace City\Definition\Console\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use City\Definition\Service\Npcity;
+use Zend_Http_Client_Exception;
 
 class CommandExample extends Command
 {
+
     /**
-     * @inheritDoc
+     * @var Npcity
      */
+    private $NpCity;
+
+    public function __construct(
+        NpCity $NpCity,
+        string $name = null
+    ) {
+        parent::__construct($name);
+        $this->NpCity = $NpCity;
+    }
+
     protected function configure()
     {
-        $this->setName('ps:cs:example');
-        $this->setDescription('example');
+        $this->setName('np:import');
+        $this->setDescription('NP city import.');
         parent::configure();
     }
 
@@ -25,9 +39,13 @@ class CommandExample extends Command
      * @param OutputInterface $output
      *
      * @return void
+     * @throws Zend_Http_Client_Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        // todo: implement CLI command logic here
+        if ($this->NpCity->execute()) {
+            $output->writeln('<info>Done!.</info>');
+        }
+        $output->writeln('<error>Error</error>');
     }
 }
