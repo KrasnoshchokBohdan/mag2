@@ -42,8 +42,7 @@ class Npcity extends \Magento\Backend\App\Action
         ZendClientFactory     $httpClientFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         ScopeConfigInterface  $scopeConfig
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;

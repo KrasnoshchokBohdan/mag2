@@ -13,9 +13,9 @@ use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 //use Magento\Tests\NamingConvention\true\string;
 
 /**
- * Class GitApiService
+ * Class IpApiService
  */
-class GitApiService
+class IpApiService
 {
     /**
      * @var RemoteAddress;
@@ -48,7 +48,7 @@ class GitApiService
     protected $serializer;
 
     /**
-     * GitApiService constructor
+     * IpApiService constructor
      *
      * @param ClientFactory $clientFactory
      * @param ResponseFactory $responseFactory

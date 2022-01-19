@@ -2,7 +2,7 @@
 //@codingStandardsIgnoreStart
 namespace City\Definition\Controller\Index;
 
-use City\Definition\Service\GitApiService;
+use City\Definition\Service\IpApiService;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Customer\Model\Session;
@@ -10,7 +10,7 @@ use Magento\Customer\Model\Session;
 class Index extends Action
 {
     /**
-     * @var GitApiService
+     * @var IpApiService
      */
     protected $customerSession;
 

@@ -1,12 +1,13 @@
 <?php
-/** @var $block Block */
+/** @var $block CustomViewModel */
 
-use City\Definition\Block\Block;
+use City\Definition\ViewModel\CustomViewModel;
 
+$viewModel = $block->getViewModel();
 ?>
 <?php
 $buttonTitle = __('Location');
-$city = $block->showCity();
+$city = $viewModel->showCity();
 ?>
 
 <div>
@@ -58,7 +59,7 @@ $city = $block->showCity();
 <div id="modal-custom-city">
     <div class="modal-inner-content">
         <div class="field note no-label">
-            <?=$city = $block->showCity()?>
+            <?=$city?>
         </div>
     </div>
 </div>

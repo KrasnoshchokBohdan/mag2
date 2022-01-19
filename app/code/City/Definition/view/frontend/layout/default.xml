@@ -2,10 +2,13 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="header.panel">
-            <block class="City\Definition\Block\Block"
+            <block class="Magento\Framework\View\Element\Template"
                    name="add-new-header-link"
                    template="City_Definition::button.phtml"
                    before="-">>
+                <arguments>
+                    <argument name="view_model" xsi:type="object">City\Definition\ViewModel\CustomViewModel</argument>
+                </arguments>
             </block>
         </referenceContainer>
     </body>
