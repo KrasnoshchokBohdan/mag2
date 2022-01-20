@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use City\Definition\Service\Npcity;
 use Zend_Http_Client_Exception;
 
-class CommandExample extends Command
+class ImportCommand extends Command
 {
 
     /**
@@ -18,7 +18,7 @@ class CommandExample extends Command
     private $NpCity;
 
     public function __construct(
-        NpCity $NpCity,
+        Npcity $NpCity,
         string $name = null
     ) {
         parent::__construct($name);
@@ -46,6 +46,6 @@ class CommandExample extends Command
         if ($this->NpCity->execute()) {
             $output->writeln('<info>Done!.</info>');
         }
-        $output->writeln('<error>Error</error>');
+        $output->writeln('<error>Error!</error>');
     }
 }

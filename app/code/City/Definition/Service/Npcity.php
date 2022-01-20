@@ -2,6 +2,7 @@
 
 namespace City\Definition\Service;
 
+use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -12,7 +13,7 @@ use City\Definition\Model\CityFactory;
 use Zend_Http_Client_Exception;
 use City\Definition\Api\CityRepositoryInterface;
 
-class Npcity extends \Magento\Backend\App\Action
+class Npcity extends Action
 {
 
     /**
@@ -35,7 +36,6 @@ class Npcity extends \Magento\Backend\App\Action
      */
     private $cityFactory;
 
-
     /**
      * @var CityRepositoryInterface
      */
@@ -51,14 +51,15 @@ class Npcity extends \Magento\Backend\App\Action
      * @param CityRepositoryInterface $cityRepository
      */
     public function __construct(
-        CityFactory           $cityFactory,
-        Context               $context,
-        PageFactory           $resultPageFactory,
-        ZendClientFactory     $httpClientFactory,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        ScopeConfigInterface  $scopeConfig,
+        CityFactory             $cityFactory,
+        Context                 $context,
+        PageFactory             $resultPageFactory,
+        ZendClientFactory       $httpClientFactory,
+        SearchCriteriaBuilder   $searchCriteriaBuilder,
+        ScopeConfigInterface    $scopeConfig,
         CityRepositoryInterface $cityRepository
-    ) {
+    )
+    {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
@@ -81,6 +82,7 @@ class Npcity extends \Magento\Backend\App\Action
         if (property_exists($citiesApi, 'success') && $citiesApi->success === true) {
             $this->syncWithDb($citiesApi->data);
         }
+        return "done!";
     }
 
     /**
@@ -122,17 +124,17 @@ class Npcity extends \Magento\Backend\App\Action
     private function syncWithDb($citiesApi)
     {
 //        $currentCitiesIds = $this->getCitiesIdArray();
-  //      foreach ($citiesApi as $key => $cityApi) {
+        //      foreach ($citiesApi as $key => $cityApi) {
 //            $cityApiId = $cityApi->CityID;
 //            if (isset($currentCitiesIds[$cityApiId])) {
 //                continue;
 //            } else {
 
- //           $test = $cityApi;
+        //           $test = $cityApi;
 
         $cityApi = $citiesApi[0];
-                $this->addNewCity($cityApi);
-           // }
-        }
-  //  }
+        $this->addNewCity($cityApi);
+        // }
+    }
+    //  }
 }

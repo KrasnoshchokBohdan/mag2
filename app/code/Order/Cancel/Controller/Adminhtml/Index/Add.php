@@ -2,10 +2,11 @@
 
 namespace Order\Cancel\Controller\Adminhtml\Index;
 
+use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\Controller\ResultFactory;
 
-class Add extends \Magento\Backend\App\Action
+class Add extends Action
 {
     /**
      * @return Page
