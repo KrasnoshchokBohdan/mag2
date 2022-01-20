@@ -7,11 +7,19 @@ use Magento\Backend\Block\Template\Context;
 use City\Definition\Service\Check;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use City\Definition\Model\CityFactory;
-use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
+use City\Definition\Model\City;
+use  City\Definition\Model\ResourceModel\City\CollectionFactory;
 
 class CustomViewModel implements ArgumentInterface
 {
-
+    /**
+     * @var City
+     */
+    protected $cityCollectionFactory;
+    /**
+     * @var City
+     */
+    protected $city;
     /**
      * @var CityFactory
      */
@@ -26,18 +34,25 @@ class CustomViewModel implements ArgumentInterface
     protected $check;
 
     /**
-     * @param Context $context
+     * @param CollectionFactory $cityCollectionFactory
+     * @param CityFactory $cityFactory
      * @param IpApiService $ipApiService
-     * @param array $data
+     * @param Check $check
+     * @param City $city
      */
     public function __construct(
-        CityFactory             $cityFactory,
-        IpApiService $ipApiService,
-        Check $check
-    ) {
+        CollectionFactory $cityCollectionFactory,
+        CityFactory       $cityFactory,
+        IpApiService      $ipApiService,
+        Check             $check,
+        City              $city
+    )
+    {
+        $this->cityCollectionFactory = $cityCollectionFactory;
         $this->cityFactory = $cityFactory;
         $this->ipApiService = $ipApiService;
         $this->check = $check;
+        $this->city = $city;
     }
 
     /**
@@ -45,29 +60,31 @@ class CustomViewModel implements ArgumentInterface
      */
     public function moduleEnable()
     {
-       return $this->check->getEnabledModule();
+        return $this->check->getEnabledModule();
     }
+
     /**
      * @return string
      */
     public function showCity()
     {
+
         if ($this->moduleEnable()) {
             return $this->ipApiService->sendCity();
         }
+
         return "";
     }
 
-    public function getCityArray()
+    public function getCityNameArray()
     {
         if ($this->moduleEnable()) {
-
-               $collection = $this->cityFactory->create()->getCollection()
-                ->addAttributeToSelect("*")
-                ->load();
-            return $collection;
-
-
+            $cities = $this->cityCollectionFactory->create();
+            $test = $cities->addFieldToSelect('*');
+         foreach ($test as $elem){
+             $arr[] = $elem->getData('city_name_ru');
+         }
+         return  $arr;
         }
     }
 }

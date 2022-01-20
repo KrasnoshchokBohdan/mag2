@@ -6,10 +6,8 @@ use Magento\Framework\View\Element\Template;
 $viewModel = $block->getViewModel();
 $buttonTitle = __('Location');
 $city = $viewModel->showCity();
-$citys = ['Шостка', "Глухов", "Сумы"];
+$citys = $viewModel->getCityNameArray();
 
-
-$test = $viewModel->getCityArray();
 ?>
 <?php if ($viewModel->moduleEnable()) : ?>
     <div>
