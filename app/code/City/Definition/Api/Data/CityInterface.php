@@ -4,7 +4,6 @@ namespace City\Definition\Api\Data;
 
 interface CityInterface
 {
-
     public function setCityRef($city_ref);
 
     public function setCityNameUa($city_name_ua);
@@ -19,4 +18,3 @@ interface CityInterface
 
     public function setCityAreaDescriptionRu($city_area_description_ru);
 }
-

@@ -7,6 +7,7 @@ use City\Definition\Model\ResourceModel\City as CityResource;
 use City\Definition\Model\ResourceModel\City\Collection;
 use City\Definition\Model\ResourceModel\City\CollectionFactory;
 use City\Definition\Api\Data\CityInterfaceFactory as CityDataFactory;
+use Magento\Framework\Api\SearchCriteriaInterface;
 
 class CityRepository implements CityRepositoryInterface
 {

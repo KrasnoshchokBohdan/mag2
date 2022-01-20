@@ -6,11 +6,16 @@ use City\Definition\Service\IpApiService;
 use Magento\Backend\Block\Template\Context;
 use City\Definition\Service\Check;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
+use City\Definition\Model\CityFactory;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 
 class CustomViewModel implements ArgumentInterface
 {
 
+    /**
+     * @var CityFactory
+     */
+    private $cityFactory;
     /**
      * @var IpApiService
      */
@@ -26,9 +31,11 @@ class CustomViewModel implements ArgumentInterface
      * @param array $data
      */
     public function __construct(
+        CityFactory             $cityFactory,
         IpApiService $ipApiService,
         Check $check
     ) {
+        $this->cityFactory = $cityFactory;
         $this->ipApiService = $ipApiService;
         $this->check = $check;
     }
@@ -50,4 +57,18 @@ class CustomViewModel implements ArgumentInterface
         }
         return "";
     }
+
+    public function getCityArray()
+    {
+        if ($this->moduleEnable()) {
+
+               $collection = $this->cityFactory->create()->getCollection()
+                ->addAttributeToSelect("*")
+                ->load();
+            return $collection;
+
+
+        }
+    }
 }
+

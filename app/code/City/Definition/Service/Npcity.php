@@ -1,30 +1,29 @@
 <?php
 
+//declare(strict_types=1);
+
 namespace City\Definition\Service;
 
-use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
-use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\HTTP\ZendClientFactory;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\Api\SearchCriteriaBuilder;
 use City\Definition\Model\CityFactory;
 use Zend_Http_Client_Exception;
 use City\Definition\Api\CityRepositoryInterface;
+use City\Definition\Model\City;
 
-class Npcity extends Action
+class Npcity
 {
+    /**
+     * @var City
+     */
+    protected $city;
 
     /**
      * @var PageFactory
      */
     protected $resultPageFactory;
-
-    /**
-     * @var SearchCriteriaBuilder
-     */
-    private $searchCriteriaBuilder;
 
     /**
      * @var ZendClientFactory
@@ -43,37 +42,33 @@ class Npcity extends Action
 
     /**
      * @param CityFactory $cityFactory
-     * @param Context $context
      * @param PageFactory $resultPageFactory
      * @param ZendClientFactory $httpClientFactory
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param ScopeConfigInterface $scopeConfig
      * @param CityRepositoryInterface $cityRepository
+     * @param City $city
      */
     public function __construct(
         CityFactory             $cityFactory,
-        Context                 $context,
         PageFactory             $resultPageFactory,
         ZendClientFactory       $httpClientFactory,
-        SearchCriteriaBuilder   $searchCriteriaBuilder,
         ScopeConfigInterface    $scopeConfig,
-        CityRepositoryInterface $cityRepository
-    )
-    {
-        parent::__construct($context);
+        CityRepositoryInterface $cityRepository,
+        City                    $city
+    ) {
         $this->resultPageFactory = $resultPageFactory;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->httpClientFactory = $httpClientFactory;
         $this->scopeConfig = $scopeConfig;
         $this->cityFactory = $cityFactory;
         $this->cityRepository = $cityRepository;
+        $this->city = $city;
     }
 
     /**
      * Index action
      *
-     * @return Page
-     * @throws Zend_Http_Client_Exception
+     * @return string
+     * @throws Zend_Http_Client_Exception|LocalizedException
      */
     public function execute()
     {
@@ -120,21 +115,17 @@ class Npcity extends Action
     /**
      * @param $citiesApi
      * @return void
+     * @throws LocalizedException
      */
     private function syncWithDb($citiesApi)
     {
-//        $currentCitiesIds = $this->getCitiesIdArray();
-        //      foreach ($citiesApi as $key => $cityApi) {
-//            $cityApiId = $cityApi->CityID;
-//            if (isset($currentCitiesIds[$cityApiId])) {
-//                continue;
-//            } else {
+        $connection = $this->city->getResource()->getConnection();
+        $tableName = $this->city->getResource()->getMainTable();
+        $connection->truncateTable($tableName);
 
-        //           $test = $cityApi;
-
-        $cityApi = $citiesApi[0];
-        $this->addNewCity($cityApi);
-        // }
+        foreach ($citiesApi as $key => $cityApi) {
+           $this->addNewCity($cityApi);
+        }
     }
-    //  }
 }
+

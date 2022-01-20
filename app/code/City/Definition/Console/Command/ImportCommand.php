@@ -45,7 +45,8 @@ class ImportCommand extends Command
     {
         if ($this->NpCity->execute()) {
             $output->writeln('<info>Done!.</info>');
+        } else {
+            $output->writeln('<error>Error!</error>');
         }
-        $output->writeln('<error>Error!</error>');
     }
 }
