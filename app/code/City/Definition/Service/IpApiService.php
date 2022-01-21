@@ -10,7 +10,7 @@ use GuzzleHttp\Psr7\ResponseFactory;
 use Magento\Framework\Webapi\Rest\Request;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
-//use Magento\Tests\NamingConvention\true\string;
+
 
 /**
  * Class IpApiService
@@ -129,7 +129,7 @@ class IpApiService
     {
         //    $data = $this->serializer->unserialize($this->execute());
         //   return $data['city'];
-        return 'Hlukhiv454';
+        return 'Глухов';
     }
 }
 

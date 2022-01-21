@@ -46,7 +46,6 @@ class CustomSection implements SectionSourceInterface
      */
     public function getSectionData(): array
     {
-       // $cityTest = $this->npCity->execute();
         $cityIp = $this->ipApiService->sendCity();
         $cityForm = $this->customerSession->getMyValue();
         if ($cityForm) {
