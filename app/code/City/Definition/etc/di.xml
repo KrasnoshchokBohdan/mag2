@@ -5,10 +5,7 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="definition_somecommand" xsi:type="object">
-                    City\Definition\Console\Command\SomeCommand</item>
-                <item name="definition_importcommand" xsi:type="object">
-                    City\Definition\Console\Command\ImportCommand</item>
+                <item name="definition_importcommand" xsi:type="object">City\Definition\Console\Command\ImportCommand</item>
             </argument>
         </arguments>
     </type>

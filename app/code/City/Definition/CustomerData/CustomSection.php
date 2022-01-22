@@ -13,17 +13,17 @@ class CustomSection implements SectionSourceInterface
     /**
      * @var Npcity
      */
-    protected $npCity;
+    protected Npcity $npCity;
 
     /**
      * @var IpApiService
      */
-    protected $ipApiService;
+    protected IpApiService $ipApiService;
 
     /**
      * @var Session
      */
-    protected $customerSession;
+    protected Session $customerSession;
 
     /**
      * @param Session $customerSession

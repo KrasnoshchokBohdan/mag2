@@ -20,11 +20,13 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 
-                <field id="ipstack_access_key" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="ipstack_access_key" translate="label" type="text" sortOrder="2" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
                     <label>IpStack Access Key</label>
                 </field>
 
-                <field id="np_access_key" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="np_access_key" translate="label" type="text" sortOrder="3" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
                     <label>NP Access Key</label>
                 </field>
 

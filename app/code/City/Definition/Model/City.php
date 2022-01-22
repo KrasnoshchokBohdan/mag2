@@ -5,7 +5,7 @@ namespace City\Definition\Model;
 use Magento\Framework\Model\AbstractModel;
 use City\Definition\Model\ResourceModel\City as CityResourceModel;
 
-class City extends \Magento\Framework\Model\AbstractModel
+class City extends AbstractModel
 {
     /**
      * @return void
@@ -15,73 +15,129 @@ class City extends \Magento\Framework\Model\AbstractModel
         $this->_init(CityResourceModel::class);
     }
 
-    public function setCityRef($city_ref)
+    /**
+     * @param string $cityRef
+     * @return string
+     */
+    public function setCityRef(string $cityRef): string
     {
-        return $this->setData('city_ref', $city_ref);
+        $this->setData('city_ref', $cityRef);
+        return "Done!";
     }
-    public function getCityRef()
+
+    /**
+     * @return string
+     */
+    public function getCityRef(): string
     {
         return $this->_getData('city_ref');
     }
 
-
-    public function setCityNameUa($city_name_ua)
+    /**
+     * @param string $cityNameUa
+     * @return string
+     */
+    public function setCityNameUa(string $cityNameUa): string
     {
-        return $this->setData('city_name_ua', $city_name_ua);
+        $this->setData('city_name_ua', $cityNameUa);
+        return "Done!";
     }
-    public function getCityNameUa()
+
+    /**
+     * @return string
+     */
+    public function getCityNameUa(): string
     {
         return $this->_getData('city_name_ua');
     }
 
-
-    public function setCityNameRu($city_name_ru)
+    /**
+     * @param string $cityNameRu
+     * @return string
+     */
+    public function setCityNameRu(string $cityNameRu):string
     {
-        return $this->setData('city_name_ru', $city_name_ru);
+        $this->setData('city_name_ru', $cityNameRu);
+        return "Done!";
     }
-    public function getCityNameRu()
+
+    /**
+     * @return string
+     */
+    public function getCityNameRu(): string
     {
         return $this->_getData('city_name_ru');
     }
 
-
-    public function setCityArea($city_area)
+    /**
+     * @param string $cityArea
+     * @return string
+     */
+    public function setCityArea(string $cityArea):string
     {
-        return $this->setData('city_area', $city_area);
+        $this->setData('city_area', $cityArea);
+        return "Done!";
     }
-    public function getCityArea()
+
+    /**
+     * @return string
+     */
+    public function getCityArea():string
     {
         return $this->_getData('city_area');
     }
 
-
-    public function setCityIdNp($city_id_np)
+    /**
+     * @param string $cityIdNp
+     * @return string
+     */
+    public function setCityIdNp(string $cityIdNp):string
     {
-        return $this->setData('city_id_np', $city_id_np);
+        $this->setData('city_id_np', $cityIdNp);
+        return "Done!";
     }
-    public function getCityIdNp()
+
+    /**
+     * @return string
+     */
+    public function getCityIdNp():string
     {
         return $this->_getData('city_id_np');
     }
 
-
-    public function setCityAreaDescriptionUa($city_area_description_ua)
+    /**
+     * @param string $cityAreaDescUa
+     * @return string
+     */
+    public function setCityAreaDescriptionUa(string $cityAreaDescUa):string
     {
-        return $this->setData('city_area_description_ua', $city_area_description_ua);
+        $this->setData('city_area_description_ua', $cityAreaDescUa);
+        return "Done!";
     }
-    public function getCityAreaDescriptionUa()
+
+    /**
+     * @return string
+     */
+    public function getCityAreaDescriptionUa():string
     {
         return $this->_getData('city_area_description_ua');
     }
 
-
-    public function setCityAreaDescriptionRu($city_area_description_ru)
+    /**
+     * @param string $cityAreaDescRu
+     * @return string
+     */
+    public function setCityAreaDescriptionRu(string $cityAreaDescRu):string
     {
-        return $this->setData('city_area_description_ru', $city_area_description_ru);
+        $this->setData('city_area_description_ru', $cityAreaDescRu);
+        return "Done!";
     }
-    public function getCityAreaDescriptionRu()
+
+    /**
+     * @return string
+     */
+    public function getCityAreaDescriptionRu():string
     {
         return $this->_getData('city_area_description_ru');
     }
 }
-

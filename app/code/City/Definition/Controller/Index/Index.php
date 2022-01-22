@@ -1,13 +1,19 @@
 <?php
-//@codingStandardsIgnoreStart
+
 namespace City\Definition\Controller\Index;
 
 use City\Definition\Service\IpApiService;
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
+use Exception;
 use Magento\Customer\Model\Session;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
+use RuntimeException;
+use Magento\Framework\App\ActionInterface;
+use Magento\Framework\Message\ManagerInterface;
 
-class Index extends Action
+class Index implements ActionInterface
 {
     /**
      * @var IpApiService
@@ -15,36 +21,47 @@ class Index extends Action
     protected $customerSession;
 
     /**
-     * @param Context $context
+     * @var ManagerInterface
+     */
+    protected ManagerInterface $messageManager;
+
+    /**
+     * @var Context
+     */
+    private Context $context;
+
+    /**
+     * @param ManagerInterface $messageManager
      * @param Session $customerSession
+     * @param Context $context
      */
     public function __construct(
-        Context $context,
-        Session $customerSession
+        ManagerInterface $messageManager,
+        Session $customerSession,
+        Context $context
     ) {
         $this->customerSession = $customerSession;
-        parent::__construct($context);
+        $this->messageManager = $messageManager;
+        $this->context = $context;
     }
 
     /**
-     * @return string|void
+     * @return ResponseInterface|ResultInterface|void
      */
     public function execute()
     {
-        $post = $this->getRequest()->getParams();
-        if (!$post) {
-            return " ";
-        }
+        $post = $this->context->getRequest()->getParams();
         $city = $post['content']['0']['value'];
 
         try {
             $this->customerSession->setMyValue($city);
-            $this->messageManager->addSuccess(__('Thank you!'));
-        } catch (\Magento\Framework\Exception\LocalizedException|\RuntimeException $e) {
-            $this->messageManager->addError($e->getMessage());
-        } catch (\Exception $e) {
-            $this->messageManager->addException($e, __('Something went wrong . '));
+            $this->messageManager->addSuccessMessage('Thank you!');
+
+        } catch (LocalizedException|RuntimeException $e) {
+            $this->messageManager->addErrorMessage($e->getMessage());
+
+        } catch (Exception $e) {
+            $this->messageManager->addExceptionMessage($e, __('Something went wrong . '));
         }
     }
 }
-

@@ -4,17 +4,45 @@ namespace City\Definition\Api\Data;
 
 interface CityInterface
 {
-    public function setCityRef($city_ref);
+    /**
+     * @param string $cityRef
+     * @return mixed
+     */
+    public function setCityRef(string $cityRef);
 
-    public function setCityNameUa($city_name_ua);
+    /**
+     * @param string $cityNameUa
+     * @return mixed
+     */
+  //  public function setCityNameUa(string $cityNameUa);
 
-    public function setCityNameRu($city_name_ru);
+    /**
+     * @param string $cityNameRu
+     * @return mixed
+     */
+    public function setCityNameRu(string $cityNameRu);
 
-    public function setCityArea($city_area);
+    /**
+     * @param string $cityArea
+     * @return mixed
+     */
+    public function setCityArea(string $cityArea);
 
-    public function setCityIdNp($city_id_np);
+    /**
+     * @param string $cityIdNp
+     * @return mixed
+     */
+   // public function setCityIdNp(string $cityIdNp);
 
-    public function setCityAreaDescriptionUa($city_area_description_ua);
+    /**
+     * @param string $cityAreaDescUa
+     * @return mixed
+     */
+   // public function setCityAreaDescriptionUa(string $cityAreaDescUa);
 
-    public function setCityAreaDescriptionRu($city_area_description_ru);
+    /**
+     * @param string $cityAreaDescRu
+     * @return mixed
+     */
+    public function setCityAreaDescriptionRu(string $cityAreaDescRu);
 }

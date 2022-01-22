@@ -2,10 +2,10 @@
 
 namespace City\Definition\Console\Command;
 
+use Magento\Framework\Exception\LocalizedException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use City\Definition\Service\Npcity;
 use Zend_Http_Client_Exception;
 
@@ -15,16 +15,23 @@ class ImportCommand extends Command
     /**
      * @var Npcity
      */
-    private $NpCity;
+    private npCity $npCity;
 
+    /**
+     * @param Npcity $npCity
+     * @param string|null $name
+     */
     public function __construct(
-        Npcity $NpCity,
+        Npcity $npCity,
         string $name = null
     ) {
         parent::__construct($name);
-        $this->NpCity = $NpCity;
+        $this->npCity = $npCity;
     }
 
+    /**
+     * @return void
+     */
     protected function configure()
     {
         $this->setName('np:import');
@@ -40,10 +47,11 @@ class ImportCommand extends Command
      *
      * @return void
      * @throws Zend_Http_Client_Exception
+     * @throws LocalizedException
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        if ($this->NpCity->execute()) {
+        if ($this->npCity->execute()) {
             $output->writeln('<info>Done!.</info>');
         } else {
             $output->writeln('<error>Error!</error>');
