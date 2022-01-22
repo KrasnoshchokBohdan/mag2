@@ -13,9 +13,7 @@ define([
                 type: "POST",
                 dataType: 'json',
                 context: this,
-                data: form        //obj
-            }).done(function (respond) {
-                console.log('Done!');
+                data: form,
             });
         }
     };
@@ -42,7 +40,7 @@ define([
                     ajaxT.ajaxPostSend(cityInfoSend);
                     this.closeModal();
                 }
-            }
+        }
         ]
     };
 
@@ -56,7 +54,7 @@ define([
             class: 'modal-close',
             click: function () {
                 cityInfoSend = {
-                    content: $('#modal-custom-city').serializeArray(),
+                    content: $('#cityModal').serializeArray(),   //$('#modal-custom-city')
                 };
                 ajaxT.ajaxPostSend(cityInfoSend);
                 this.closeModal();
@@ -78,8 +76,8 @@ define([
 
 
     let cityInfoSend;
-    let popup = modal(options, $('#modal-content-city'));
-    let popup1 = modal(options1, $('#modal-custom-city'));
+    modal(options, $('#modal-content-city'));
+    modal(options1, $('#modal-custom-city'));
 
 
     $("#modal-btn-custom-city").click(function () {

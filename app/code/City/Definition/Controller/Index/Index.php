@@ -26,6 +26,9 @@ class Index extends Action
         parent::__construct($context);
     }
 
+    /**
+     * @return string|void
+     */
     public function execute()
     {
         $post = $this->getRequest()->getParams();
