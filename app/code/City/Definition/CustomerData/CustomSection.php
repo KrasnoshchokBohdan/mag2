@@ -51,7 +51,6 @@ class CustomSection implements SectionSourceInterface
         if ($cityForm) {
             $cityIp = $cityForm;
         }
-
         return [
             'customdata' => $cityIp,
         ];

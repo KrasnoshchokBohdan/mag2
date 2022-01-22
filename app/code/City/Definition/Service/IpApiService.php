@@ -11,12 +11,15 @@ use Magento\Framework\Webapi\Rest\Request;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 
-
 /**
- * Class IpApiService
+ * Class IpApiService get city from ip
  */
 class IpApiService
 {
+    /**
+     * @var Check
+     */
+    protected $check;
     /**
      * @var RemoteAddress;
      */
@@ -28,9 +31,29 @@ class IpApiService
     const API_REQUEST_URI = 'http://api.ipstack.com/';
 
     /**
-     * Access key
+     * Access key prefix
      */
-    const API_REQUEST_KEY = '?access_key=8c8006b798728ba8ae135d47405bc26f&format=1';
+    const API_REQUEST_KEY = '?access_key=';
+
+    /**
+     * prefix
+     */
+    const API_FORMAT_KEY = '&format=1';
+
+    /**
+     * patch
+     */
+    const CITY_PATCH = 'Глухов';
+
+    /**
+     * patch
+     */
+    const IP_PATCH = '5.180.100.0';
+
+    /**
+     * patch
+     */
+    const IP_PATCH_LANG = '&language=ru';
 
     /**
      * @var ResponseFactory
@@ -54,19 +77,21 @@ class IpApiService
      * @param ResponseFactory $responseFactory
      * @param Json $json
      * @param RemoteAddress $remoteAddress
+     * @param Check $check
      */
     public function __construct(
-
         ClientFactory   $clientFactory,
         ResponseFactory $responseFactory,
         Json            $json,
-        RemoteAddress   $remoteAddress
+        RemoteAddress   $remoteAddress,
+        Check           $check
     ) {
 
         $this->remoteAddress = $remoteAddress;
         $this->serializer = $json;
         $this->clientFactory = $clientFactory;
         $this->responseFactory = $responseFactory;
+        $this->check = $check;
     }
 
     /**
@@ -74,14 +99,15 @@ class IpApiService
      */
     public function execute()
     {
-        // $repositoryName = 'magento/magento2';
-        // $response = $this->doRequest(static::API_REQUEST_ENDPOINT . $repositoryName); //  repos/magento/magento2
-        //'92.113.171.50?access_key=8c8006b798728ba8ae135d47405bc26f&format=1'
+        $apiKey = $this->check->getIpStackKey();
+
         $ip = $this->remoteAddress->getRemoteAddress();
-        $ip = '92.113.171.50';  //konotop
-        $ip = '193.169.125.9';   //Hlukhiv
-        $response = $this->doRequest($ip . static::API_REQUEST_KEY);
-        $status = $response->getStatusCode(); // 200 status code
+        if(!$ip || $ip == '127.0.0.1'){
+            $ip = static::IP_PATCH;
+        }
+
+        $response = $this->doRequest($ip . static::API_REQUEST_KEY . $apiKey . static::IP_PATCH_LANG);  //  API_FORMAT_KEY
+        $status = $response->getStatusCode();
         $responseBody = $response->getBody();
         $responseContent = $responseBody->getContents();
         return $responseContent;
@@ -127,9 +153,11 @@ class IpApiService
      */
     public function sendCity()
     {
-        //    $data = $this->serializer->unserialize($this->execute());
-        //   return $data['city'];
-        return 'Глухов';
+        $data = 0;
+     //   $data = $this->serializer->unserialize($this->execute());
+        if (!$data) {
+            return static::CITY_PATCH;
+        }
+           return $data['city'];
     }
 }
-

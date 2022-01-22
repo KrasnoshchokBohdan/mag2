@@ -1,67 +1,70 @@
 <?php
-/** @var $block Template */
-
-use Magento\Framework\View\Element\Template;
-
-$viewModel = $block->getViewModel();
-$buttonTitle = __('Location');
-$city = $viewModel->showCity();
-$citys = $viewModel->getCityNameArray();
-$jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
-
+/** @var $block \Perspective\YourCity\Block\Link */
+$citiesList = $block->getCitiesList();
+$jsonCitiesList = json_encode($citiesList, JSON_HEX_APOS);
+$ulrChangeCity = $block->getAjaxUrlChangeCity();
+$ulrCity = $block->getAjaxUrlCity();
 ?>
-<?php if ($viewModel->moduleEnable()) : ?>
-    <div>
-        <button title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
-                type="submit" id="modal-btn-custom-city"
-                data-mage-init='{"city-definition" : {}}'><span><?= $block->escapeHtmlAttr($buttonTitle) ?></span>
-        </button>
-        <div class="custom-section" data-bind="scope: 'section'">
-            <p data-bind="text: customsection().customdata"></p>
-        </div>
-        <script type="text/x-magento-init">
-    {
-    	"*": {
-        	"Magento_Ui/js/core/app": {
-            	"components": {
-                	"section": {
-                    	"component": "City_Definition/js/section"
-                	}
-            	}
-        	}
-    	}
-    }
-        </script>
+<li>
+    <a id="your_city_id" class="open-modal_city-btn">
+        <?= __('Your City:') . ' ';?>
+    </a>
+</li>
 
-
-
-    </div>
-    <div id="modal-content-city">
-        <div class="modal-inner-content">
-            <form class="form contact" id="city123" method="post"
-                  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
-                  data-mage-init='{"validation":{}}'>
-                <div class="field city required">
-                    <div class="control">
-                        <input name="city" id="city" title=""
-                               value="" class="input-text" type="tel"
-                               data-validate="{required:true, 'validate-city':true}"/>
-                    </div>
+<span id="wrapper">
+    <div class="cover"></div>
+    <div class="modal_city">
+        <div class="content_city content_body">
+            <p>Enter your city</p>
+            <form autocomplete="off" action="">
+                <div class="autocomplete" style="width:50%;">
+                    <input id="your_city_input" class="autocomplete_input_city change_city"
+                           type="text" name="yourCity" placeholder="City">
                 </div>
             </form>
         </div>
     </div>
+</span>
 
-    <div id="modal-custom-city">
-        <div class="modal-inner-content">
-            <div class="field note no-label">
-                <?= $city ?>
-            </div>
-        </div>
-    </div>
 
-<script>
-    require(['jquery', 'jquery/ui', 'mage/url'], function ($) {
+
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function ($) {
+        //$.ajax({
+        //    type: "POST",
+        //    showLoader: true,
+        //    url: '<?//= $ulrCity ?>//',
+        //    data: {'city_name': ''},
+        //    dataType: "json",
+        //    success: function (data) {
+        //        if (data === " ()") {
+        //            document.getElementById('your_city_id').innerText = 'Choose Your City';
+        //        } else {
+        //            document.getElementById('your_city_id').innerText = "Your City: " + data;
+        //        }
+        //    }
+        //});
+        var wrap = $('#wrapper'),
+            btn = $('.open-modal_city-btn'),
+            modal_city = $('.cover, .modal_city, .content_city');
+
+        btn.on('click', function () {
+            modal_city.fadeIn();
+        });
+
+        $('.modal_city').click(function () {
+            wrap.on('click', function (event) {
+                var select = $('.content_city');
+                if ($(event.target).closest(select).length)
+                    return;
+                modal_city.fadeOut();
+                wrap.unbind('click');
+            });
+        });
+
+
+
+
         function autocomplete(inp, arr) {
             var currentFocus;
             inp.addEventListener("input", function (e) {
@@ -91,7 +94,20 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
                     inp.value = e.target.getElementsByTagName("input")[0].getAttribute('data-name');
                     inp.name = e.target.getElementsByTagName("input")[0].value;
                     closeAllLists();
+                    $.ajax({
+                        type: "POST",
+                        showLoader: true,
+                        url: '<?= $ulrChangeCity ?>',
+                        data: {'city_id': inp.name, 'city_name': inp.value},
+                        dataType: "json",
+                        cache: false,
+                        async: false,
+                        success: function () {
+                            document.getElementById('your_city_id').value = inp.value;
 
+                            document.getElementById('your_city_id').innerText = "Your City: " + inp.value;
+                        }
+                    });
                 });
             });
             inp.addEventListener("keydown", function (e) {
@@ -100,7 +116,7 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
                 if (e.keyCode === 40) {
                     currentFocus++;
                     addActive(x);
-                } else if (e.keyCode === 38) {
+                } else if (e.keyCode === 38) { //up
                     currentFocus--;
                     addActive(x);
                 } else if (e.keyCode === 13) {
@@ -139,9 +155,10 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
             });
         }
 
-        var citiesObj = JSON.parse('<?= $jsonCitiesList; ?>');
-        var cities = Object.entries(citiesObj);
-        autocomplete(document.getElementById("city"), cities);
+        var countriesObj = JSON.parse('<?= $jsonCitiesList; ?>');
+        var countries = Object.entries(countriesObj);
+        autocomplete(document.getElementById("your_city_input"), countries);
     });
+
 </script>
-<?php endif; ?>
+

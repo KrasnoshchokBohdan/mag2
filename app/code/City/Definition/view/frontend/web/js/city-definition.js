@@ -4,9 +4,9 @@ define([
     'mage/url',
 ], function ($, modal, urlBuilder) {
 
-    var ajaxT = {
+    let ajaxT = {
         ajaxPostSend: function (form) {
-            var url = urlBuilder.build("city-def/index/index");
+            let url = urlBuilder.build("city-def/index/index");
             $.ajax({
                 showLoader: true,
                 url: url,
@@ -20,7 +20,7 @@ define([
         }
     };
 
-    var options = {
+    let options = {
         type: 'popup',
         responsive: true,
         innerScroll: true,
@@ -40,16 +40,13 @@ define([
                         content: $('#city123').serializeArray(),
                     };
                     ajaxT.ajaxPostSend(cityInfoSend);
-
-                    // var city = cityInfoSend['content'].valueOf();
-                    // $.cookie('city1', city[0].value, { path: '/' });
                     this.closeModal();
                 }
             }
         ]
     };
 
-    var options1 = {
+    let options1 = {
         type: 'popup',
         responsive: true,
         innerScroll: true,
@@ -58,8 +55,14 @@ define([
             text: $.mage.__('Yes'),
             class: 'modal-close',
             click: function () {
+                cityInfoSend = {
+                    content: $('#modal-custom-city').serializeArray(),
+                };
+                ajaxT.ajaxPostSend(cityInfoSend);
                 this.closeModal();
             }
+
+
         },
             {
                 text: $.mage.__('Choose Another'),
@@ -68,15 +71,15 @@ define([
                     $("#modal-content-city").modal('openModal');
                     this.closeModal();
                 }
-            }
+        }
 
         ]
     };
 
 
-    var cityInfoSend;
-    var popup = modal(options, $('#modal-content-city'));
-    var popup1 = modal(options1, $('#modal-custom-city'));
+    let cityInfoSend;
+    let popup = modal(options, $('#modal-content-city'));
+    let popup1 = modal(options1, $('#modal-custom-city'));
 
 
     $("#modal-btn-custom-city").click(function () {

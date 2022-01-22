@@ -50,5 +50,21 @@ class Check
     {
         return $this->getGeneralConfig('enable');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIpStackKey()
+    {
+        return $this->getGeneralConfig('ipstack_access_key');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNpKey()
+    {
+        return $this->getGeneralConfig('np_access_key');
+    }
 }
 

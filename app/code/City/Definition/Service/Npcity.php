@@ -16,6 +16,14 @@ use City\Definition\Model\City;
 class Npcity
 {
     /**
+     * API request URL
+     */
+    const API_REQUEST_URI = 'http://api.novaposhta.ua/v2.0/json/Address/getCities';
+    /**
+     * @var Check
+     */
+    protected $check;
+    /**
      * @var City
      */
     protected $city;
@@ -47,6 +55,7 @@ class Npcity
      * @param ScopeConfigInterface $scopeConfig
      * @param CityRepositoryInterface $cityRepository
      * @param City $city
+     * @param Check $check
      */
     public function __construct(
         CityFactory             $cityFactory,
@@ -54,7 +63,8 @@ class Npcity
         ZendClientFactory       $httpClientFactory,
         ScopeConfigInterface    $scopeConfig,
         CityRepositoryInterface $cityRepository,
-        City                    $city
+        City                    $city,
+        Check                   $check
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->httpClientFactory = $httpClientFactory;
@@ -62,6 +72,7 @@ class Npcity
         $this->cityFactory = $cityFactory;
         $this->cityRepository = $cityRepository;
         $this->city = $city;
+        $this->check = $check;
     }
 
     /**
@@ -86,9 +97,9 @@ class Npcity
      */
     private function getCitiesFromServer()
     {
-        $apiKey = 'cfd16a2e30df401b5005c00d337915d4';//$this->scopeConfig->getValue('carriers/newposhta/apikey', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $apiKey = $this->check->getNpKey();
         $client = $this->httpClientFactory->create();
-        $client->setUri('http://api.novaposhta.ua/v2.0/json/Address/getCities');
+        $client->setUri(self::API_REQUEST_URI);
         $request = ['modelName' => 'Address', 'calledMethod' => 'getCities', 'apiKey' => $apiKey];
         $client->setConfig(['maxredirects' => 0, 'timeout' => 30]);
         $client->setRawData(utf8_encode(json_encode($request)));
@@ -124,8 +135,7 @@ class Npcity
         $connection->truncateTable($tableName);
 
         foreach ($citiesApi as $key => $cityApi) {
-           $this->addNewCity($cityApi);
+            $this->addNewCity($cityApi);
         }
     }
 }
-

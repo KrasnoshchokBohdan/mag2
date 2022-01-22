@@ -79,10 +79,18 @@ class CustomViewModel implements ArgumentInterface
     {
         if ($this->moduleEnable()) {
             $cities = $this->collectionFactory->create();
-            foreach ($cities as $elem) {
-                $arr[] = $elem->getData('city_name_ru');
+
+            $allCities = [];
+            foreach ($cities->getItems() as $value) {
+                $allCities[$value->getData('city_id_np')] = $value->getData('city_name_ru');
             }
-            return $arr;
+            return $allCities;
         }
     }
 }
+
+
+
+
+
+
