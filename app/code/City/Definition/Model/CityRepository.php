@@ -3,11 +3,9 @@
 namespace City\Definition\Model;
 
 use City\Definition\Api\CityRepositoryInterface;
+use City\Definition\Api\Data\CityInterface;
 use City\Definition\Model\ResourceModel\City as CityResource;
-use City\Definition\Model\ResourceModel\City\Collection;
-use City\Definition\Model\ResourceModel\City\CollectionFactory;
-use City\Definition\Api\Data\CityInterfaceFactory as CityDataFactory;
-use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\AlreadyExistsException;
 
 class CityRepository implements CityRepositoryInterface
 {
@@ -15,46 +13,21 @@ class CityRepository implements CityRepositoryInterface
     /**
      * @var CityResource
      */
-    private $cityResource;
-
-    /**
-     * @var CityFactory
-     */
-    private $cityFactory;
-
-    /**
-     * @var CollectionFactory
-     */
-    private $cityDataFactory;
-
-    /**
-     * @var CollectionFactory
-     */
-    private $collectionFactory;
-
-
+    private CityResource $cityResource;
 
     public function __construct(
-        CityResource                      $cityResource,
-        CityFactory                       $cityFactory,
-        CollectionFactory                 $collectionFactory,
-        Collection                        $citycollection,
-        CityDataFactory                   $cityDataFactory
+        CityResource $cityResource
     ) {
 
         $this->cityResource = $cityResource;
-        $this->cityFactory = $cityFactory;
-        $this->collectionFactory = $collectionFactory;
-        $this->citycollection = $citycollection;
-        $this->cityDataFactory = $cityDataFactory;
     }
 
     /**
-     * @param \City\Definition\Api\Data\CityInterface|\City\Definition\Api\Data\CityInterface $city
+     * @param CityInterface $city
      * @return int
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     * @throws AlreadyExistsException
      */
-    public function save($city)  //\City\Definition\Api\Data\CityInterface
+    public function save($city):int
     {
         $this->cityResource->save($city);
         return $city->getId();

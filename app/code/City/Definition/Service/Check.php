@@ -10,7 +10,7 @@ class Check
     /**
      * @var ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected ScopeConfigInterface $scopeConfig;
     /**
      * @var string
      */
@@ -52,19 +52,18 @@ class Check
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getIpStackKey()
+    public function getIpStackKey():string
     {
         return $this->getGeneralConfig('ipstack_access_key');
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNpKey()
+    public function getNpKey():string
     {
         return $this->getGeneralConfig('np_access_key');
     }
 }
-

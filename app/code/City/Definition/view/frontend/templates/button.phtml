@@ -1,20 +1,21 @@
 <?php
-/** @var $block Template */
-
-use Magento\Framework\View\Element\Template;
+/**
+ * @var Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+*/
 
 $viewModel = $block->getViewModel();
 $buttonTitle = __('Location');
 $city = $viewModel->showCity();
-$citys = $viewModel->getCityNameArray();
-$jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
+$cities = $viewModel->getCityNameArray();
+$jsonCitiesList = json_encode($cities, JSON_HEX_APOS);
 
 ?>
 <?php if ($viewModel->moduleEnable()) : ?>
     <div>
-        <button title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+        <button title="<?= /* @noEscape */$buttonTitle ?>"
                 type="submit" id="modal-btn-custom-city"
-                data-mage-init='{"city-definition" : {}}'><span><?= $block->escapeHtmlAttr($buttonTitle) ?></span>
+                data-mage-init='{"city-definition" : {}}'><span><?= /* @noEscape */$buttonTitle ?></span>
         </button>
         <div class="custom-section" data-bind="scope: 'section'">
             <p data-bind="text: customsection().customdata"></p>
@@ -39,7 +40,7 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
     <div id="modal-content-city">
         <div class="modal-inner-content">
             <form class="form contact" id="city123" method="post"
-                  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                  data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields'))  ?>"
                   data-mage-init='{"validation":{}}'>
                 <div class="field city required">
                     <div class="control">
@@ -55,7 +56,7 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
     <div id="modal-custom-city">
         <div class="modal-inner-content">
             <div class="field note no-label" id="cityModal">
-                <?= $city ?>
+                <?= /* @noEscape */ $city ?>
             </div>
         </div>
     </div>
@@ -63,9 +64,9 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
 <script>
     require(['jquery', 'jquery/ui', 'mage/url'], function ($) {
         function autocomplete(inp, arr) {
-            var currentFocus;
+            let currentFocus;
             inp.addEventListener("input", function (e) {
-                var a, b, i, val = this.value;
+                let a, b, i, val = this.value;
                 closeAllLists();
                 if (!val) {
                     return false;
@@ -95,7 +96,7 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
                 });
             });
             inp.addEventListener("keydown", function (e) {
-                var x = document.getElementById(this.id + "autocomplete-list");
+                let x = document.getElementById(this.id + "autocomplete-list");
                 if (x) x = x.getElementsByTagName("div");
                 if (e.keyCode === 40) {
                     currentFocus++;
@@ -120,14 +121,14 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
             }
 
             function removeActive(x) {
-                for (var i = 0; i < x.length; i++) {
+                for (let i = 0; i < x.length; i++) {
                     x[i].classList.remove("autocomplete-active");
                 }
             }
 
             function closeAllLists(elmnt) {
-                var x = document.getElementsByClassName("autocomplete-items");
-                for (var i = 0; i < x.length; i++) {
+                let x = document.getElementsByClassName("autocomplete-items");
+                for (let i = 0; i < x.length; i++) {
                     if (elmnt !== x[i] && elmnt !== inp) {
                         x[i].parentNode.removeChild(x[i]);
                     }
@@ -139,8 +140,8 @@ $jsonCitiesList = json_encode($citys, JSON_HEX_APOS);
             });
         }
 
-        var citiesObj = JSON.parse('<?= $jsonCitiesList; ?>');
-        var cities = Object.entries(citiesObj);
+        let citiesObj = JSON.parse('<?= $jsonCitiesList; ?>');
+        let cities = Object.entries(citiesObj);
         autocomplete(document.getElementById("city"), cities);
     });
 </script>

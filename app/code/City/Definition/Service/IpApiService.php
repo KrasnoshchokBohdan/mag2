@@ -2,7 +2,6 @@
 
 namespace City\Definition\Service;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\ClientFactory;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
@@ -19,11 +18,11 @@ class IpApiService
     /**
      * @var Check
      */
-    protected $check;
+    protected Check $check;
     /**
      * @var RemoteAddress;
      */
-    private $remoteAddress;
+    private RemoteAddress $remoteAddress;
 
     /**
      * API request URL
@@ -58,17 +57,17 @@ class IpApiService
     /**
      * @var ResponseFactory
      */
-    private $responseFactory;
+    private ResponseFactory $responseFactory;
 
     /**
      * @var ClientFactory
      */
-    private $clientFactory;
+    private ClientFactory $clientFactory;
 
     /**
      * @var Json
      */
-    protected $serializer;
+    protected Json $serializer;
 
     /**
      * IpApiService constructor
@@ -96,28 +95,29 @@ class IpApiService
 
     /**
      * Fetch some data from API
+     *
+     * @return string
      */
-    public function execute()
+    public function execute(): string
     {
         $apiKey = $this->check->getIpStackKey();
 
-        $ip = $this->remoteAddress->getRemoteAddress();
-        if(!$ip || $ip == '127.0.0.1'){
-            $ip = static::IP_PATCH;
+        $ipUser = $this->remoteAddress->getRemoteAddress();
+        if (!$ipUser || $ipUser == '127.0.0.1') {
+            $ipUser = static::IP_PATCH;
         }
 
-        $response = $this->doRequest($ip . static::API_REQUEST_KEY . $apiKey . static::IP_PATCH_LANG);  //  API_FORMAT_KEY
-        $status = $response->getStatusCode();
+        $response = $this->doRequest($ipUser.static::API_REQUEST_KEY.$apiKey.static::IP_PATCH_LANG);
+        //$status = $response->getStatusCode();
         $responseBody = $response->getBody();
-        $responseContent = $responseBody->getContents();
-        return $responseContent;
+        return $responseBody->getContents();
     }
 
     /**
      * Do API request with provided params
      *
      * @param string $uriEndpoint
-     * @param array $params
+     * @param array<array> $params
      * @param string $requestMethod
      *
      * @return Response
@@ -138,7 +138,6 @@ class IpApiService
                 $params
             );
         } catch (GuzzleException $exception) {
-            /** @var Response $response */
             $response = $this->responseFactory->create([
                 'status' => $exception->getCode(),
                 'reason' => $exception->getMessage()
@@ -149,15 +148,14 @@ class IpApiService
 
     /**
      * @return string
-     *
      */
-    public function sendCity()
+    public function sendCity():string
     {
         $data = 0;
-     //   $data = $this->serializer->unserialize($this->execute());
+       // $data = $this->serializer->unserialize($this->execute());
         if (!$data) {
             return static::CITY_PATCH;
         }
-           return $data['city'];
+        return $data['city'];
     }
 }

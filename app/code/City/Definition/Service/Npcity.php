@@ -1,10 +1,9 @@
 <?php
 
-//declare(strict_types=1);
+declare(strict_types=1);
 
 namespace City\Definition\Service;
 
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\HTTP\ZendClientFactory;
 use Magento\Framework\View\Result\PageFactory;
@@ -22,37 +21,36 @@ class Npcity
     /**
      * @var Check
      */
-    protected $check;
+    protected Check $check;
     /**
      * @var City
      */
-    protected $city;
+    protected City $city;
 
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected PageFactory $resultPageFactory;
 
     /**
      * @var ZendClientFactory
      */
-    private $httpClientFactory;
+    private ZendClientFactory $httpClientFactory;
 
     /**
      * @var CityFactory
      */
-    private $cityFactory;
+    private CityFactory $cityFactory;
 
     /**
      * @var CityRepositoryInterface
      */
-    private $cityRepository;
+    private CityRepositoryInterface $cityRepository;
 
     /**
      * @param CityFactory $cityFactory
      * @param PageFactory $resultPageFactory
      * @param ZendClientFactory $httpClientFactory
-     * @param ScopeConfigInterface $scopeConfig
      * @param CityRepositoryInterface $cityRepository
      * @param City $city
      * @param Check $check
@@ -61,14 +59,12 @@ class Npcity
         CityFactory             $cityFactory,
         PageFactory             $resultPageFactory,
         ZendClientFactory       $httpClientFactory,
-        ScopeConfigInterface    $scopeConfig,
         CityRepositoryInterface $cityRepository,
         City                    $city,
         Check                   $check
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->httpClientFactory = $httpClientFactory;
-        $this->scopeConfig = $scopeConfig;
         $this->cityFactory = $cityFactory;
         $this->cityRepository = $cityRepository;
         $this->city = $city;
@@ -81,7 +77,7 @@ class Npcity
      * @return string
      * @throws Zend_Http_Client_Exception|LocalizedException
      */
-    public function execute()
+    public function execute(): string
     {
         $citiesApiJson = $this->getCitiesFromServer();
         $citiesApi = json_decode($citiesApiJson);
@@ -92,10 +88,10 @@ class Npcity
     }
 
     /**
-     * @return string|null
+     * @return string
      * @throws Zend_Http_Client_Exception
      */
-    private function getCitiesFromServer()
+    private function getCitiesFromServer(): string
     {
         $apiKey = $this->check->getNpKey();
         $client = $this->httpClientFactory->create();
@@ -108,9 +104,9 @@ class Npcity
 
     /**
      * @param $cityApi
-     * @return void
+     * @return string
      */
-    private function addNewCity($cityApi)
+    private function addNewCity($cityApi):string
     {
         $modelCity = $this->cityFactory->create();
         $modelCity->setCityRef($cityApi->Ref);
@@ -121,6 +117,7 @@ class Npcity
         $modelCity->setCityAreaDescriptionUa($cityApi->AreaDescription);
         $modelCity->setCityAreaDescriptionRu($cityApi->AreaDescriptionRu);
         $this->cityRepository->save($modelCity);
+        return "Done!";
     }
 
     /**
@@ -133,7 +130,6 @@ class Npcity
         $connection = $this->city->getResource()->getConnection();
         $tableName = $this->city->getResource()->getMainTable();
         $connection->truncateTable($tableName);
-
         foreach ($citiesApi as $key => $cityApi) {
             $this->addNewCity($cityApi);
         }
