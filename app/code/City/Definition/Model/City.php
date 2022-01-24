@@ -2,14 +2,12 @@
 
 namespace City\Definition\Model;
 
+use City\Definition\Api\Data\CityInterface;
 use Magento\Framework\Model\AbstractModel;
 use City\Definition\Model\ResourceModel\City as CityResourceModel;
 
-class City extends AbstractModel
+class City extends AbstractModel implements CityInterface
 {
-    /**
-     * @return void
-     */
     protected function _construct()
     {
         $this->_init(CityResourceModel::class);
@@ -55,7 +53,7 @@ class City extends AbstractModel
      * @param string $cityNameRu
      * @return string
      */
-    public function setCityNameRu(string $cityNameRu):string
+    public function setCityNameRu(string $cityNameRu): string
     {
         $this->setData('city_name_ru', $cityNameRu);
         return "Done!";
@@ -73,7 +71,7 @@ class City extends AbstractModel
      * @param string $cityArea
      * @return string
      */
-    public function setCityArea(string $cityArea):string
+    public function setCityArea(string $cityArea): string
     {
         $this->setData('city_area', $cityArea);
         return "Done!";
@@ -82,7 +80,7 @@ class City extends AbstractModel
     /**
      * @return string
      */
-    public function getCityArea():string
+    public function getCityArea(): string
     {
         return $this->_getData('city_area');
     }
@@ -91,7 +89,7 @@ class City extends AbstractModel
      * @param string $cityIdNp
      * @return string
      */
-    public function setCityIdNp(string $cityIdNp):string
+    public function setCityIdNp(string $cityIdNp): string
     {
         $this->setData('city_id_np', $cityIdNp);
         return "Done!";
@@ -100,7 +98,7 @@ class City extends AbstractModel
     /**
      * @return string
      */
-    public function getCityIdNp():string
+    public function getCityIdNp(): string
     {
         return $this->_getData('city_id_np');
     }
@@ -109,7 +107,7 @@ class City extends AbstractModel
      * @param string $cityAreaDescUa
      * @return string
      */
-    public function setCityAreaDescriptionUa(string $cityAreaDescUa):string
+    public function setCityAreaDescriptionUa(string $cityAreaDescUa): string
     {
         $this->setData('city_area_description_ua', $cityAreaDescUa);
         return "Done!";
@@ -118,7 +116,7 @@ class City extends AbstractModel
     /**
      * @return string
      */
-    public function getCityAreaDescriptionUa():string
+    public function getCityAreaDescriptionUa(): string
     {
         return $this->_getData('city_area_description_ua');
     }
@@ -127,7 +125,7 @@ class City extends AbstractModel
      * @param string $cityAreaDescRu
      * @return string
      */
-    public function setCityAreaDescriptionRu(string $cityAreaDescRu):string
+    public function setCityAreaDescriptionRu(string $cityAreaDescRu): string
     {
         $this->setData('city_area_description_ru', $cityAreaDescRu);
         return "Done!";
@@ -136,7 +134,7 @@ class City extends AbstractModel
     /**
      * @return string
      */
-    public function getCityAreaDescriptionRu():string
+    public function getCityAreaDescriptionRu(): string
     {
         return $this->_getData('city_area_description_ru');
     }

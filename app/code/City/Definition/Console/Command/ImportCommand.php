@@ -2,7 +2,6 @@
 
 namespace City\Definition\Console\Command;
 
-use Magento\Framework\Exception\LocalizedException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -15,7 +14,7 @@ class ImportCommand extends Command
     /**
      * @var Npcity
      */
-    private npCity $npCity;
+    private Npcity $npCity;
 
     /**
      * @param Npcity $npCity
@@ -47,7 +46,6 @@ class ImportCommand extends Command
      *
      * @return void
      * @throws Zend_Http_Client_Exception
-     * @throws LocalizedException
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {

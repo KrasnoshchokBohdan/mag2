@@ -117,23 +117,20 @@ class IpApiService
      * Do API request with provided params
      *
      * @param string $uriEndpoint
-     * @param array<array> $params
-     * @param string $requestMethod
      *
      * @return Response
      */
     private function doRequest(
-        string $uriEndpoint,
-        array  $params = [],
-        string $requestMethod = Request::HTTP_METHOD_GET
+        string $uriEndpoint
     ): Response {
+        $params = [];
         $client = $this->clientFactory->create(['config' => [
             'base_uri' => self::API_REQUEST_URI
         ]]);
 
         try {
             $response = $client->request(
-                $requestMethod,
+                Request::HTTP_METHOD_GET,
                 $uriEndpoint,
                 $params
             );
@@ -151,11 +148,11 @@ class IpApiService
      */
     public function sendCity():string
     {
-        $data = 0;
-       // $data = $this->serializer->unserialize($this->execute());
-        if (!$data) {
+        $city = 0;
+     //   $city = $this->serializer->unserialize($this->execute());
+        if (!$city) {
             return static::CITY_PATCH;
         }
-        return $data['city'];
+        return $city['city'];
     }
 }

@@ -18,7 +18,6 @@ class CityRepository implements CityRepositoryInterface
     public function __construct(
         CityResource $cityResource
     ) {
-
         $this->cityResource = $cityResource;
     }
 
@@ -27,7 +26,7 @@ class CityRepository implements CityRepositoryInterface
      * @return int
      * @throws AlreadyExistsException
      */
-    public function save($city):int
+    public function save(CityInterface $city):int
     {
         $this->cityResource->save($city);
         return $city->getId();

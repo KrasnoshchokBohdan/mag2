@@ -4,16 +4,26 @@ declare(strict_types=1);
 
 namespace City\Definition\Service;
 
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\HTTP\ZendClientFactory;
 use Magento\Framework\View\Result\PageFactory;
 use City\Definition\Model\CityFactory;
+use Zend_Http_Client;
 use Zend_Http_Client_Exception;
 use City\Definition\Api\CityRepositoryInterface;
 use City\Definition\Model\City;
+use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Serialize\SerializerInterface;
 
 class Npcity
 {
+    /**
+     * @var SerializerInterface
+     */
+    protected SerializerInterface $serialize;
+    /**
+     * @var ResourceConnection
+     */
+    protected ResourceConnection $connection;
     /**
      * API request URL
      */
@@ -54,6 +64,8 @@ class Npcity
      * @param CityRepositoryInterface $cityRepository
      * @param City $city
      * @param Check $check
+     * @param ResourceConnection $connection
+     * @param SerializerInterface $serialize
      */
     public function __construct(
         CityFactory             $cityFactory,
@@ -61,7 +73,9 @@ class Npcity
         ZendClientFactory       $httpClientFactory,
         CityRepositoryInterface $cityRepository,
         City                    $city,
-        Check                   $check
+        Check                   $check,
+        ResourceConnection      $connection,
+        SerializerInterface                    $serialize
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->httpClientFactory = $httpClientFactory;
@@ -69,22 +83,26 @@ class Npcity
         $this->cityRepository = $cityRepository;
         $this->city = $city;
         $this->check = $check;
+        $this->connection = $connection;
+        $this->serialize = $serialize;
     }
 
     /**
      * Index action
      *
      * @return string
-     * @throws Zend_Http_Client_Exception|LocalizedException
+     * @throws Zend_Http_Client_Exception
      */
-    public function execute(): string
+    public function execute():string
     {
         $citiesApiJson = $this->getCitiesFromServer();
-        $citiesApi = json_decode($citiesApiJson);
-        if (property_exists($citiesApi, 'success') && $citiesApi->success === true) {
-            $this->syncWithDb($citiesApi->data);
+        $citiesApi = $this->serialize->unserialize($citiesApiJson);
+        if (is_array($citiesApi)) {
+            if (isset($citiesApi['success']) && $citiesApi['success'] == true) {
+                $this->syncWithDb($citiesApi['data']);
+            }
         }
-        return "done!";
+        return 'Done!';
     }
 
     /**
@@ -98,39 +116,39 @@ class Npcity
         $client->setUri(self::API_REQUEST_URI);
         $request = ['modelName' => 'Address', 'calledMethod' => 'getCities', 'apiKey' => $apiKey];
         $client->setConfig(['maxredirects' => 0, 'timeout' => 30]);
-        $client->setRawData(utf8_encode(json_encode($request)));
-        return $client->request(\Zend_Http_Client::POST)->getBody();
+        $row = $this->serialize->serialize($request);
+        $client->setRawData((string)$row);
+        return $client->request(Zend_Http_Client::POST)->getBody();
     }
 
     /**
-     * @param $cityApi
-     * @return string
+     * @param array<string>  $cityApi
+     * @return void
      */
-    private function addNewCity($cityApi):string
+    private function addNewCity(array $cityApi): void
     {
         $modelCity = $this->cityFactory->create();
-        $modelCity->setCityRef($cityApi->Ref);
-        $modelCity->setCityNameUa($cityApi->Description);
-        $modelCity->setCityNameRu($cityApi->DescriptionRu);
-        $modelCity->setCityArea($cityApi->Area);
-        $modelCity->setCityIdNp($cityApi->CityID);
-        $modelCity->setCityAreaDescriptionUa($cityApi->AreaDescription);
-        $modelCity->setCityAreaDescriptionRu($cityApi->AreaDescriptionRu);
+        $modelCity->setCityRef($cityApi['Ref']);
+        $modelCity->setCityNameUa($cityApi['Description']);
+        $modelCity->setCityNameRu($cityApi['DescriptionRu']);
+        $modelCity->setCityArea($cityApi['Area']);
+        $modelCity->setCityIdNp($cityApi['CityID']);
+        $modelCity->setCityAreaDescriptionUa($cityApi['AreaDescription']);
+        $modelCity->setCityAreaDescriptionRu($cityApi['AreaDescriptionRu']);
         $this->cityRepository->save($modelCity);
-        return "Done!";
     }
 
     /**
-     * @param $citiesApi
+     * @param array<array> $citiesApi
      * @return void
-     * @throws LocalizedException
      */
-    private function syncWithDb($citiesApi)
+    private function syncWithDb(array $citiesApi)
     {
-        $connection = $this->city->getResource()->getConnection();
-        $tableName = $this->city->getResource()->getMainTable();
+        $connection = $this->connection->getConnection();
+        $tableName = $this->connection->getTableName('city_table');
+
         $connection->truncateTable($tableName);
-        foreach ($citiesApi as $key => $cityApi) {
+        foreach ($citiesApi as $cityApi) {
             $this->addNewCity($cityApi);
         }
     }
