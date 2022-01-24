@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'City_Definition',
-    __DIR__
-);
+    'Ajax_Cart',
+    __DIR__);
