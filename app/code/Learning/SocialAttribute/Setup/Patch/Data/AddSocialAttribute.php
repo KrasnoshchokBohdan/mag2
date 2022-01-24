@@ -25,7 +25,7 @@ class AddSocialAttribute implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return AddSocialAttribute|void
      */
     public function apply()
     {
@@ -52,19 +52,18 @@ class AddSocialAttribute implements DataPatchInterface
                 'visible_on_front' => true
             ]
         );
-    } 
+    }
 
     /**
-     * {@inheritdoc}
+     * @return array|string[]
      */
     public static function getDependencies()
     {
         return [];
     }
 
-
     /**
-     * {@inheritdoc}
+     * @return array|string[]
      */
     public function getAliases()
     {

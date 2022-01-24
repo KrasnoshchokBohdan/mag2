@@ -53,9 +53,7 @@ define([
             text: $.mage.__('Yes'),
             class: 'modal-close',
             click: function () {
-                cityInfoSend = {
-                    content: $('#cityModal').serializeArray(),   //$('#modal-custom-city')
-                };
+                cityInfoSend = $('#cityModal').text();  //$('#modal-custom-city')   $('#cityModal').serializeArray()  serializeArray()
                 ajaxT.ajaxPostSend(cityInfoSend);
                 this.closeModal();
             }
