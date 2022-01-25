@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!-- for add new tab in Magento2 system configuration section -->
+        <tab id="DynamicSCTab" translate="label" sortOrder="1">
+            <label>DynamicSC Management</label>
+        </tab>
+         <!-- for create section -->
+        <section id="DynamicSCSection" translate="label" type="text"
+                 sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Manage DynamicSC module</label>
+            <!--   Assign section to tab -->
+              <tab>DynamicSCTab</tab>
+              <resource>Dev101_DynamicSC::DynamicSC_DynamicSCSection</resource>
+            <!--  create group for fields in section -->
+             <group id="DynamicSCGroup" translate="label" type="text"
+                    sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Properties</label>
+
+                <!--  create  field -->
+                 <field id="DynamicSCModuleStatus" translate="label comment" sortOrder="1"
+                        type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Module Status</label>
+                     <source_model>Dev101\DynamicSC\Model\Config\Source\ModuleStatus</source_model>
+                     <comment>enable or disable module</comment>
+                     <validate>validate-no-empty</validate>
+                 </field>
+             </group>
+         </section>
+     </system>
+ </config>
