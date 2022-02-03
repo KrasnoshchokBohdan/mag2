@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+        <column name="comment">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">LiqPay payment status</item>
+                    <item name="resizeEnabled" xsi:type="boolean">true</item><!-- "true" allows admin user to change column width (default value); "false" - disallows admin user to change column width -->
+                    <item name="resizeDefaultWidth" xsi:type="number">100</item><!-- needed column width in pixels -->
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

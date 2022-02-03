@@ -19,6 +19,10 @@ use Magento\Framework\DB\Transaction;
 use LiqpayMagento\LiqPay\Helper\Data as Helper;
 use Magento\Framework\App\RequestInterface;
 
+/**
+ * Class LiqPayCallback
+ * @package LiqpayMagento\LiqPay\Model
+ */
 class LiqPayCallback implements LiqPayCallbackInterface
 {
     /**
@@ -56,14 +60,24 @@ class LiqPayCallback implements LiqPayCallbackInterface
      */
     protected $_request;
 
+    /**
+     * LiqPayCallback constructor.
+     * @param Order $order
+     * @param OrderRepositoryInterface $orderRepository
+     * @param InvoiceService $invoiceService
+     * @param Transaction $transaction
+     * @param Helper $helper
+     * @param LiqPay $liqPay
+     * @param RequestInterface $request
+     */
     public function __construct(
-        Order                    $order,
+        Order $order,
         OrderRepositoryInterface $orderRepository,
-        InvoiceService           $invoiceService,
-        Transaction              $transaction,
-        Helper                   $helper,
-        LiqPay                   $liqPay,
-        RequestInterface         $request
+        InvoiceService $invoiceService,
+        Transaction $transaction,
+        Helper $helper,
+        LiqPay $liqPay,
+        RequestInterface $request
     ) {
         $this->_order = $order;
         $this->_liqPay = $liqPay;
@@ -74,6 +88,9 @@ class LiqPayCallback implements LiqPayCallbackInterface
         $this->_request = $request;
     }
 
+    /**
+     * @return null
+     */
     public function callback()
     {
         $post = $this->_request->getParams();
@@ -100,8 +117,8 @@ class LiqPayCallback implements LiqPayCallbackInterface
                 return null;
             }
 
-            // ALWAYS CHECK signature field from Liqpay server!!!!
-            // DON'T delete this block, be careful of fraud!!!
+        // ALWAYS CHECK signature field from Liqpay server!!!!
+        // DON'T delete this block, be careful of fraud!!!
             if (!$this->_helper->securityOrderCheck($data, $receivedPublicKey, $receivedSignature)) {
                 $order->addStatusHistoryComment(__('LiqPay security check failed!'));
                 $this->_orderRepository->save($order);
@@ -113,7 +130,7 @@ class LiqPayCallback implements LiqPayCallbackInterface
             switch ($status) {
                 case LiqPay::STATUS_SANDBOX:
                 case LiqPay::STATUS_WAIT_COMPENSATION:
-                    // case LiqPay::STATUS_SUBSCRIBED:
+                // case LiqPay::STATUS_SUBSCRIBED:
                 case LiqPay::STATUS_SUCCESS:
                     if ($order->canInvoice()) {
                         $invoice = $this->_invoiceService->prepareInvoice($order);
@@ -186,6 +203,11 @@ class LiqPayCallback implements LiqPayCallbackInterface
         return null;
     }
 
+    /**
+     * @param $status
+     * @param $orderId
+     * @return mixed
+     */
     protected function getRealOrder($status, $orderId)
     {
         if ($status == LiqPay::STATUS_SANDBOX) {
