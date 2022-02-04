@@ -19,57 +19,25 @@ use Magento\Framework\DB\Transaction;
 use LiqpayMagento\LiqPay\Helper\Data as Helper;
 use Magento\Framework\App\RequestInterface;
 
-/**
- * Class LiqPayCallback
- * @package LiqpayMagento\LiqPay\Model
- */
 class LiqPayCallback implements LiqPayCallbackInterface
 {
-    /**
-     * @var \Magento\Sales\Model\Order
-     */
+
     protected $_order;
 
-    /**
-     * @var \LiqpayMagento\LiqPay\Sdk\LiqPay
-     */
     protected $_liqPay;
 
-    /**
-     * @var \Magento\Sales\Api\OrderRepositoryInterface
-     */
     protected $_orderRepository;
 
-    /**
-     * @var \Magento\Sales\Model\Service\InvoiceService
-     */
     protected $_invoiceService;
 
-    /**
-     * @var \Magento\Framework\DB\Transaction
-     */
+
     protected $_transaction;
 
-    /**
-     * @var Helper
-     */
     protected $_helper;
 
-    /**
-     * @var RequestInterface
-     */
+
     protected $_request;
 
-    /**
-     * LiqPayCallback constructor.
-     * @param Order $order
-     * @param OrderRepositoryInterface $orderRepository
-     * @param InvoiceService $invoiceService
-     * @param Transaction $transaction
-     * @param Helper $helper
-     * @param LiqPay $liqPay
-     * @param RequestInterface $request
-     */
     public function __construct(
         Order $order,
         OrderRepositoryInterface $orderRepository,
@@ -88,9 +56,6 @@ class LiqPayCallback implements LiqPayCallbackInterface
         $this->_request = $request;
     }
 
-    /**
-     * @return null
-     */
     public function callback()
     {
         $post = $this->_request->getParams();
@@ -203,11 +168,6 @@ class LiqPayCallback implements LiqPayCallbackInterface
         return null;
     }
 
-    /**
-     * @param $status
-     * @param $orderId
-     * @return mixed
-     */
     protected function getRealOrder($status, $orderId)
     {
         if ($status == LiqPay::STATUS_SANDBOX) {
