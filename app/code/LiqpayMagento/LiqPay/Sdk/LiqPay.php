@@ -32,7 +32,7 @@ class LiqPay extends \LiqPay
     const STATUS_WAIT_SECURE = 'wait_secure';
     const STATUS_WAIT_ACCEPT = 'wait_accept';
     const STATUS_WAIT_CARD   = 'wait_card';
-    
+
     // sandbox
     const STATUS_SANDBOX     = 'sandbox';
 

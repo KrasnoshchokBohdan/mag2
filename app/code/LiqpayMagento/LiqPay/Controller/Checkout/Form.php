@@ -17,28 +17,13 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use LiqpayMagento\LiqPay\Helper\Data as Helper;
 
-/**
- * Class Form
- * @package LiqpayMagento\LiqPay\Controller\Checkout
- */
 class Form extends Action
 {
-    /**
-     * @var \Magento\Checkout\Model\Session
-     */
+
     protected $_checkoutSession;
 
-    /**
-     * @var Helper
-     */
     protected $_helper;
 
-    /**
-     * Form constructor.
-     * @param Context $context
-     * @param CheckoutSession $checkoutSession
-     * @param Helper $helper
-     */
     public function __construct(
         Context $context,
         CheckoutSession $checkoutSession,
@@ -49,12 +34,6 @@ class Form extends Action
         $this->_helper = $helper;
     }
 
-    /**
-     * Dispatch request
-     *
-     * @return \Magento\Framework\Controller\ResultInterface|ResponseInterface
-     * @throws \Magento\Framework\Exception\NotFoundException
-     */
     public function execute()
     {
         try {
@@ -92,12 +71,7 @@ class Form extends Action
     }
 
 
-    /**
-     * Return checkout session object
-     *
-     * @return \Magento\Checkout\Model\Session
-     */
-    protected function getCheckoutSession()
+   protected function getCheckoutSession()
     {
         return $this->_checkoutSession;
     }

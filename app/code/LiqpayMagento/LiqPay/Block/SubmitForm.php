@@ -98,7 +98,6 @@ class SubmitForm extends Template
             'currency' => $order->getOrderCurrencyCode(),
             'description' => $this->_helper->getLiqPayDescription($order),
             'order_id' => $order->getIncrementId(),
-            'language' => $this->_helper->getLanguage()
         ));
         return $html;
     }
