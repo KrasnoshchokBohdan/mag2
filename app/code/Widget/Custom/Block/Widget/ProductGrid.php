@@ -6,7 +6,6 @@ use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\CatalogWidget\Block\Product\ProductsList;
 use Magento\Framework\Exception\LocalizedException;
 
-
 class ProductGrid extends ProductsList
 {
     const DEFAULT_SORT_BY = 'id';
