@@ -45,6 +45,17 @@
 
 
             <!--tab2-->
+
+            <parameter name="line2" xsi:type="block" required="false" visible="true">
+                <block class="Widget\Custom\Block\Widget\Separator">
+                    <data>
+                        <item name="label" xsi:type="array">
+                            <item name="tab" xsi:type="string" translate="true">Tab 2</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
             <parameter name="title2" xsi:type="text" visible="true">
                 <label translate="true">Title2</label>
             </parameter>
