@@ -11,25 +11,25 @@
     </virtualType>
     <virtualType name="RHUiExampleBlogFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
         <arguments>
-            <argument name="collection" xsi:type="object" shared="false">RH\UiExample\Model\ResourceModel\Blog\Collection</argument>
+            <argument name="collection" xsi:type="object" shared="false">Widget\Custom\Model\ResourceModel\Blog\Collection</argument>
             <argument name="filterPool" xsi:type="object" shared="false">RHUiExampleBlogFilterPool</argument>
         </arguments>
     </virtualType>
-    <type name="RH\UiExample\Model\ResourceModel\Blog\Grid\Collection">
+    <type name="Widget\Custom\Model\ResourceModel\Blog\Grid\Collection">
         <arguments>
-            <argument name="mainTable" xsi:type="string">rh_blog</argument>
+            <argument name="mainTable" xsi:type="string">wigdet_custom_task</argument>
             <argument name="eventPrefix" xsi:type="string">rh_uiexample_blog_grid_collection</argument>
             <argument name="eventObject" xsi:type="string">blog_grid_collection</argument>
-            <argument name="resourceModel" xsi:type="string">RH\UiExample\Model\ResourceModel\Post</argument>
+            <argument name="resourceModel" xsi:type="string">Widget\Custom\Model\ResourceModel\Blog</argument>
         </arguments>
     </type>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="rh_uiexample_blog_listing_data_source" xsi:type="string">RH\UiExample\Model\ResourceModel\Blog\Grid\Collection</item>
+                <item name="rh_uiexample_blog_listing_data_source" xsi:type="string">Widget\Custom\Model\ResourceModel\Blog\Grid\Collection</item>
             </argument>
         </arguments>
-    </type>                <type name="RH\UiExample\Ui\Component\MassAction\Status\Options">
+    </type>                <type name="Widget\Custom\Ui\Component\MassAction\Status\Options">
     <arguments>
         <argument name="data" xsi:type="array">
             <item name="urlPath" xsi:type="string">*/*/massStatus</item>

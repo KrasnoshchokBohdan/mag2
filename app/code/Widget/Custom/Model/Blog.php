@@ -5,10 +5,10 @@
  *
  * Created By : Rohan Hapani
  */
-namespace RH\UiExample\Model;
+namespace Widget\Custom\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use RH\UiExample\Model\ResourceModel\Post as BlogResourceModel;
+use Widget\Custom\Model\ResourceModel\Blog as BlogResourceModel;
 
 class Blog extends \Magento\Framework\Model\AbstractModel
 {

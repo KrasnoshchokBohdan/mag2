@@ -5,11 +5,11 @@
  *
  * Created By : Rohan Hapani
  */
-namespace RH\UiExample\Model\ResourceModel\Blog;
+namespace Widget\Custom\Model\ResourceModel\Blog;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use RH\UiExample\Model\Post as BlogModel;
-use RH\UiExample\Model\ResourceModel\Post as BlogResourceModel;
+use Widget\Custom\Model\Blog as BlogModel;
+use Widget\Custom\Model\ResourceModel\Blog as BlogResourceModel;
 
 class Collection extends AbstractCollection
 {

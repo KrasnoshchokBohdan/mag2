@@ -48,39 +48,4 @@ class ProductGrid extends ProductsList
         return $this->getData('products_sort_order');
     }
 
-    public function createCollection2()
-    {
-        $collection = $this->productCollectionFactory->create();
-        $collection->setVisibility($this->catalogProductVisibility->getVisibleInCatalogIds());
-
-        $collection = $this->_addProductAttributesAndPrices($collection)
-            ->addStoreFilter()
-            ->setPageSize($this->getPageSize())
-            ->setCurPage($this->getRequest()->getParam($this->getData('page_var_name'), 1))
-            ->setOrder($this->getSortBy2(), $this->getSortOrder2());
-
-        $conditions = $this->getConditions();
-        // $conditions->collectValidateAttributes($collection);
-        $this->sqlBuilder->attachConditionToCollection($collection, $conditions);
-
-        return $collection;
-    }
-
-
-    public function getSortBy2()
-    {
-        if (!$this->hasData('products_sort_by2')) {
-            $this->setData('products_sort_by2', self::DEFAULT_SORT_BY);
-        }
-        return $this->getData('products_sort_by2');
-    }
-
-
-    public function getSortOrder2()
-    {
-        if (!$this->hasData('products_sort_order2')) {
-            $this->setData('products_sort_order2', self::DEFAULT_SORT_ORDER);
-        }
-        return $this->getData('products_sort_order2');
-    }
 }

@@ -5,7 +5,7 @@
  *
  * Created By : Rohan Hapani
  */
-namespace RH\UiExample\Controller\Adminhtml\Index;
+namespace Widget\Custom\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -14,20 +14,20 @@ class Delete extends Action
 {
 
     /**
-     * @var \RH\UiExample\Model\Post
+     * @var \Widget\Custom\Model\Blog
      */
     protected $modelBlog;
 
     /**
      * @param Context                  $context
-     * @param \RH\UiExample\Model\Post $blogFactory
+     * @param \Widget\Custom\Model\Blog $blogFactory
      */
     public function __construct(
         Context $context,
-        \RH\UiExample\Model\Post $blogFactory
+        \Widget\Custom\Model\Blog $blogFactory
     ) {
         parent::__construct($context);
-        $this->modelBlog = $model;
+        $this->modelBlog = $blogFactory;
     }
 
     /**
@@ -35,7 +35,7 @@ class Delete extends Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('RH_UiExample::index_delete');
+        return $this->_authorization->isAllowed('Widget_Custom::index_delete');
     }
 
     /**

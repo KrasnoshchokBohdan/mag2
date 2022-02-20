@@ -5,7 +5,9 @@
         <label>Custom Widget</label>
         <description>Custom Widget</description>
         <parameters>
+
             <!--tab1-->
+
             <parameter name="title" xsi:type="text" visible="true">
                 <label translate="true">Title</label>
             </parameter>
@@ -60,33 +62,28 @@
                 <label translate="true">Title2</label>
             </parameter>
 
-            <parameter name="products_sort_by2" xsi:type="select" visible="true"
-                       source_model="Widget\Custom\Model\SortBy">
-                <label translate="true">Sort Products By2</label>
+
+
+
+
+
+            <!--tab3-->
+
+            <parameter name="line3" xsi:type="block" required="false" visible="true">
+                <block class="Widget\Custom\Block\Widget\Separator">
+                    <data>
+                        <item name="label" xsi:type="array">
+                            <item name="tab" xsi:type="string" translate="true">Tab 2</item>
+                        </item>
+                    </data>
+                </block>
             </parameter>
 
-            <parameter name="products_sort_order2" xsi:type="select" visible="true"
-                       source_model="Widget\Custom\Model\SortOrder">
-                <label translate="true">Sort Products Order2</label>
+            <parameter name="title3" xsi:type="text" visible="true">
+                <label translate="true">Title2</label>
             </parameter>
 
-            <parameter name="show_pager2" xsi:type="select" visible="true"
-                       source_model="Magento\Config\Model\Config\Source\Yesno">
-                <label translate="true">Display Page Control2</label>
-            </parameter>
 
-            <parameter name="products_per_page2" xsi:type="text" required="true" visible="true">
-                <label translate="true">Numbers of Products per Page2</label>
-                <depends>
-                    <parameter name="show_pager2" value="1"/>
-                </depends>
-                <value>5</value>
-            </parameter>
-
-            <parameter name="products_count2" xsi:type="text" required="true" visible="true">
-                <label translate="true">Numbers of Products to Display2</label>
-                <value>10</value>
-            </parameter>
 
 
 

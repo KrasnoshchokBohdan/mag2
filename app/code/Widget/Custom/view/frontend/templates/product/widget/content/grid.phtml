@@ -41,13 +41,19 @@ $description = false;
 <div class="product data items"
      data-mage-init='{"mage/tabs": {"openedState": "active", "animate": {"duration": 100}, "active": 1, "disabled": [3], "disabledState": "disabled"}}'>
     <div class="item title" data-role="collapsible">
-        <a class="switch" data-toggle="trigger" href="#tab-1">TEST1</a>
+        <a class="switch" data-toggle="trigger" href="#tab-1"><?= $block->escapeHtml(__($block->getTitle())) ?></a>
     </div>
     <div id="tab-1" class="item content" data-role="content">
 
 
+
+
+
         <div class="block widget block-products-list <?= /* @noEscape */
         $mode ?>">
+
+
+
             <?php if ($block->getTitle()): ?>
                 <div class="block-title">
                     <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
@@ -61,7 +67,11 @@ $description = false;
                 $mode ?>">
                     <ol class="product-items <?= /* @noEscape */
                     $type ?>">
+
+
                         <div class="slick-slider">
+
+
                             <?php $iterator = 1; ?>
                             <?php foreach ($items as $_item): ?>
                                 <?= /* @noEscape */
@@ -167,17 +177,28 @@ $description = false;
     </div>
 
 
+
+
+
+
     <div class="item title" data-role="collapsible">
-        <a class="switch" data-toggle="trigger" href="#tab-2">TEST2</a>
+        <a class="switch" data-toggle="trigger" href="#tab-2"><?= $block->escapeHtml(__($block->getData('title2'))) ?></a>
     </div>
     <div id="tab-2" class="item content" data-role="content">
 
 
+
+
+
+
         <div class="block widget block-products-list <?= /* @noEscape */
         $mode ?>">
-            <?php if ($block->getTitle()): ?>
+
+
+
+            <?php if ($block->getData('title2')): ?>
                 <div class="block-title">
-                    <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
+                    <strong><?= $block->escapeHtml(__($block->getData('title2'))) ?></strong>
                 </div>
             <?php endif ?>
             <div class="block-content">
@@ -188,10 +209,13 @@ $description = false;
                 <div class="products-<?= /* @noEscape */
                 $mode ?> <?= /* @noEscape */
                 $mode ?>">
-
                     <ol class="product-items <?= /* @noEscape */
                     $type ?>">
+
+
                         <div class="slick-slider">
+
+
                             <?php $iterator = 1; ?>
                             <?php foreach ($items as $_item): ?>
                                 <?= /* @noEscape */
@@ -295,17 +319,28 @@ $description = false;
         <?php endif; ?>
     </div>
 
+
+
+
     <div class="item title" data-role="collapsible">
-        <a class="switch" data-toggle="trigger" href="#tab-3">TEST3</a>
+        <a class="switch" data-toggle="trigger" href="#tab-3"><?= $block->escapeHtml(__($block->getData('title3'))) ?></a>
     </div>
     <div id="tab-3" class="item content" data-role="content">
 
 
+
+
+
+
+
         <div class="block widget block-products-list <?= /* @noEscape */
         $mode ?>">
-            <?php if ($block->getTitle()): ?>
+
+
+
+            <?php if ($block->getData('title3')): ?>
                 <div class="block-title">
-                    <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
+                    <strong><?= $block->escapeHtml(__($block->getData('title3'))) ?></strong>
                 </div>
             <?php endif ?>
             <div class="block-content">
@@ -314,12 +349,17 @@ $description = false;
 
 
                 <div class="products-<?= /* @noEscape */
-                $mode ?> <?= /* @noEscape */
+                $mode ?>
+                <?= /* @noEscape */
                 $mode ?>">
 
                     <ol class="product-items <?= /* @noEscape */
                     $type ?>">
+
+
                         <div class="slick-slider">
+
+
                             <?php $iterator = 1; ?>
                             <?php foreach ($items as $_item): ?>
                                 <?= /* @noEscape */
@@ -431,6 +471,7 @@ $description = false;
             "Magento_Catalog/js/validate-product": {}
         }
     }
+
 
 </script>
 

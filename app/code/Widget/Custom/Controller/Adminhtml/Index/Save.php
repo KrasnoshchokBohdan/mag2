@@ -5,17 +5,17 @@
  *
  * Created By : Rohan Hapani
  */
-namespace RH\UiExample\Controller\Adminhtml\Index;
+namespace Widget\Custom\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\Session;
-use RH\UiExample\Model\Post;
+use Widget\Custom\Model\Blog;
 
 class Save extends \Magento\Backend\App\Action
 {
 
     /**
-     * @var Post
+     * @var Blog
      */
     protected $uiExamplemodel;
 
@@ -26,12 +26,12 @@ class Save extends \Magento\Backend\App\Action
 
     /**
      * @param Action\Context $context
-     * @param Post           $uiExamplemodel
+     * @param Blog         $uiExamplemodel
      * @param Session        $adminsession
      */
     public function __construct(
         Action\Context $context,
-        Post           $uiExamplemodel,
+        Blog          $uiExamplemodel,
         Session        $adminsession
     ) {
         parent::__construct($context);
