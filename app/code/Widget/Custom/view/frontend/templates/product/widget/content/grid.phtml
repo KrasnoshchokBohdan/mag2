@@ -18,8 +18,8 @@ $type = 'widget-product-grid';
 $mode = 'grid';
 $image = 'new_products_content_widget_grid';
 
-//$items = $block->getProductCollection()->getItems();
-$items = $block->createCollection1()->getItems();
+$items = $block->getProductCollection()->getItems();
+$items2 = $block->createCollection1()->getItems();
 
 $showWishlist = true;
 $showCompare = true;
@@ -218,7 +218,7 @@ $description = false;
 
 
                             <?php $iterator = 1; ?>
-                            <?php foreach ($items as $_item): ?>
+                            <?php foreach ($items2 as $_item): ?>
                                 <?= /* @noEscape */
                                 ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
                                 <div class="product-item-info">
