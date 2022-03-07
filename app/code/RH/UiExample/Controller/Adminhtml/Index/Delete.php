@@ -14,17 +14,17 @@ class Delete extends Action
 {
 
     /**
-     * @var \RH\UiExample\Model\Post
+     * @var \RH\UiExample\Model\Blog
      */
     protected $modelBlog;
 
     /**
      * @param Context                  $context
-     * @param \RH\UiExample\Model\Post $blogFactory
+     * @param \RH\UiExample\Model\Blog $blogFactory
      */
     public function __construct(
         Context $context,
-        \RH\UiExample\Model\Post $blogFactory
+        \RH\UiExample\Model\Blog $blogFactory
     ) {
         parent::__construct($context);
         $this->modelBlog = $model;

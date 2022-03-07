@@ -8,7 +8,7 @@
 namespace RH\UiExample\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use RH\UiExample\Model\ResourceModel\Post as BlogResourceModel;
+use RH\UiExample\Model\ResourceModel\Blog as BlogResourceModel;
 
 class Blog extends \Magento\Framework\Model\AbstractModel
 {

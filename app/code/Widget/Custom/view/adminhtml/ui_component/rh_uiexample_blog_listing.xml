@@ -11,7 +11,7 @@
             <item name="name" xsi:type="string">add</item>
             <item name="label" xsi:type="string" translate="true">Add New</item>
             <item name="class" xsi:type="string">primary</item>
-            <item name="url" xsi:type="string">*/*/add</item>
+            <item name="url" xsi:type="string">*/*/edit</item>
          </item>
       </item>
    </argument>
@@ -141,26 +141,6 @@
                </item>
             </argument>
          </action>
-         <!--<action name="change_status">
-            <argument name="data" xsi:type="array">
-               <item name="config" xsi:type="array">
-                  <item name="type" xsi:type="string">change_status</item>
-                  <item name="label" xsi:type="string" translate="true">Change status</item>
-               </item>
-            </argument>
-            <argument name="actions" xsi:type="configurableObject">
-               <argument name="class" xsi:type="string">Widget\Custom\Ui\Component\MassAction\Status\Options</argument>
-               <argument name="data" xsi:type="array">
-                  <item name="urlPath" xsi:type="string">*/*/massStatus</item>
-                  <item name="paramName" xsi:type="string">status</item>
-                  <item name="confirm" xsi:type="array">
-                     <item name="title" xsi:type="string" translate="true">Update items status</item>
-                     <item name="message" xsi:type="string" translate="true">Are you sure you wan't to update selected items status?</item>
-                  </item>
-               </argument>
-            </argument>
-         </action> -->
-
 <action name="change_status">
     <settings>
         <type>change_status</type>
@@ -230,7 +210,7 @@
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="filter" xsi:type="string">text</item>
-               <item name="label" xsi:type="string" translate="true">Blog Title</item>
+               <item name="label" xsi:type="string" translate="true">Condition Title</item>
                <item name="sortOrder" xsi:type="number">30</item>
             </item>
          </argument>
@@ -239,7 +219,7 @@
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="filter" xsi:type="string">text</item>
-               <item name="label" xsi:type="string" translate="true">Blog Description</item>
+               <item name="label" xsi:type="string" translate="true">Condition Description</item>
                <item name="sortOrder" xsi:type="number">30</item>
             </item>
          </argument>

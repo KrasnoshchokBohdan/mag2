@@ -7,6 +7,15 @@
         <parameters>
 
             <!--tab1-->
+            <parameter name="line1" xsi:type="block" required="false" visible="true">
+                <block class="Widget\Custom\Block\Widget\Separator">
+                    <data>
+                        <item name="label" xsi:type="array">
+                            <item name="tab" xsi:type="string" translate="true">Tab 1</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
 
             <parameter name="title" xsi:type="text" visible="true">
                 <label translate="true">Title</label>
@@ -62,9 +71,38 @@
                 <label translate="true">Title2</label>
             </parameter>
 
+            <parameter name="products_sort_by2" xsi:type="select" visible="true"
+                       source_model="Widget\Custom\Model\SortBy">
+                <label translate="true">Sort Products By</label>
+            </parameter>
 
+            <parameter name="products_sort_order2" xsi:type="select" visible="true"
+                       source_model="Widget\Custom\Model\SortOrder">
+                <label translate="true">Sort Products Order</label>
+            </parameter>
 
+            <parameter name="show_pager2" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Page Control</label>
+            </parameter>
 
+            <parameter name="products_per_page2" xsi:type="text" required="true" visible="true">
+                <label translate="true">Numbers of Products per Page</label>
+                <depends>
+                    <parameter name="show_pager" value="1"/>
+                </depends>
+                <value>5</value>
+            </parameter>
+
+            <parameter name="products_count2" xsi:type="text" required="true" visible="true">
+                <label translate="true">Numbers of Products to Display</label>
+                <value>10</value>
+            </parameter>
+
+            <parameter name="condition2" xsi:type="select" visible="true"
+                       source_model="Widget\Custom\Model\Source\ConditionSource">
+                <label translate="true">Condition</label>
+            </parameter>
 
 
             <!--tab3-->
@@ -73,7 +111,7 @@
                 <block class="Widget\Custom\Block\Widget\Separator">
                     <data>
                         <item name="label" xsi:type="array">
-                            <item name="tab" xsi:type="string" translate="true">Tab 2</item>
+                            <item name="tab" xsi:type="string" translate="true">Tab 3</item>
                         </item>
                     </data>
                 </block>
@@ -83,14 +121,38 @@
                 <label translate="true">Title2</label>
             </parameter>
 
+            <parameter name="products_sort_by3" xsi:type="select" visible="true"
+                       source_model="Widget\Custom\Model\SortBy">
+                <label translate="true">Sort Products By</label>
+            </parameter>
 
+            <parameter name="products_sort_order3" xsi:type="select" visible="true"
+                       source_model="Widget\Custom\Model\SortOrder">
+                <label translate="true">Sort Products Order</label>
+            </parameter>
 
+            <parameter name="show_pager3" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Page Control</label>
+            </parameter>
 
+            <parameter name="products_per_page3" xsi:type="text" required="true" visible="true">
+                <label translate="true">Numbers of Products per Page</label>
+                <depends>
+                    <parameter name="show_pager" value="1"/>
+                </depends>
+                <value>5</value>
+            </parameter>
 
+            <parameter name="products_count3" xsi:type="text" required="true" visible="true">
+                <label translate="true">Numbers of Products to Display</label>
+                <value>10</value>
+            </parameter>
 
-
-
-
+            <parameter name="condition3" xsi:type="select" visible="true"
+                       source_model="Widget\Custom\Model\Source\ConditionSource">
+                <label translate="true">Condition</label>
+            </parameter>
 
 
             <parameter name="template" xsi:type="select" visible="true" required="true">
@@ -104,7 +166,7 @@
 
 
         </parameters>
-     </widget>
+    </widget>
 </widgets>
 
     <!--                    <option name="default" value="Widget_Custom::product/widget/content/grid.phtml"  selected="true">-->

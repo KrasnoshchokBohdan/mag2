@@ -20,7 +20,7 @@
             <argument name="mainTable" xsi:type="string">rh_blog</argument>
             <argument name="eventPrefix" xsi:type="string">rh_uiexample_blog_grid_collection</argument>
             <argument name="eventObject" xsi:type="string">blog_grid_collection</argument>
-            <argument name="resourceModel" xsi:type="string">RH\UiExample\Model\ResourceModel\Post</argument>
+            <argument name="resourceModel" xsi:type="string">RH\UiExample\Model\ResourceModel\Blog</argument>
         </arguments>
     </type>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">

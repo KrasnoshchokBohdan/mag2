@@ -23,7 +23,7 @@
                 <field id="group_list1" translate="label" type="multiselect" sortOrder="30" showInDefault="1"
                        showInWebsite="1" showInStore="0">
                     <label>Allow for Selected Group(s)</label>
-                    <source_model>Order\Cancel\Model\Config\Source\CustomerGroups</source_model>
+                    <source_model>Order\Cancel\Model\Config\Source\ConditionSource</source_model>
                     <can_be_empty>1</can_be_empty>
                 </field>
 

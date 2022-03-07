@@ -5,6 +5,7 @@
  *
  * Created By : Rohan Hapani
  */
+
 namespace Widget\Custom\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
@@ -26,12 +27,12 @@ class Save extends \Magento\Backend\App\Action
 
     /**
      * @param Action\Context $context
-     * @param Blog         $uiExamplemodel
-     * @param Session        $adminsession
+     * @param Blog $uiExamplemodel
+     * @param Session $adminsession
      */
     public function __construct(
         Action\Context $context,
-        Blog          $uiExamplemodel,
+        Blog           $uiExamplemodel,
         Session        $adminsession
     ) {
         parent::__construct($context);
@@ -55,6 +56,12 @@ class Save extends \Magento\Backend\App\Action
             if ($blog_id) {
                 $this->uiExamplemodel->load($blog_id);
             }
+            if (isset($data['rule'])) {
+                $data['conditions'] = $data['rule']['conditions'];
+                unset($data['rule']);
+            }
+
+            $this->uiExamplemodel->loadPost($data);
 
             $this->uiExamplemodel->setData($data);
 

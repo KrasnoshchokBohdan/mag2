@@ -8,8 +8,8 @@
 namespace RH\UiExample\Model\ResourceModel\Blog;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use RH\UiExample\Model\Post as BlogModel;
-use RH\UiExample\Model\ResourceModel\Post as BlogResourceModel;
+use RH\UiExample\Model\Blog as BlogModel;
+use RH\UiExample\Model\ResourceModel\Blog as BlogResourceModel;
 
 class Collection extends AbstractCollection
 {

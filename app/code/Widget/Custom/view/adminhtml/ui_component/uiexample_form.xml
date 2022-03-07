@@ -77,7 +77,7 @@
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="dataType" xsi:type="string">text</item>
-               <item name="label" xsi:type="string" translate="true">Blog Title</item>
+               <item name="label" xsi:type="string" translate="true">Condition Title</item>
                <item name="formElement" xsi:type="string">input</item>
                <item name="source" xsi:type="string">blog_title</item>
                <item name="dataScope" xsi:type="string">blog_title</item>
@@ -88,12 +88,32 @@
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                <item name="dataType" xsi:type="string">text</item>
-               <item name="label" xsi:type="string" translate="true">Blog Description</item>
+               <item name="label" xsi:type="string" translate="true">Condition Description</item>
                <item name="formElement" xsi:type="string">textarea</item>
                <item name="source" xsi:type="string">blog_description</item>
                <item name="dataScope" xsi:type="string">blog_description</item>
             </item>
          </argument>
       </field>
+
+
+
+       <htmlContent name="block_promo_catalog_edit_tab_conditions" sortOrder="20">
+           <argument name="data" xsi:type="array">
+               <item name="wrapper" xsi:type="array">
+                   <item name="label" xsi:type="string" translate="true">Conditions</item>
+                   <item name="collapsible" xsi:type="boolean">true</item>
+                   <item name="opened" xsi:type="boolean">false</item>
+               </item>
+           </argument>
+           <settings>
+               <wrapper>
+                   <canShow>true</canShow>
+                   <componentType>fieldset</componentType>
+               </wrapper>
+           </settings>
+           <block class="Widget\Custom\Block\Adminhtml\Promo\Catalog\Edit\Tab\Conditions" name="promo_catalog_edit_tab"/>
+       </htmlContent>
+
    </fieldset>
 </form>

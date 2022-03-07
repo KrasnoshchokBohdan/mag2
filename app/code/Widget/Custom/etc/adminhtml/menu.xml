@@ -9,7 +9,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Widget_Custom::view" title="RH Blog" module="Widget_Custom" sortOrder="50" resource="Widget_Custom::view"/>
+        <add id="Widget_Custom::view" title="Custom Widget Grid" module="Widget_Custom" sortOrder="50" resource="Widget_Custom::view"/>
         <add id="Widget_Custom::menu" title="Manage Grid" module="Widget_Custom" sortOrder="20" parent="Widget_Custom::view" action="uiexample/index/index" resource="Widget_Custom::menu"/>
     </menu>
 </config>

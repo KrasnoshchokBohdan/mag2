@@ -6,6 +6,9 @@
         <column xsi:type="varchar" name="blog_description" nullable="false" length="255" comment="Blog Description"/>
         <column xsi:type="smallint" name="status"  nullable="false" comment="Status"/>
         <column xsi:type="date" name="created_at" comment="Created At"  nullable="false" />
+
+        <column xsi:type="mediumtext" name="conditions_serialized" nullable="true" comment="Conditions Serialized"/>
+
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="blog_id"/>
         </constraint>

@@ -18,7 +18,8 @@ $type = 'widget-product-grid';
 $mode = 'grid';
 $image = 'new_products_content_widget_grid';
 
-$items = $block->getProductCollection()->getItems();
+//$items = $block->getProductCollection()->getItems();
+$items = $block->createCollection1()->getItems();
 
 $showWishlist = true;
 $showCompare = true;
