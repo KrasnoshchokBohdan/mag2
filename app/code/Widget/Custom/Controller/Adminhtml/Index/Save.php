@@ -10,6 +10,7 @@ namespace Widget\Custom\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\Session;
+use Magento\Backend\Model\View\Result\Redirect;
 use Widget\Custom\Model\Blog;
 
 class Save extends \Magento\Backend\App\Action
@@ -43,7 +44,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * Save blog record action
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
+     * @return Redirect
      */
     public function execute()
     {

@@ -7,10 +7,11 @@
  */
 namespace Widget\Custom\Model\ResourceModel\Blog\Grid;
 
+use Magento\Framework\Api\Search\SearchResultInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\Document as BlogModel;
 use Widget\Custom\Model\ResourceModel\Blog\Collection as BlogCollection;
 
-class Collection extends BlogCollection implements \Magento\Framework\Api\Search\SearchResultInterface
+class Collection extends BlogCollection implements SearchResultInterface
 {
 
     protected $aggregations;

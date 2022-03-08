@@ -9,22 +9,24 @@ namespace Widget\Custom\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\ResultInterface;
+use Widget\Custom\Model\Blog;
 
 class Delete extends Action
 {
 
     /**
-     * @var \Widget\Custom\Model\Blog
+     * @var Blog
      */
     protected $modelBlog;
 
     /**
      * @param Context                  $context
-     * @param \Widget\Custom\Model\Blog $blogFactory
+     * @param Blog $blogFactory
      */
     public function __construct(
         Context $context,
-        \Widget\Custom\Model\Blog $blogFactory
+        Blog $blogFactory
     ) {
         parent::__construct($context);
         $this->modelBlog = $blogFactory;
@@ -41,7 +43,7 @@ class Delete extends Action
     /**
      * Delete action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {

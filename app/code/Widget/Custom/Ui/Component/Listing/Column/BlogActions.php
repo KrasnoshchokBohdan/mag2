@@ -7,6 +7,10 @@
  */
 namespace Widget\Custom\Ui\Component\Listing\Column;
 
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
+
 class BlogActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
@@ -14,21 +18,21 @@ class BlogActions extends \Magento\Ui\Component\Listing\Columns\Column
     const URL_DELETE_PATH = 'uiexample/index/delete';
 
     /**
-     * @var \Magento\Framework\UrlInterface
+     * @var UrlInterface
      */
     protected $urlBuilder;
 
     /**
-     * @param \Magento\Framework\UrlInterface                              $urlBuilder
-     * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
-     * @param \Magento\Framework\View\Element\UiComponentFactory           $uiComponentFactory
+     * @param UrlInterface                              $urlBuilder
+     * @param ContextInterface $context
+     * @param UiComponentFactory           $uiComponentFactory
      * @param array                                                        $components
      * @param array                                                        $data
      */
     public function __construct(
-        \Magento\Framework\UrlInterface $urlBuilder,
-        \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
-        \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
+        UrlInterface $urlBuilder,
+        ContextInterface $context,
+        UiComponentFactory $uiComponentFactory,
         array $components = [],
         array $data = []
     ) {

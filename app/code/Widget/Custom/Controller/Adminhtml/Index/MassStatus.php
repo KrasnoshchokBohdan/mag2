@@ -7,12 +7,15 @@
  */
 namespace Widget\Custom\Controller\Adminhtml\Index;
 
+use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 use Widget\Custom\Model\ResourceModel\Blog\CollectionFactory;
 
-class MassStatus extends \Magento\Backend\App\Action
+class MassStatus extends Action
 {
 
     /**
@@ -43,8 +46,8 @@ class MassStatus extends \Magento\Backend\App\Action
     /**
      * Execute action
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
-     * @throws \Magento\Framework\Exception\LocalizedException|\Exception
+     * @return Redirect
+     * @throws LocalizedException|\Exception
      */
     public function execute()
     {
@@ -59,7 +62,7 @@ class MassStatus extends \Magento\Backend\App\Action
 
         $this->messageManager->addSuccess(__('A total of %1 record(s) have been modified.', $collection->getSize()));
 
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setPath('*/*/');
     }

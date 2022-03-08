@@ -1,16 +1,10 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
 
 use Magento\CatalogWidget\Block\Product\ProductsList;
 use Magento\Framework\App\Action\Action;
 
 /** @var ProductsList $block */
 
-// phpcs:disable Generic.Files.LineLength.TooLong
-// phpcs:disable Magento2.Templates.ThisInTemplate.FoundHelper
 ?>
 <?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
 <?php
@@ -18,8 +12,9 @@ $type = 'widget-product-grid';
 $mode = 'grid';
 $image = 'new_products_content_widget_grid';
 
-$items = $block->getProductCollection()->getItems();
-$items2 = $block->createCollection1()->getItems();
+$itemsTab1 = $block->createCollectionTab1()->getItems();
+$itemsTab2 = $block->createCollectionTab2()->getItems();
+$itemsTab3 = $block->createCollectionTab3()->getItems();
 
 $showWishlist = true;
 $showCompare = true;
@@ -74,7 +69,7 @@ $description = false;
 
 
                             <?php $iterator = 1; ?>
-                            <?php foreach ($items as $_item): ?>
+                            <?php foreach ($itemsTab1 as $_item): ?>
                                 <?= /* @noEscape */
                                 ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
                                 <div class="product-item-info">
@@ -163,7 +158,7 @@ $description = false;
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                                <?= ($iterator == count($itemsTab1) + 1) ? '</li>' : '' ?>
                             <?php endforeach ?>
                         </div>
                     </ol>
@@ -218,7 +213,7 @@ $description = false;
 
 
                             <?php $iterator = 1; ?>
-                            <?php foreach ($items2 as $_item): ?>
+                            <?php foreach ($itemsTab2 as $_item): ?>
                                 <?= /* @noEscape */
                                 ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
                                 <div class="product-item-info">
@@ -307,7 +302,7 @@ $description = false;
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                                <?= ($iterator == count($itemsTab2) + 1) ? '</li>' : '' ?>
                             <?php endforeach ?>
                         </div>
                     </ol>
@@ -362,7 +357,7 @@ $description = false;
 
 
                             <?php $iterator = 1; ?>
-                            <?php foreach ($items as $_item): ?>
+                            <?php foreach ($itemsTab3 as $_item): ?>
                                 <?= /* @noEscape */
                                 ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
                                 <div class="product-item-info">
@@ -451,7 +446,7 @@ $description = false;
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                                <?= ($iterator == count($itemsTab3) + 1) ? '</li>' : '' ?>
                             <?php endforeach ?>
                         </div>
                     </ol>

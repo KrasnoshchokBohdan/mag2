@@ -8,8 +8,9 @@
 namespace Widget\Custom\Ui\Component\MassAction\Status;
 
 use Magento\Framework\UrlInterface;
+use Magento\Ui\Component\Listing\Columns\Column;
 
-class Options extends \Magento\Ui\Component\Listing\Columns\Column
+class Options extends Column
 {
 
     /**

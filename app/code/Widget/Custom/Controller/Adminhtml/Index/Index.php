@@ -7,28 +7,31 @@
  */
 namespace Widget\Custom\Controller\Adminhtml\Index;
 
-class Index extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+use Magento\Framework\View\Result\PageFactory;
+
+class Index extends Action
 {
 
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     protected $resultPageFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context        $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        PageFactory $resultPageFactory
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
 
     /**
-     * @return \Magento\Framework\View\Result\PageFactory
+     * @return PageFactory
      */
     public function execute()
     {

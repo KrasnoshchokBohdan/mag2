@@ -5,15 +5,22 @@
  */
 namespace Widget\Custom\Block\Adminhtml\Promo\Catalog\Edit\Tab;
 
+use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form;
 use Magento\Backend\Block\Widget\Form\Generic;
+use Magento\Backend\Block\Widget\Form\Renderer\Fieldset;
+use Magento\CatalogRule\Api\Data\RuleInterface;
+use Magento\Framework\Data\FormFactory;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Phrase;
+use Magento\Framework\Registry;
 use Magento\Ui\Component\Layout\Tabs\TabInterface;
 use Magento\Rule\Model\Condition\AbstractCondition;
 
 class Conditions extends Generic implements TabInterface
 {
     /**
-     * @var \Magento\Backend\Block\Widget\Form\Renderer\Fieldset
+     * @var Fieldset
      */
     protected $_rendererFieldset;
 
@@ -23,19 +30,19 @@ class Conditions extends Generic implements TabInterface
     protected $_conditions;
 
     /**
-     * @param \Magento\Backend\Block\Template\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Framework\Data\FormFactory $formFactory
+     * @param Context $context
+     * @param Registry $registry
+     * @param FormFactory $formFactory
      * @param \Magento\Rule\Block\Conditions $conditions
-     * @param \Magento\Backend\Block\Widget\Form\Renderer\Fieldset $rendererFieldset
+     * @param Fieldset $rendererFieldset
      * @param array $data
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\Data\FormFactory $formFactory,
+        Context $context,
+        Registry $registry,
+        FormFactory $formFactory,
         \Magento\Rule\Block\Conditions $conditions,
-        \Magento\Backend\Block\Widget\Form\Renderer\Fieldset $rendererFieldset,
+        Fieldset $rendererFieldset,
         array $data = []
     ) {
         $this->_rendererFieldset = $rendererFieldset;
@@ -46,7 +53,7 @@ class Conditions extends Generic implements TabInterface
     /**
      * Prepare content for tab
      *
-     * @return \Magento\Framework\Phrase
+     * @return Phrase
      * @codeCoverageIgnore
      */
     public function getTabLabel()
@@ -57,7 +64,7 @@ class Conditions extends Generic implements TabInterface
     /**
      * Prepare title for tab
      *
-     * @return \Magento\Framework\Phrase
+     * @return Phrase
      * @codeCoverageIgnore
      */
     public function getTabTitle()
@@ -122,6 +129,7 @@ class Conditions extends Generic implements TabInterface
 
     /**
      * @return Form
+     * @throws LocalizedException
      */
     protected function _prepareForm()
     {
@@ -135,11 +143,11 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
-     * @param \Magento\CatalogRule\Api\Data\RuleInterface $model
+     * @param RuleInterface $model
      * @param string $fieldsetId
      * @param string $formName
      * @return \Magento\Framework\Data\Form
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     protected function addTabToForm($model, $fieldsetId = 'conditions_fieldset', $formName = 'uiexample_form')
     {

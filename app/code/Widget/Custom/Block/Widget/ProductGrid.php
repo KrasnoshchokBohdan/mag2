@@ -25,7 +25,7 @@ class ProductGrid extends ProductsList
     /**
      * @var SerializerInterface
      */
-    private $serializer;
+    private SerializerInterface $serializer;
 
     public function __construct(
         SerializerInterface         $serializer,
@@ -59,7 +59,11 @@ class ProductGrid extends ProductsList
         );
     }
 
-    public function createCollection()
+    /**
+     * @return Collection
+     * @throws LocalizedException
+     */
+    public function createCollectionTab1(): Collection
     {
         $collection1 = $this->productCollectionFactory->create();
         $collection1->setVisibility($this->catalogProductVisibility->getVisibleInCatalogIds());
@@ -68,7 +72,7 @@ class ProductGrid extends ProductsList
             ->addStoreFilter()
             ->setPageSize($this->getPageSize())
             ->setCurPage($this->getRequest()->getParam($this->getData('page_var_name'), 1))
-            ->setOrder($this->getSortBy(), $this->getSortOrder());
+            ->setOrder($this->getSortBy('products_sort_by'), $this->getSortOrder('products_sort_order'));
 
         $conditions1 = $this->getConditions();
         // $conditions->collectValidateAttributes($collection);
@@ -77,7 +81,11 @@ class ProductGrid extends ProductsList
         return $collection1;
     }
 
-    public function createCollection1()
+    /**
+     * @return Collection
+     * @throws LocalizedException
+     */
+    public function createCollectionTab2(): Collection
     {
         $collection2 = $this->productCollectionFactory->create();
         $collection2->setVisibility($this->catalogProductVisibility->getVisibleInCatalogIds());
@@ -86,7 +94,7 @@ class ProductGrid extends ProductsList
             ->addStoreFilter()
             ->setPageSize($this->getPageSize())
             ->setCurPage($this->getRequest()->getParam($this->getData('page_var_name'), 1))
-            ->setOrder($this->getSortBy(), $this->getSortOrder());
+            ->setOrder($this->getSortBy('products_sort_by2'), $this->getSortOrder('products_sort_order2'));
 
         $conditions2 = $this->getConditions();
         $conditions33 = $this->serializer->unserialize($this->getData('condition2'));
@@ -97,34 +105,54 @@ class ProductGrid extends ProductsList
         return $collection2;
     }
 
-    public function getSortBy()
+    /**
+     * @return Collection
+     * @throws LocalizedException
+     */
+    public function createCollectionTab3(): Collection
     {
-        if (!$this->hasData('products_sort_by')) {
-            $this->setData('products_sort_by', self::DEFAULT_SORT_BY);
-        }
-        return $this->getData('products_sort_by');
+        $collection3 = $this->productCollectionFactory->create();
+        $collection3->setVisibility($this->catalogProductVisibility->getVisibleInCatalogIds());
+
+        $collection3 = $this->_addProductAttributesAndPrices($collection3)
+            ->addStoreFilter()
+            ->setPageSize($this->getPageSize())
+            ->setCurPage($this->getRequest()->getParam($this->getData('page_var_name'), 1))
+            ->setOrder($this->getSortBy('products_sort_order3'), $this->getSortOrder('products_sort_order3'));
+
+        $conditions3 = $this->getConditions();
+        $conditions33 = $this->serializer->unserialize($this->getData('condition3'));
+
+        $conditions3->getData('conditions')[0]->setData($conditions33['conditions'][0]);
+        $this->sqlBuilder->attachConditionToCollection($collection3, $conditions3);
+
+        return $collection3;
     }
 
-    public function getSortOrder()
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function getSortBy(string $key)
     {
-        if (!$this->hasData('products_sort_order')) {
-            $this->setData('products_sort_order', self::DEFAULT_SORT_ORDER);
+        if (!$this->hasData($key)) {
+            $this->setData($key, self::DEFAULT_SORT_BY);
         }
-        return $this->getData('products_sort_order');
+        return $this->getData($key);
+    }
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function getSortOrder(string $key)
+    {
+        if (!$this->hasData($key)) {
+            $this->setData($key, self::DEFAULT_SORT_ORDER);
+        }
+        return $this->getData($key);
     }
 }
 
 
 
-//        $collection2 = $this->productCollectionFactory->create();
-//        $collection2->setVisibility($this->catalogProductVisibility->getVisibleInCatalogIds());
-//
-//        $collection2 = $this->_addProductAttributesAndPrices($collection2)
-//            ->addStoreFilter()
-//            ->setPageSize($this->getPageSize())
-//            ->setCurPage($this->getRequest()->getParam($this->getData('page_var_name'), 1))
-//            ->setOrder($this->getSortBy(), $this->getSortOrder());
-//
-//        $conditions2 = $this->getData('condition2');
-//        // $conditions->collectValidateAttributes($collection);
-//        $this->sqlBuilder->attachConditionToCollection($collection2, $conditions2);

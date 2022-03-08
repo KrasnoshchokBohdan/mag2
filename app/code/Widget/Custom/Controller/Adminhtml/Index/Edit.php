@@ -8,12 +8,14 @@
 
 namespace Widget\Custom\Controller\Adminhtml\Index;
 
+use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 
-class Edit extends \Magento\Backend\App\Action
+class Edit extends Action
 {
     /**
      * @var PageFactory
@@ -35,7 +37,7 @@ class Edit extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
     /**
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @return Page
      */
 
     public function execute()
@@ -70,7 +72,7 @@ class Edit extends \Magento\Backend\App\Action
 
 
         // 3. Build edit form
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $this->initPage($resultPage)->addBreadcrumb(
             $id ? __('Edit Test') : __('New Test'),
@@ -83,8 +85,8 @@ class Edit extends \Magento\Backend\App\Action
     /**
      * Init page
      *
-     * @param \Magento\Backend\Model\View\Result\Page $resultPage
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @param Page $resultPage
+     * @return Page
      */
     public function initPage($resultPage)
     {
