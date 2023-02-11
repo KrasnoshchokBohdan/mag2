@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-        <menu>
-            <add id="Learning_Currency::currency_admin" title="Currency" module="Learning_Currency" sortOrder="51" resource="Learning_Currency::currency_admin"/>
-            <add id="Learning_Currency::currencies" title="Currencies" module="Learning_Currency" sortOrder="10" action="Learning_Currency/currencies" resource="Learning_Currency::currencies" parent="Learning_Currency::currency_admin"/>
-            <add id="Learning_Currency::currency_configuration" title="Currency Configuration" module="Learning_Currency" sortOrder="99" parent="Learning_Currency::currency_admin" action="adminhtml/system_config/edit/section/currency_admin" resource="Learning_Currency::configuration"/>
-        </menu>
-    </config>

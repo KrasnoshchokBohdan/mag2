@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Checkout_Wholesale::wholesale" title="Wholesale" module="Checkout_Wholesale" sortOrder="51" resource="Checkout_Wholesale::wholesale"/>
-            <add id="Checkout_Wholesale::whole_configuration" title="Configuration" module="Checkout_Wholesale" sortOrder="99" parent="Checkout_Wholesale::wholesale"
-action="adminhtml/system_config/edit/section/wholesale" resource="Checkout_Wholesale::wholesale_configuration"/>
-    </menu>
-</config>
-

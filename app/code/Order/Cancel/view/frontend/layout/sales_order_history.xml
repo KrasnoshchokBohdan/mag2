@@ -1,9 +1,0 @@
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
-        <referenceBlock name="sales.order.history"
-                        template="Order_Cancel::order/history.phtml"
-                        class="Magento\Sales\Block\Order\History">
-        </referenceBlock>
-    </body>
-</page>
-

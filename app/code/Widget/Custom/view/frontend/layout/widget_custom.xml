@@ -1,9 +1,0 @@
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
-        <block name="widget_custom"
-                        template="Widget_Custom::product/widget/content/grid.phtml"
-                        class="Magento\CatalogWidget\Block\Product\ProductsList">
-        </block>
-    </body>
-</page>
-

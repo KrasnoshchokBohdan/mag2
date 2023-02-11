@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
-        <referenceContainer name="product.info.main">
-            <block name="product.main.title.widgetjs_sellerconsultation_block" class="WidgetJs\SellerConsultation\Block\ContactForm" template="WidgetJs_SellerConsultation::seller_consultation.phtml" after="-" > <!--product.info.price before="product.price.tier" -->
-            </block>
-        </referenceContainer>
-    </body>
-</page>

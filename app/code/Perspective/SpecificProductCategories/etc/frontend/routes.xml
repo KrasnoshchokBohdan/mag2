@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
-    <router id="standard">
-        <route id="specific_product_categories" frontName="specific-product-categories">
-            <module name="Perspective_SpecificProductCategories" />
-        </route>
-    </router>
-</config>
