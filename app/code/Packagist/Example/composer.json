@@ -1,0 +1,22 @@
+{
+    "name": "packagist/module-example",
+    "description": "Some",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Packagist\\Example\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Krasnoshchok Bohdan",
+            "email": "krasnoshchok.bohdan@gmail.com"
+        }
+    ]
+}
