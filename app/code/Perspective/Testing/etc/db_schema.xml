@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="perspective_testing_testing_result" resource="default" engine="innodb" comment="perspective_testing_testing_result Table">
+		<column xsi:type="int" name="testing_result_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="testing_result_id"/>
+		</constraint>
+		<column name="test_id" nullable="true" xsi:type="int" comment="test_id" identity="false"/>
+		<column name="customer_id" nullable="true" xsi:type="int" comment="customer_id" identity="false"/>
+		<column name="status" nullable="true" xsi:type="smallint" comment="status" identity="false"/>
+		<column name="result" nullable="true" xsi:type="varchar" comment="result" length="255"/>
+		<column name="grade" nullable="true" xsi:type="smallint" comment="grade" identity="false"/>
+		<column name="questions_result" nullable="true" xsi:type="text" comment="questions_result"/>
+	</table>
+
+
+
+
+
+</schema>
