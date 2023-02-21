@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Perspective::top_level" title="Perspective" module="Perspective_Testing" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="Perspective_Testing::perspective_testing_testing_result" title="Testing Results" module="Perspective_Testing" sortOrder="9999" resource="Magento_Backend::content" parent="Perspective::top_level" action="perspective_testing/testingresult/index"/>
+	</menu>
+</config>

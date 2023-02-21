@@ -1,0 +1,25 @@
+{
+    "name": "perspective/module-testing",
+    "description": "Some",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Perspective\\Testing\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Krasnoshchok Bohdan",
+            "email": "krasnoshchok.bohdan@gmail.com"
+        }
+    ]
+}
+
+
